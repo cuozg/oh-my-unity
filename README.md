@@ -66,6 +66,10 @@ Skills are **specialized capabilities** that extend the agent's expertise. Each 
 | Skill                            | Description                                                        |
 | -------------------------------- | ------------------------------------------------------------------ |
 | `unity-mcp-basics/`            | Mastery of the `unityMCP` toolset for Unity Editor automation.   |
+| `unity-editor-developer/`      | Specialist in custom Editor tools, windows, and automation.       |
+| `unity-coder/`                 | Specialist in implementing C# logic and architectural patterns.    |
+| `unity-tech-artist/`           | Bridge between art and code (Shaders, Pipeline Automation).        |
+| `unity-mobile-developer/`      | Specialist in iOS/Android deployment, interop, and optimization.   |
 | `unity-debugger/`              | Systematic diagnosis and resolution of Unity technical errors.     |
 | `unity-performance-optimizer/` | Identification and resolution of performance bottlenecks.          |
 | `unity-pr-reviewer/`           | Automated GitHub PR reviews with commit-ready suggestions.         |
@@ -74,6 +78,7 @@ Skills are **specialized capabilities** that extend the agent's expertise. Each 
 | `unity-code-investigator/`     | Deep-dive analysis of C# logic and execution flow tracing.         |
 | `unity-tdd-writer/`            | Formal Technical Design Document (TDD) generation (WWE 2025).      |
 | `unity-test/`                  | Automated testing using the Unity Test Framework (Edit/Play Mode). |
+| `unity-web-developer/`         | Specialist in WebGL deployment, interop, and browser optimization.  |
 | `skill-creator/`               | Meta-skill for creating and improving other project skills.        |
 
 ### Skill Folder Structure
@@ -116,11 +121,14 @@ Workflows are **step-by-step procedures** for complex, repetitive tasks. They ca
 | `/unity-fix-errors`           | Diagnose and fix Unity compiler or runtime errors.                                |
 | `/unity-documentation`        | Create and maintain technical project documentation.                              |
 | `/unity-optimize-performance` | Identify and resolve performance bottlenecks.                                     |
+| `/unity-implement-logic`      | Implement or refactor Unity C# logic and gameplay systems.                        |
+| `/unity-mobile-deploy`        | Optimize, build, and deploy the project to iOS and Android.                       |
 | `/unity-review-pr`            | Conduct a full code review on a GitHub Pull Request.                              |
 | `/unity-plan`                 | Investigate requirements and produce a detailed implementation plan with costing. |
 | `/unity-investigate-code`     | Deep-dive into complex logic, execution flows, and feature implementations.       |
 | `/unity-write-tdd`            | Generate a Technical Design Document (TDD) based on the WWE 2025 template.        |
 | `/unity-test`                 | Create and run automated tests using the Unity Test Framework.                    |
+| `/unity-web-deploy`           | Optimize, build, and deploy the project to the WebGL platform.                    |
 
 ### How to Create a Workflow
 
