@@ -72,6 +72,7 @@ Skills are **specialized capabilities** that extend the agent's expertise. Each 
 | `unity-plan/` | Expert in investigating requirements to produce detailed implementation plans with costing. |
 | `unity-code-investigator/` | Expert in deep-diving into C# logic, tracing execution flows, and explaining features. |
 | `unity-tdd-writer/` | Expert in generating comprehensive Technical Design Documents (TDD) based on WWE 2025 template. |
+| `unity-test/` | Expert in automated testing using the Unity Test Framework (UTF). Handles unit, integration, and play mode tests. |
 
 ### Skill Folder Structure
 
@@ -108,12 +109,13 @@ Workflows are **step-by-step procedures** for complex, repetitive tasks. They ca
 
 | Command | Description |
 |---------|-------------|
-| `/fix-errors` | Diagnose and fix Unity compiler or runtime errors. |
-| `/optimize-performance` | Identify and resolve performance bottlenecks. |
-| `/review-pr` | Conduct a full code review on a GitHub Pull Request. |
+| `/unity-fix-errors` | Diagnose and fix Unity compiler or runtime errors. |
+| `/unity-optimize-performance` | Identify and resolve performance bottlenecks. |
+| `/unity-review-pr` | Conduct a full code review on a GitHub Pull Request. |
 | `/unity-plan` | Investigate requirements and produce a detailed implementation plan with costing. |
-| `/investigate-code` | Deep-dive into complex logic, execution flows, and feature implementations. |
-| `/write-tdd` | Generate a Technical Design Document (TDD) based on the WWE 2025 template. |
+| `/unity-investigate-code` | Deep-dive into complex logic, execution flows, and feature implementations. |
+| `/unity-write-tdd` | Generate a Technical Design Document (TDD) based on the WWE 2025 template. |
+| `/unity-test` | Create and run automated tests using the Unity Test Framework. |
 
 ### How to Create a Workflow
 
@@ -146,8 +148,8 @@ See `.agent/docs/creating-agents.md` for how to create a new agent.
 
 ## 🚀 Quick Start
 
-1.  **Ask for a review**: *"Review PR #25141 for performance issues."*
-2.  **Fix errors**: *"/fix-errors"*
-3.  **Create a feature**: *"Add a player health bar to the UI."* (Agent will use rules and skills automatically).
+1.  **Ask for a review**: *"Review PR #25141 for performance issues."* (Agent will use `/unity-review-pr`).
+2.  **Fix errors**: *"/unity-fix-errors"*
+3.  **Plan a feature**: *"/unity-plan Add a player health bar to the UI"* (Agent will use rules and skills automatically).
 
 For more details, see the files in `.agent/docs/`.
