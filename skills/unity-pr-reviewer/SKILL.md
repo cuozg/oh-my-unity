@@ -30,10 +30,16 @@ This skill allows the agent to perform an automated code review on a GitHub Pull
 4.  **Risk Assessment**: Identify security vulnerabilities and extreme performance bottlenecks.
 5.  **Draft Inline Comments**: Map issues to file paths and line numbers in the PR.
 
-### 4. Inline Commenting
-- Map issues found in the diff to their file path and line number.
-- Construct a review JSON payload.
-- Use the helper script or `gh api` to post the review.
+### 5. GitHub Commit Suggestions
+- Use GitHub's `suggestion` code blocks to provide immediate, commit-ready fixes for code issues.
+- Formatting: 
+  ````markdown
+  [Brief description of the issue]
+  ```suggestion
+  [Modified code here]
+  ```
+  ````
+- When a `suggestion` block is included, GitHub automatically renders a **Commit suggestion** button in the UI.
 
 ## Severity Levels
 
@@ -62,19 +68,19 @@ This skill allows the agent to perform an automated code review on a GitHub Pull
       "path": "Assets/Scripts/Example.cs",
       "line": 42,
       "side": "RIGHT",
-      "body": "🔴 **Critical**: Missing null check for 'playerTransform' before use. This will cause a NullReferenceException if the player is destroyed."
+      "body": "🔴 **Critical**: Missing null check for 'playerTransform' before use.\n\n```suggestion\n        if (playerTransform != null) playerTransform.position = targetPos;\n```"
     },
     {
       "path": "Assets/Scripts/HeavyLogic.cs",
       "line": 15,
       "side": "RIGHT",
-      "body": "🟡 **Major**: Avoid string concatenation in Update(). Use StringBuilder or pre-formatted strings to reduce GC pressure."
+      "body": "🟡 **Major**: Avoid string concatenation in Update().\n\n```suggestion\n    statusBuilder.Clear().Append(\"Score: \").Append(score);\n    statusText.text = statusBuilder.ToString();\n```"
     },
     {
       "path": "Assets/Scripts/CleanCode.cs",
       "line": 120,
       "side": "RIGHT",
-      "body": "💚 **Suggestion**: Consider using the C# 9 'is not' pattern for better readability here."
+      "body": "💚 **Suggestion**: Use the C# 9 'is not' pattern.\n\n```suggestion\n    if (obj is not null)\n```"
     }
   ]
 }
@@ -90,7 +96,8 @@ This skill allows the agent to perform an automated code review on a GitHub Pull
 
 ## Best Practices
 
+- **Actionable Suggestions**: Use ````suggestion```` blocks whenever possible for minor fixes, style issues, or simple logic corrections to allow the developer to commit changes directly from the PR UI.
 - **Positive Highlights**: Always mention what was done well (Clean namespaces, good SO usage).
 - **Be Precise**: Use line numbers from the "New" file in the diff.
-- **Provide Solutions**: Suggest specific code fixes or refactoring patterns.
+- **Provide Solutions**: Don't just point out the problem; provide the exact code fix in a suggestion block.
 - **Cross-Platform**: Consider mobile/VR implications for every change.
