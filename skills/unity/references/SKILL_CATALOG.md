@@ -5,6 +5,8 @@ This catalog maps high-level development tasks to the specialized Skills availab
 | Task Domain | Target Skill | Key Capability |
 | :--- | :--- | :--- |
 | **Project Setup & Logic** | `unity-coder` | Implementation of C# systems, MonoBehaviours, and design patterns. |
+| **Data & Serialization** | `flatbuffers` | Specialist in FlatBuffers schema, C# generation, and binary data. |
+| **Visualization** | `mermaid` | Specialist in visual diagrams, charts, and architectural mapping. |
 | **Mobile Specifics** | `unity-mobile-developer` | iOS/Android optimizations, touch input, and native interop. |
 | **Web Specifics** | `unity-web-developer` | WebGL deployment, browser interop, and JS communication. |
 | **Pipeline & Tools** | `unity-tech-artist` | Shaders, `AssetPostprocessor`, and art pipeline automation. |
