@@ -65,6 +65,7 @@ Skills are **specialized capabilities** that extend the agent's expertise. Each 
 
 | Skill                            | Description                                                        |
 | -------------------------------- | ------------------------------------------------------------------ |
+| `unity/`                       | The master Unity technical lead and orchestrator.                  |
 | `unity-mcp-basics/`            | Mastery of the `unityMCP` toolset for Unity Editor automation.   |
 | `unity-editor-developer/`      | Specialist in custom Editor tools, windows, and automation.       |
 | `unity-coder/`                 | Specialist in implementing C# logic and architectural patterns.    |
