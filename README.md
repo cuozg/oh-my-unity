@@ -24,6 +24,36 @@ To set up the agent configuration in your Unity project, run the following comma
 git clone https://github.com/cuozg/oh-my-unity.git ./.agent
 ```
 
+### 🚀 Implementation Pipeline
+
+This project follows a structured engineering pipeline to move from high-level ideas to verified, code-complete features.
+
+```mermaid
+graph TD
+    Input([Feature Input]) --> Plan[unity-plan]
+    Plan -->|High-Level Costing & Epics| Detail[unity-plan-detail]
+    Detail -->|Task Skeletons in Documents/Tasks/| Brainstorm[unity-plan-detail-brainstorm]
+    Brainstorm -->|Execution-Ready Instructions| Executor[unity-plan-executor]
+    Executor -->|Specialized Experts| Done([Feature Complete])
+
+    subgraph "Planning Phase"
+    Plan
+    Detail
+    end
+
+    subgraph "Engineering Phase"
+    Brainstorm
+    Executor
+    end
+```
+
+#### Pipeline Stages:
+
+1.  **`unity-plan`**: Analyzes the input specification to produce a high-level roadmap, epics, and costing estimates.
+2.  **`unity-plan-detail`**: Decomposes epics into individual task skeletons. It generates `.md` files in `Documents/Tasks/` defining the requirements and success criteria for each step.
+3.  **`unity-plan-detail-brainstorm`**: The technical deep-dive. It uses `unity-code-investigator` to find exact code locations, brainstorms architectural decisions with the user, and provides specific code changes and test cases.
+4.  **`unity-plan-executor`**: The final implementation stage. It reads the refined task instructions and coordinates specialized experts (like `unity-coder` or `flatbuffers`) to apply the changes and verify the "Definition of Done".
+
 ---
 
 ## 📜 Rules
@@ -78,6 +108,9 @@ Skills are **specialized capabilities** that extend the agent's expertise. Each 
 | `unity-pr-reviewer/`           | Automated GitHub PR reviews with commit-ready suggestions.         |
 | `unity-documentation/`         | Expert in crafting technical documentation for projects and APIs.  |
 | `unity-plan/`                  | Requirement decomposition into structured implementation plans.    |
+| `unity-plan-detail/`           | Decomposes plans into detailed tasks with code and test cases.    |
+| `unity-plan-detail-brainstorm/`| Deep-dive investigation and refined coding instructions for tasks. |
+| `unity-plan-executor/`         | Executes detailed technical tasks based on .md files in Documents/Tasks/. |
 | `unity-code-investigator/`     | Deep-dive analysis of C# logic and execution flow tracing.         |
 | `unity-tdd-writer/`            | Formal Technical Design Document (TDD) generation (WWE 2025).      |
 | `unity-test/`                  | Automated testing using the Unity Test Framework (Edit/Play Mode). |
