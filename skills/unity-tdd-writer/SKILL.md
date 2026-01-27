@@ -20,10 +20,22 @@ All TDDs must use the `WWE_TDD_2025_TEMPLATE.md` from `assets/templates/` and be
 
 ## Workflow Integration
 
-1. **Read**: Analyze the corresponding `IMPLEMENTATION_PLAN_[Feature].md` in `Documents/Plans/`.
-2. **Cluster**: Group granular tasks into logical TDD components.
-3. **Draft**: Populate the template with deep technical specifics.
-4. **Verify**: Ensure all mandatory TDD sections are addressed or marked N/A.
+1.  **Locate Source**:
+    - Find the latest implementation plan in `Documents/Plans/IMPLEMENTATION_PLAN_[FeatureName].md`.
+    - If no plan exists, run the `/unity-plan` workflow first as a prerequisite.
+2.  **Define Architecture**:
+    - Document foundational assumptions and performance constraints (e.g., target FPS, Memory limits, CPU budget).
+    - Map feature epics and tasks into high-level, logical TDD Components.
+3.  **Detail Logic**:
+    - Define UI lifecycles (Loading, Refreshing, Data Refresh triggers).
+    - Specify asset loading strategies (Addressables, Resources, Pooling).
+    - Detail client-server interactions, API references, and data blueprint/schema changes.
+4.  **Generate Document**:
+    - Use the `WWE_TDD_2025_TEMPLATE.md` from `assets/templates/`.
+    - Save the completed TDD in `Documents/TDDs/TDD_[FeatureName]_2025.md`.
+5.  **Validation**:
+    - Ensure all mandatory sections (Architecture, Components, API, Analytics, Performance) are addressed with technical depth.
+    - Present the final TDD to the user for technical stakeholder review.
 
 ## Best Practices
 

@@ -67,6 +67,7 @@ Skills are **specialized capabilities** that extend the agent's expertise. Each 
 |-------|-------------|
 | `unity-mcp-basics/` | Mastery of the `unityMCP` toolset for Unity Editor automation. |
 | `unity-debugger/` | Systematic diagnosis and resolution of Unity technical errors. |
+| `unity-performance-optimizer/` | Identification and resolution of performance bottlenecks. |
 | `unity-pr-reviewer/` | Automated GitHub PR reviews with commit-ready suggestions. |
 | `unity-documentation/` | Expert in crafting technical documentation for projects and APIs. |
 | `unity-plan/` | Requirement decomposition into structured implementation plans. |
@@ -113,6 +114,7 @@ Workflows are **step-by-step procedures** for complex, repetitive tasks. They ca
 | Command | Description |
 |---------|-------------|
 | `/unity-fix-errors` | Diagnose and fix Unity compiler or runtime errors. |
+| `/unity-documentation` | Create and maintain technical project documentation. |
 | `/unity-optimize-performance` | Identify and resolve performance bottlenecks. |
 | `/unity-review-pr` | Conduct a full code review on a GitHub Pull Request. |
 | `/unity-plan` | Investigate requirements and produce a detailed implementation plan with costing. |

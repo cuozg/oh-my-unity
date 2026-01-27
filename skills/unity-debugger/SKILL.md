@@ -16,20 +16,27 @@ A systematic approach to identifying and resolving technical issues in Unity usi
 
 ## Debugging Workflow
 
-1. **Information Extraction**:
-   - Use `unityMCP.read_console` to capture the exact error message and full stack trace.
-   - Use `unityMCP.manage_scene` (screenshot) if the error involves visual artifacts or UI issues.
-2. **Contextual Investigation**:
-   - Locate the failing line with `view_file`.
-   - Use `grep_search` to find all references to the failing objects.
-   - Check component property values via `mcpforunity://scene/gameobject/{id}/components`.
-3. **Resolution**:
-   - Formulate a fix (e.g., null guard, singleton check, logic correction).
-   - Apply using `script_apply_edits`.
-   - Call `refresh_unity(compile="request")` and wait for readiness.
-4. **Reporting**:
-   - Populate the `DEBUG_REPORT_TEMPLATE.md` from `assets/templates/`.
-   - Save to `Documents/Debugs/DEBUG_[ErrorName]_[Timestamp].md`.
+1.  **Gather Intel**: 
+    - Execute `read_console` to capture the exact error message, frequency, and full stack trace.
+    - Identify the failing script, line number, and error type (e.g., `NullReferenceException`, `IndexOutOfRangeException`).
+    - Use `manage_scene` (screenshot) if the issue involves visual artifacts or UI failures.
+2.  **Contextual Investigation**:
+    - Use `view_file` to read the code around the reported line.
+    - Use `grep_search` to find all references to failing objects or variables to find the root cause.
+    - Inspect component properties via `mcpforunity://scene/gameobject/{id}/components`.
+3.  **Propose & Apply Fix**:
+    - Draft a resolution (e.g., adding null guards, fixing race conditions, correcting logic).
+    - Apply using `script_apply_edits` for structural changes or `apply_text_edits` for minor fixes.
+4.  **Verify & Sync**:
+    - Run `refresh_unity` with `compile="request"` and `wait_for_ready=true`.
+    - Observe the console via `read_console` again. If errors persist, repeat from Step 1.
+5.  **Runtime Validation**:
+    - Use `manage_editor` (action="play") to verify the fix in action.
+    - Ensure no regressions exist and the original issue is fully resolved.
+6.  **Reporting & Prevention**:
+    - Populate the `DEBUG_REPORT_TEMPLATE.md` from `assets/templates/`.
+    - Save the report in `Documents/Debugs/DEBUG_[ErrorName]_[Timestamp].md`.
+    - (Optional) Run `/unity-test` to ensure system-wide stability.
 
 ## Best Practices
 

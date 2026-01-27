@@ -16,10 +16,25 @@ Create, execute, and manage automated tests within Unity to ensure code quality 
 
 ## Development Workflow
 
-1. **Strategic Mapping**: Determine if the logic requires Edit Mode (algorithms/utilities) or Play Mode (MonoBehaviours/physics).
-2. **Setup**: Create the test folder and assembly definition.
-3. **Implementation**: Use `[SetUp]` and `[TearDown]` for state management. Follow the Arrange-Act-Assert pattern.
-4. **Validation**: Run tests and refactor code until all suites pass.
+1.  **Analyze Target**: 
+    - Identify the specific method, class, or feature requiring validation.
+    - Check for existing assembly definitions (`.asmdef`) and folder structures.
+2.  **Define Strategy**:
+    - Choose **Edit Mode** for pure logic, algorithms, and non-Unity integrations.
+    - Choose **Play Mode** for physics, component lifecycles, coroutines, and UI interactions.
+3.  **Setup Environment**:
+    - Create a `Tests` folder and a matching `.asmdef` file referencing `UnityEngine.TestRunner` if missing.
+    - Implement a test class using patterns from [TEST_EXAMPLES.md](references/TEST_EXAMPLES.md).
+4.  **Implementation**:
+    - Write test methods using the **Arrange-Act-Assert** pattern.
+    - Utilize `[SetUp]` and `[TearDown]` for robust state and object management.
+5.  **Execution**:
+    - Use `unityMCP.run_tests` to execute the suite and capture results.
+6.  **Verify & Refactor**:
+    - If tests fail, leverage `/unity-fix-errors` or `/unity-investigate-code` for root cause analysis.
+    - Refactor code and re-run until all tests in the suite pass successfully.
+7.  **Document**:
+    - (Optional) Use `TEST_PLAN_TEMPLATE.md` from `assets/templates/` to formalize the testing strategy and results.
 
 ## Patterns & Examples
 

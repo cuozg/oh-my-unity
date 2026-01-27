@@ -16,14 +16,25 @@ Analyze and explain C# logic, execution flows, and feature implementations in Un
 
 ## Investigation Workflow
 
-1. **Identify Entry Point**: Find the starting script or method (e.g., `OnClick`).
-2. **Static Analysis**: Follow method calls and map state modifications.
-3. **Cross-Reference**: Check for usages in other scripts or Editor bindings via Unity MCP.
-4. **Synthesize**: Create a summary explanation of the logic flow.
-
-## Reporting
-
-Use the `INVESTIGATION_REPORT.md` template in `assets/templates/`. Save the final report in `Documents/Investigations/`.
+1.  **Define Scope**: 
+    - Identify the target class, method, or feature.
+    - Ask for specific entry points if the feature is large or complex.
+2.  **Discovery**:
+    - Run the helper script: `scripts/trace_logic.sh [Target]` to map definitions and usages.
+    - Use `find_gameobjects` to identify how the code is bound to assets and prefabs in the scene.
+3.  **Trace Flow**:
+    - Use `view_file` to follow the logic from the entry point (e.g., `Update`, `OnClick`, `OnTriggerEnter`) through its call stack and dependencies.
+    - Document internal state changes, conditional branches, and asynchronous sequences (`Awaitable`, Coroutines).
+4.  **Analyze Side Effects**:
+    - Identify modifications to Singletons, static Managers, or global persistent data.
+    - Check for events being dispatched, network packets sent, or external system calls.
+5.  **Generate Report**:
+    - Use the `INVESTIGATION_REPORT.md` template from `assets/templates/`.
+    - Save the final document in `Documents/Investigations/INVESTIGATION_[FeatureName].md`.
+    - Utilize **Mermaid sequence diagrams** to visualize complex multi-system interactions or event chains.
+6.  **Summary**:
+    - Provide a high-level summary to the user.
+    - Explicitly highlight technical debt, threading risks, or optimization opportunities discovered.
 
 ## Best Practices
 

@@ -16,10 +16,24 @@ Perform comprehensive, automated code reviews on GitHub Pull Requests with a foc
 
 ## Review Workflow
 
-1. **Inspect**: Use `gh pr diff` to fetch the patch.
-2. **Analyze**: Compare changes to project rules and software engineering fundamentals.
-3. **Draft**: Prepare findings in a `review.json` file. See [REVIEW_JSON_SPEC.md](references/REVIEW_JSON_SPEC.md).
-4. **Post**: Execute `scripts/post_review.sh <pr_number> review.json`.
+1.  **Select & Fetch**: 
+    - Use `gh pr list` to identify the PR number or ask the user.
+    - Run `gh pr diff --patch <number> > pr_diff.patch`.
+2.  **Structural & Asset Analysis**:
+    - Analyze the diff against `.agent/rules/unity-csharp-conventions.md` and `.agent/rules/unity-asset-rules.md`.
+    - Evaluate method and class lengths as per Quality Metrics Targets.
+    - Identify technical debt markers like `TODO`, `FIXME`, or `HACK`.
+3.  **Risk & Performance Audit**:
+    - Scan for memory leaks, missing null guards, and high-allocation patterns (e.g., string concatenation or `GetComponent` in `Update`).
+    - Audit architectural logic for consistency with project patterns (Singletons, Event architectures).
+4.  **Draft Findings**:
+    - Categorize issues using severity levels: 🔴 **Critical**, 🟡 **Major**, 🔵 **Minor**, 💚 **Suggestion**.
+    - Draft commit-ready code fixes using `suggestion` blocks.
+    - Generate `review.json` following the [REVIEW_JSON_SPEC.md](references/REVIEW_JSON_SPEC.md).
+5.  **Submit & Cleanup**:
+    - Execute the delivery script: `scripts/post_review.sh <number> review.json`.
+    - Delete temporary files: `pr_diff.patch` and `review.json`.
+6.  **Confirmation**: Provide the PR URL and a high-level technical summary of the findings to the user.
 
 ## Severity Levels
 
