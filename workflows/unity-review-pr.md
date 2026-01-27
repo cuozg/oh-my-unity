@@ -4,27 +4,25 @@ description: Workflow for reviewing a Unity Pull Request using GitHub CLI and po
 
 # Workflow: Review PR
 
-Follow these steps to conduct a professional code review on a GitHub PR.
+Follow these steps to conduct a professional code review using the **unity-pr-reviewer** skill expertise.
 
-1. **Select PR**: Use `gh pr list` to see open pull requests or ask the user for a number.
-2. **Fetch Diff**: Run `gh pr diff --patch <number> > pr_diff.patch`.
-3. **Analyze & Inspect**:
-   - Skim `pr_diff.patch` to identify changed files and lines.
-   - For each changed script, use `view_file` to read the full context if the hunk is too small.
-   - **Structural Analysis**: Count classes and check for tech debt markers (`TODO`/`FIXME`).
-   - **Pattern Detection**: Identify architectural patterns (Singletons, ECS) and check for consistency.
-4. **Identify Issues**: Cross-reference changes with:
-   - `.agent/rules/unity-csharp-conventions.md`
-   - `.agent/rules/unity-asset-rules.md`
-   - Software Engineering Fundamentals (SOLID, DRY/KISS).
-   - Performance & Memory (Allocations in `Update`, pooling).
-5. **Draft Comprehensive Comments**:
-   - Create a list of findings categorized by **Severity Levels** (Critical, Major, Minor, Suggestion).
-   - Include **Positive Highlights** for high-quality implementations.
-   - Ensure the line number matches the **RIGHT** side (new file) in the diff.
-6. **Prepare JSON**: Create `review.json` following the detailed template in `.agent/skills/unity-pr-reviewer/SKILL.md`.
-7. **Submit Review**: Run `.agent/skills/unity-pr-reviewer/scripts/post_review.sh <number> review.json`.
-8. **Confirmation**: Inform the user that the review has been posted and provide the PR URL.
-
-// turbo-all
-9. **Cleanup**: Remove `pr_diff.patch` and `review.json`.
+1.  **Select & Fetch**: 
+    - Use `gh pr list` to identify the PR.
+    // turbo
+    - Run `gh pr diff --patch <number> > pr_diff.patch`.
+2.  **Structural & Asset Analysis**:
+    - Load the `unity-pr-reviewer` skill context.
+    - Analyze the diff against `.agent/rules/unity-csharp-conventions.md` and `.agent/rules/unity-asset-rules.md`.
+    - Evaluate method/class lengths and tech debt markers (TODO/FIXME) as per skill targets.
+3.  **Risk & Performance Audit**:
+    - Identify memory leaks, missing null guards, and high-allocation patterns in `Update()`.
+    - Check for pattern consistency (e.g., Singleton usage, Event architectures).
+4.  **Draft findings**:
+    - Categorize issues using skill severity levels: 🔴 **Critical**, 🟡 **Major**, 🔵 **Minor**, 💚 **Suggestion**.
+    - Provide commit-ready code fixes using `suggestion` blocks.
+    - Generate `review.json` following the [REVIEW_JSON_SPEC.md](../skills/unity-pr-reviewer/references/REVIEW_JSON_SPEC.md).
+5.  **Submit & Cleanup**:
+    // turbo
+    - Run `.agent/skills/unity-pr-reviewer/scripts/post_review.sh <number> review.json`.
+    - Delete `pr_diff.patch` and `review.json`.
+6.  **Confirmation**: Provide the PR URL and a high-level summary of the findings to the user.

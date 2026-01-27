@@ -1,63 +1,37 @@
 ---
 name: unity-plan
-description: Expert in investigating requirements and project base to produce detailed implementation plans (Epics/Tasks) with costing and workflows.
+description: Project planning and requirement decomposition for Unity features. Use when you need to: (1) Analyze feature requirements against the current project base, (2) Break down work into Epics and Tasks, (3) Estimate effort/cost, or (4) Define a technical implementation roadmap.
 ---
 
-# Unity Planning Skill
+# Unity Planning
 
-This skill allows the agent to transform requirements or specifications into a structured, actionable project plan within a Unity context. It focuses on technical feasibility, project alignment, and clear task decomposition.
+Transform high-level requirements into structured, actionable implementation plans for Unity.
 
 ## Core Capabilities
 
-### 1. Project Base Investigation
-- **Context Discovery**: Analyze existing scripts, prefabs, and systems related to the new requirement.
-- **Dependency Mapping**: Identify which existing systems will be impacted or added.
-- **Gap Analysis**: Determine what is missing from the current codebase to satisfy the new requirement.
+- **Project Investigation**: Analyze existing code and assets to identify dependencies and gaps.
+- **Decomposition**: Break work into Epics and granular Tasks (Logic, UI, Data, API, Asset, Test).
+- **Costing**: Provide T-shirt size estimates (S, M, L, XL) and identify technical risks.
+- **Roadmap**: Define a "Build, Test, Integrate" lifecycle for the feature.
 
-### 2. Epic & Task Decomposition
-- **Epics**: Large bodies of work that can be broken down into smaller tasks (e.g., "Combat System Refactor", "Inventory UI Implementation").
-- **Tasks**: Granular, actionable items with specific types:
-    - **Logic**: C# core functionality, state machines, controllers.
-    - **UI**: Canvas setup, panels, buttons, view-controller binding.
-    - **Data**: ScriptableObjects, JSON schemas, database models.
-    - **API**: Network endpoints, internal service interfaces, events.
-    - **Asset**: Prefabs, Materials, VFX, Animations.
-    - **Test**: Unit tests, integration tests, manual QA steps.
+## Output Format
 
-### 3. High-Level Costing
-- Provide estimated effort in T-shirt sizes (S, M, L, XL) or developer hours/days.
-- Identify risk factors and technical debt implications.
+All plans must use the `IMPLEMENTATION_PLAN.md` template from `assets/templates/` and be saved in `Documents/Plans/`.
 
-### 4. Implementation Workflow
-- Define a step-by-step technical roadmap, including "Build, Test, Integrate" cycles.
-
-## Documentation Template
-
-Use the `IMPLEMENTATION_PLAN.md` template in `resources/templates/` for all planning outputs. The result MUST be saved as a new `.md` file in the `Documents/Plans/` directory. The task list MUST follow the specified table format.
+### Mandatory Task Table
+| Number | Epic | Task | Description | Type | Cost | Note |
+|:---:|:---|:---|:---|:---:|:---:|:---|
+| X.Y | [Epic Name] | [Task Name] | [What to do] | [Type] | [Size] | [Risk/Context] |
 
 ## Planning Workflow
 
-```mermaid
-graph TD
-    A[Requirement Review] --> B[Project Investigation]
-    B --> C{Technical Feasibility?}
-    C -- No --> D[Refine Requirements/Architecture]
-    D --> B
-    C -- Yes --> E[Decomposition into Epics & Tasks]
-    E --> F[Costing & Priority Assignment]
-    F --> G[Workflow Definition]
-    G --> H[Verification & Final Review]
-```
-
-## Task Table Format
-When listing tasks, strictly use the following columns:
-| Number | Epic | Task | Description | Type | Cost | Note |
-|:---:|:---|:---|:---|:---:|:---:|:---|
-| 1.1 | Epic Name | Task Name | Detailed explanation | Logic | M | Any technical risks |
+1. **Context Discovery**: Map existing systems impacted by the requirement.
+2. **Technical Feasibility**: Validate the proposed architecture against Unity constraints.
+3. **Tasking**: Create atomic tasks (ideally achievable in one session).
+4. **Verification**: Define the "Definition of Done" for each epic.
 
 ## Best Practices
 
-- **Atomic Tasks**: Each task should ideally be achievable in a single turn/session.
-- **Definition of Done**: Specify how each task or Epic is verified (e.g., "Validated in Test Scene").
-- **Costing Honesty**: Be realistic about complexity, especially concerning legacy code.
-- **Safety First**: Propose safe migration paths for breaking changes.
+- **Atomic Tasks**: Keep tasks small and specific.
+- **Costing Honesty**: Be realistic about complexity in legacy systems.
+- **Safety**: Plan migration paths for any breaking changes.

@@ -1,22 +1,26 @@
 ---
-description: How to diagnose and fix Unity compiler or runtime errors.
+description: Systematically diagnose and resolve Unity compiler errors, runtime exceptions, and logic bugs.
 ---
 
 # Workflow: Fix Unity Errors
 
-Follow these steps when encountered with errors in the Unity Editor console.
+Use this workflow whenever the Unity Editor console reports errors or the game behaves unexpectedly.
 
-1. **Read Console Logs**: Use `read_console` to get the latest errors.
-   - Look for the file path and line number in the stack trace.
-2. **Analyze the Script**: Use `view_file` to examine the code at the reported location.
-3. **Check Context**: Use `grep_search` to see where the failing method or variable is used.
-4. **Apply Fix**:
-   - For simple fixes, use `apply_text_edits`.
-   - For logic changes, consider `script_apply_edits`.
-5. **Refresh Unity**: Call `refresh_unity` with `compile="request"` and `wait_for_ready=true`.
-6. **Verify**:
-   - Run `read_console` again to ensure the error is gone.
-   - If it was a runtime error, enter Play Mode using `manage_editor` with action="play" and observe the behavior.
-
-// turbo-all
-7. **Clean up**: If unnecessary temporary files were created, delete them.
+1.  **Gather Intel**: 
+    // turbo
+    - Execute `read_console` to get the latest error stack traces.
+    - Identify the failing script, line number, and error type (e.g., `NullReferenceException`).
+2.  **Contextualize**:
+    - Use `view_file` to read the code around the reported line.
+    - Use `grep_search` to find all usages of the failing variable or method to identify the root cause.
+3.  **Propose & Apply**:
+    - Draft a fix that addresses the root cause (e.g., adding a null guard, fixing a race condition).
+    - Use `script_apply_edits` for structural changes or `apply_text_edits` for minor fixes.
+4.  **Compile & Sync**:
+    // turbo
+    - Run `refresh_unity` with `compile="request"` and `wait_for_ready=true`.
+5.  **Validation**:
+    - Run `read_console` again. If errors persist, repeat from Step 1.
+    - If it was a runtime error, use `manage_editor` (action="play") to verify the fix in action.
+6.  **Prevention**:
+    - (Optional) Run `/unity-test` to ensure no regressions were introduced.

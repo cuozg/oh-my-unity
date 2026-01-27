@@ -65,22 +65,24 @@ Skills are **specialized capabilities** that extend the agent's expertise. Each 
 
 | Skill | Description |
 |-------|-------------|
-| `unity-mcp-basics/` | Core knowledge for using the `unityMCP` toolset (GameObjects, Components, Scenes). |
-| `unity-technical-lead/` | High-level project coordination, architecture planning, and budgeting. |
-| `unity-pr-reviewer/` | Automate GitHub PR reviews with inline, severity-tagged comments. |
-| `unity-documentation/` | Expert in crafting and updating Unity project documentation (README, API, Architecture). |
-| `unity-plan/` | Expert in investigating requirements to produce detailed implementation plans with costing. |
-| `unity-code-investigator/` | Expert in deep-diving into C# logic, tracing execution flows, and explaining features. |
-| `unity-tdd-writer/` | Expert in generating comprehensive Technical Design Documents (TDD) based on WWE 2025 template. |
-| `unity-test/` | Expert in automated testing using the Unity Test Framework (UTF). Handles unit, integration, and play mode tests. |
+| `unity-mcp-basics/` | Mastery of the `unityMCP` toolset for Unity Editor automation. |
+| `unity-debugger/` | Systematic diagnosis and resolution of Unity technical errors. |
+| `unity-pr-reviewer/` | Automated GitHub PR reviews with commit-ready suggestions. |
+| `unity-documentation/` | Expert in crafting technical documentation for projects and APIs. |
+| `unity-plan/` | Requirement decomposition into structured implementation plans. |
+| `unity-code-investigator/` | Deep-dive analysis of C# logic and execution flow tracing. |
+| `unity-tdd-writer/` | Formal Technical Design Document (TDD) generation (WWE 2025). |
+| `unity-test/` | Automated testing using the Unity Test Framework (Edit/Play Mode). |
+| `skill-creator/` | Meta-skill for creating and improving other project skills. |
 
 ### Skill Folder Structure
 
 ```
 skills/<skill-name>/
-├── SKILL.md           # Main instructions with YAML frontmatter
-├── scripts/           # (Optional) Helper bash/python scripts
-└── examples/          # (Optional) Reference implementations
+├── SKILL.md           # Main instructions with trigger metadata
+├── scripts/           # (Optional) Automated execution logic
+├── references/        # (Optional) Domain knowledge and patterns
+└── assets/            # (Optional) Templates and static resources
 ```
 
 ### How to Create a Skill
@@ -90,12 +92,13 @@ skills/<skill-name>/
     ```yaml
     ---
     name: your-skill-name
-    description: A concise description of the skill.
+    description: Detailed triggers of when to use this skill.
     ---
     # Your Skill Name
 
-    Detailed instructions for the agent...
+    Procedural instructions for the agent...
     ```
+3.  Add supporting resources in `scripts/`, `references/`, or `assets/`.
 
 ---
 

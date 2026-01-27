@@ -1,58 +1,29 @@
 ---
 name: unity-documentation
-description: Expert in crafting and updating Unity project documentation (README, API, Architecture, Onboarding).
+description: Specialist in creating and maintaining technical documentation for Unity projects. Use when you need to: (1) Create or update a project README, (2) Document system architectures, (3) Generate API references, (4) Write onboarding or troubleshooting guides, or (5) Explain technical Unity-specific setups (Prefabs/Scenes).
 ---
 
-# Unity Documentation Skill
+# Unity Documentation
 
-This skill empowers the agent to create clear, comprehensive, and maintainable documentation for Unity projects, following the standards of a Documentation Specialist.
+Create clear, maintainable documentation for Unity projects, from high-level architecture to detailed API references.
 
 ## Core Capabilities
 
-### 1. Project-Level Documentation
-- **README.md**: Create overview, setup instructions, and quick start guides.
-- **ARCHITECTURE.md**: Document system design, dependencies, and technical decisions.
-- **CONTRIBUTING.md**: Standardize development workflows and coding standards.
-- **CHANGELOG.md**: Track version history and migration paths.
+- **Project Docs**: Maintain `README.md`, `ARCHITECTURE.md`, and `CONTRIBUTING.md`.
+- **API Reference**: Generate IntelliSense-friendly XML comments and external `API.md` files.
+- **Unity Specs**: Document Inspector constraints, prefab hierarchies, and scene requirements.
+- **Onboarding**: Create setup guides and living FAQs for common issues.
 
-### 2. Technical API Documentation
-- **XML Comments**: Generate and refine IntelliSense-friendly comments in C# scripts.
-- **API.md**: Create external API references with usage examples.
-- **System Guides**: Explain complex interactions between multiple systems.
+## Workflow
 
-### 3. Unity-Specific Documentation
-- **Inspector Configuration**: Document serialized fields, Tooltips, and Range constraints.
-- **Prefab Structure**: Visual breakdown of GameObject hierarchies.
-- **Scene Requirements**: Documentation of mandatory scene objects and tags.
-
-### 4. Team & Workflow
-- **Onboarding Guide**: Setup instructions for new developers.
-- **Troubleshooting**: Maintain a "Living" FAQ for common technical issues.
-- **Tools Manual**: Document custom Editor scripts and tools.
-
-## Standard Templates
-
-Use the templates located in `resources/templates/` for consistency:
-- `README_TEMPLATE.md`: Project landing page.
-- `API_TEMPLATE.md`: Technical interface reference.
-- `ARCHITECTURE_TEMPLATE.md`: High-level system design.
-
-## Documentation Workflow
-
-1.  **Code Analysis Phase**:
-    - Use `grep` and `find` to identify public APIs and serialized fields.
-    - Identify `ScriptableObject` types and their intended usage.
-2.  **Documentation Creation**:
-    - Extract code structure into Markdown headers.
-    - Generate runnable code examples for all public methods.
-    - Use ASCII or Mermaid diagrams for hierarchy visualization.
-3.  **Validation**:
-    - Cross-reference method signatures with the latest code.
-    - Verify that all mentioned prerequisites are still applicable.
+1. **Analysis**: Use `grep` and Unity MCP to identify public APIs, `ScriptableObject` types, and serialized fields.
+2. **Generation**: Use templates in `assets/templates/` to ensure consistency.
+3. **Visualization**: Use ASCII or Mermaid diagrams for hierarchies and flows.
+4. **Validation**: Cross-reference docs with code signatures and prerequisites.
 
 ## Best Practices
 
-- **Keep It Current**: Documentation should be updated alongside code changes.
-- **Show, Don't Just Tell**: Always include code snippets or visual diagrams for complex logic.
-- **Unity Alignment**: Use Unity terminology correctly (Prefabs, MonoBehaviours, URP, etc.).
-- **Discoverable**: Maintain a clear table of contents in all major docs.
+- **Show, Don't Just Tell**: Include code snippets and diagrams for all complex logic.
+- **Unity Alignment**: Use precise Unity terminology (Prefabs, MonoBehaviours, URP).
+- **Discoverability**: Maintain tables of contents in all major documents.
+- **Currentness**: Ensure documentation reflects the latest code changes.
