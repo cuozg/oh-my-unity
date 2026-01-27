@@ -16,6 +16,16 @@ This directory contains configuration files for AI agents (like Google Antigravi
 
 ---
 
+## ⚙️ Installation
+
+To set up the agent configuration in your Unity project, run the following command from your project root:
+
+```bash
+git clone https://github.com/cuozg/oh-my-unity.git ./agent
+```
+
+---
+
 ## 📜 Rules
 
 **Location**: `.agent/rules/`
@@ -58,6 +68,9 @@ Skills are **specialized capabilities** that extend the agent's expertise. Each 
 | `unity-mcp-basics/` | Core knowledge for using the `unityMCP` toolset (GameObjects, Components, Scenes). |
 | `unity-technical-lead/` | High-level project coordination, architecture planning, and budgeting. |
 | `unity-pr-reviewer/` | Automate GitHub PR reviews with inline, severity-tagged comments. |
+| `unity-documentation/` | Expert in crafting and updating Unity project documentation (README, API, Architecture). |
+| `unity-plan/` | Expert in investigating requirements to produce detailed implementation plans with costing. |
+| `unity-code-investigator/` | Expert in deep-diving into C# logic, tracing execution flows, and explaining features. |
 
 ### Skill Folder Structure
 
@@ -97,6 +110,8 @@ Workflows are **step-by-step procedures** for complex, repetitive tasks. They ca
 | `/fix-errors` | Diagnose and fix Unity compiler or runtime errors. |
 | `/optimize-performance` | Identify and resolve performance bottlenecks. |
 | `/review-pr` | Conduct a full code review on a GitHub Pull Request. |
+| `/unity-plan` | Investigate requirements and produce a detailed implementation plan with costing. |
+| `/investigate-code` | Deep-dive into complex logic, execution flows, and feature implementations. |
 
 ### How to Create a Workflow
 
