@@ -1,6 +1,6 @@
 ---
 name: unity
-description: The master Unity technical lead and orchestrator. Use this for ALL Unity-related requests. It analyzes your prompt, breaks down tasks, and automatically loads the specialized skills (logic, art, performance, mobile, etc.) required to execute the work.
+description: "The master Unity technical lead and orchestrator. Use this for ALL Unity-related requests. It analyzes your prompt, breaks down tasks, and automatically loads the specialized skills (logic, art, performance, mobile, etc.) required to execute the work."
 ---
 
 # Unity Master Skill

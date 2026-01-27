@@ -1,6 +1,6 @@
 ---
 name: unity-documentation
-description: Specialist in creating and maintaining technical documentation for Unity projects. Use when you need to: (1) Create or update a project README, (2) Document system architectures, (3) Generate API references, (4) Write onboarding or troubleshooting guides, or (5) Explain technical Unity-specific setups (Prefabs/Scenes).
+description: "Specialist in creating and maintaining technical documentation for Unity projects. Use when you need to: (1) Create or update a project README, (2) Document system architectures, (3) Generate API references, (4) Write onboarding or troubleshooting guides, or (5) Explain technical Unity-specific setups (Prefabs/Scenes)."
 ---
 
 # Unity Documentation

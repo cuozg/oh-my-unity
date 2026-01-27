@@ -1,6 +1,6 @@
 ---
 name: unity-editor-developer
-description: Specialist in creating Unity Editor tools, custom windows, and workflow automations to support engineering teams. Use when: (1) Creating custom Editor Windows or Inspectors, (2) Automating asset management or scene validation, (3) Building technical utilities for engineers (e.g., search tools, batch processors), or (4) Integrating modern Editor UI Toolkit (UXML/USS) interfaces.
+description: "Specialist in creating Unity Editor tools, custom windows, and workflow automations to support engineering teams. Use when: (1) Creating custom Editor Windows or Inspectors, (2) Automating asset management or scene validation, (3) Building technical utilities for engineers (e.g., search tools, batch processors), or (4) Integrating modern Editor UI Toolkit (UXML/USS) interfaces."
 ---
 
 # Unity Editor Developer

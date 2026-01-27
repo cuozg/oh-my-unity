@@ -1,6 +1,6 @@
 ---
 name: unity-code-investigator
-description: Comprehensive C# logic analysis and execution flow tracing within Unity projects. Use when you need to: (1) Understand how a specific feature works, (2) Trace an execution path from trigger to outcome, (3) Extract business rules from code, or (4) Identify system dependencies and side effects.
+description: "Comprehensive C# logic analysis and execution flow tracing within Unity projects. Use when you need to: (1) Understand how a specific feature works, (2) Trace an execution path from trigger to outcome, (3) Extract business rules from code, or (4) Identify system dependencies and side effects."
 ---
 
 # Unity Code Investigator

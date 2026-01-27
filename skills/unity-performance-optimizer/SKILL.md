@@ -1,6 +1,6 @@
 ---
 name: unity-performance-optimizer
-description: Identification and resolution of performance bottlenecks in Unity projects. Use when: (1) Frame rate (FPS) is low or inconsistent, (2) Memory usage is high or leaking, (3) Load times are excessive, or (4) You need to audit scripts and assets for performance risks.
+description: "Identification and resolution of performance bottlenecks in Unity projects. Use when: (1) Frame rate (FPS) is low or inconsistent, (2) Memory usage is high or leaking, (3) Load times are excessive, or (4) You need to audit scripts and assets for performance risks."
 ---
 
 # Unity Performance Optimizer

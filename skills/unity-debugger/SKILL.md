@@ -1,6 +1,6 @@
 ---
 name: unity-debugger
-description: Systematic diagnosis and resolution of Unity technical errors. Use when: (1) The console reports compiler errors or exceptions, (2) Play Mode behavior is unexpected or broken, (3) A build fails, or (4) You need to generate a structured debug report in Documents/Debugs/.
+description: "Systematic diagnosis and resolution of Unity technical errors. Use when: (1) The console reports compiler errors or exceptions, (2) Play Mode behavior is unexpected or broken, (3) A build fails, or (4) You need to generate a structured debug report in Documents/Debugs/."
 ---
 
 # Unity Debugger
