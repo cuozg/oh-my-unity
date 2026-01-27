@@ -27,6 +27,7 @@ Follow these steps to conduct a deep-dive investigation into existing features o
     - Identify any business rules or game design constraints embedded in the code.
 7.  **Generate Report**:
     - Populate the `INVESTIGATION_REPORT.md` based on the template in `.agent/skills/unity-code-investigator/resources/templates/`.
+    - Create a file named `INVESTIGATION_[TargetName].md` in the `Documents/Investigations/` folder.
     - Include **Mermaid sequence diagrams** to visualize complex callback chains or multi-system interactions.
 8.  **Final Summary**:
     - Provide a concise summary to the user.

@@ -38,7 +38,7 @@ This skill is specialized for exploring, analyzing, and explaining the logic, fu
 
 ## Standard Report Format
 
-Use the `INVESTIGATION_REPORT.md` template in `resources/templates/`.
+Use the `INVESTIGATION_REPORT.md` template in `resources/templates/`. The result MUST be saved as a new `.md` file in the `Documents/Investigations/` directory.
 
 ## Best Practices
 

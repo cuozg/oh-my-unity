@@ -29,7 +29,7 @@ Follow these steps to generate a professional implementation plan for a new Unit
     - Include clear **Definition of Done** criteria.
 7.  **Generate Documentation**:
     - Populate the `IMPLEMENTATION_PLAN.md` based on the template in `.agent/skills/unity-plan/resources/templates/`.
-    - Create a file named `IMPLEMENTATION_PLAN_[FeatureName].md` in the project root or `docs/` folder.
+    - Create a file named `IMPLEMENTATION_PLAN_[FeatureName].md` in the `Documents/Plans/` folder.
 8.  **Final Review**:
     - Verify the plan aligns with `.agent/rules/unity-csharp-conventions.md` and `.agent/rules/unity-asset-rules.md`.
     - Present the plan to the user for approval.

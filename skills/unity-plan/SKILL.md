@@ -33,7 +33,7 @@ This skill allows the agent to transform requirements or specifications into a s
 
 ## Documentation Template
 
-Use the `IMPLEMENTATION_PLAN.md` template in `resources/templates/` for all planning outputs. The task list MUST follow the specified table format.
+Use the `IMPLEMENTATION_PLAN.md` template in `resources/templates/` for all planning outputs. The result MUST be saved as a new `.md` file in the `Documents/Plans/` directory. The task list MUST follow the specified table format.
 
 ## Planning Workflow
 

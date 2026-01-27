@@ -71,6 +71,7 @@ Skills are **specialized capabilities** that extend the agent's expertise. Each 
 | `unity-documentation/` | Expert in crafting and updating Unity project documentation (README, API, Architecture). |
 | `unity-plan/` | Expert in investigating requirements to produce detailed implementation plans with costing. |
 | `unity-code-investigator/` | Expert in deep-diving into C# logic, tracing execution flows, and explaining features. |
+| `unity-tdd-writer/` | Expert in generating comprehensive Technical Design Documents (TDD) based on WWE 2025 template. |
 
 ### Skill Folder Structure
 
@@ -112,6 +113,7 @@ Workflows are **step-by-step procedures** for complex, repetitive tasks. They ca
 | `/review-pr` | Conduct a full code review on a GitHub Pull Request. |
 | `/unity-plan` | Investigate requirements and produce a detailed implementation plan with costing. |
 | `/investigate-code` | Deep-dive into complex logic, execution flows, and feature implementations. |
+| `/write-tdd` | Generate a Technical Design Document (TDD) based on the WWE 2025 template. |
 
 ### How to Create a Workflow
 
