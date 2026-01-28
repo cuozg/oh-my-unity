@@ -13,6 +13,7 @@ Perform comprehensive, automated code reviews on GitHub Pull Requests with a foc
 - **Structural Check**: Monitor method/class lengths and technical debt markers (TODO/FIXME).
 - **Risk Assessment**: Identify memory leaks, missing null checks, and high-allocation code in `Update`.
 - **Commit Suggestions**: Provide commit-ready code fixes using `suggestion` blocks.
+- **Dependency Audit**: Flag any changes to `Packages/manifest.json` as a high-visibility warning to prevent accidental dependency shifts.
 
 ## Review Workflow
 
@@ -24,6 +25,7 @@ Perform comprehensive, automated code reviews on GitHub Pull Requests with a foc
     - Evaluate method and class lengths as per Quality Metrics Targets.
     - Identify technical debt markers like `TODO`, `FIXME`, or `HACK`.
 3.  **Risk & Performance Audit**:
+    - **Manifest Check**: Search diff for `Packages/manifest.json`. If found, add a 🔴 **Critical** or 🟡 **Major** warning (depending on impact) to the review.
     - Scan for memory leaks, missing null guards, and high-allocation patterns (e.g., string concatenation or `GetComponent` in `Update`).
     - Audit architectural logic for consistency with project patterns (Singletons, Event architectures).
 4.  **Draft Findings**:
