@@ -24,6 +24,12 @@ To set up the agent configuration in your Unity project, run the following comma
 git clone https://github.com/cuozg/oh-my-unity.git ./.agent
 ```
 
+## 🚀 Quick Start
+
+1. **Ask for a review**: *"Review PR #25141 for performance issues."* (Agent will use `/unity-review-pr`).
+2. **Fix errors**: *"/unity-fix-errors"*
+3. **Plan a feature**: *"/unity-plan Add a player health bar to the UI"* (Agent will use rules and skills automatically).
+
 ### 🚀 Implementation Pipeline
 
 This project follows a structured engineering pipeline to move from high-level ideas to verified, code-complete features.
@@ -198,11 +204,5 @@ Agents are specialized AI personas designed for specific roles in game developme
 See `.agent/docs/creating-agents.md` for how to create a new agent.
 
 ---
-
-## 🚀 Quick Start
-
-1. **Ask for a review**: *"Review PR #25141 for performance issues."* (Agent will use `/unity-review-pr`).
-2. **Fix errors**: *"/unity-fix-errors"*
-3. **Plan a feature**: *"/unity-plan Add a player health bar to the UI"* (Agent will use rules and skills automatically).
 
 For more details, see the files in `.agent/docs/`.
