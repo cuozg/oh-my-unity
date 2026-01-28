@@ -31,9 +31,10 @@ Perform comprehensive, automated code reviews on GitHub Pull Requests with a foc
 4.  **Draft Findings**:
     - Categorize issues using severity levels: 🔴 **Critical**, 🟡 **Major**, 🔵 **Minor**, 💚 **Suggestion**.
     - Draft commit-ready code fixes using `suggestion` blocks.
+    - **Approval Logic**: If no 🔴 **Critical** or 🟡 **Major** issues are found, set the `"event": "APPROVE"` in `review.json`. Otherwise, use `"COMMENT"`.
     - Generate `review.json` following the [REVIEW_JSON_SPEC.md](references/REVIEW_JSON_SPEC.md).
 5.  **Submit & Cleanup**:
-    - Execute the delivery script: `scripts/post_review.sh <number> review.json`.
+    - **Always** execute the delivery script: `bash scripts/post_review.sh <number> review.json`.
     - Delete temporary files: `pr_diff.patch` and `review.json`.
 6.  **Confirmation**: Provide the PR URL and a high-level technical summary of the findings to the user.
 
