@@ -1,5 +1,5 @@
 ---
-name: unity-coder
+name: unity:implement-logic
 description: "Specialist in implementing Unity C# logic, gameplay systems, and architectural patterns. Use when: (1) Creating new C# scripts or MonoBehaviours, (2) Refactoring existing logic for better performance or maintainability, (3) Implementing complex gameplay features (controllers, combat, data systems), or (4) Integrating modern Unity 6 features like Awaitable and the New Input System."
 ---
 

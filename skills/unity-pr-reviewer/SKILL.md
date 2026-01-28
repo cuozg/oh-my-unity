@@ -1,5 +1,5 @@
 ---
-name: unity-pr-reviewer
+name: unity:review-pr
 description: "Automated GitHub PR reviews for Unity projects. Use when you need to: (1) Analyze a diff against coding and asset standards, (2) Identify architectural risks or performance bottlenecks, (3) Draft line-level feedback with commit suggestions, or (4) Post a consolidated review via GitHub CLI."
 ---
 

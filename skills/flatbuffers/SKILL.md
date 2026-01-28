@@ -1,5 +1,5 @@
 ---
-name: flatbuffers
+name: flatbuffers:coder
 description: "Specialist in FlatBuffers for Unity. Use when: (1) Creating or updating .fbs schema files, (2) Generating C# classes from schemas, (3) Converting JSON data to binary (.bin), or (4) Managing the pipeline between FlatBuffers/ and Unity Assets/."
 ---
 

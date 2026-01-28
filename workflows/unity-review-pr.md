@@ -4,14 +4,14 @@ description: Workflow for reviewing a Unity Pull Request using GitHub CLI and po
 
 # Workflow: Review PR
 
-Follow these steps to conduct a professional code review using the **unity-pr-reviewer** skill expertise.
+Follow these steps to conduct a professional code review using the **unity:review-pr** skill expertise.
 
 1.  **Select & Fetch**: 
     - Use `gh pr list` to identify the PR.
     // turbo
     - Run `gh pr diff --patch <number> > pr_diff.patch`.
 2.  **Structural & Asset Analysis**:
-    - Load the `unity-pr-reviewer` skill context.
+    - Load the `unity:review-pr` skill context.
     - Analyze the diff against `.agent/rules/unity-csharp-conventions.md` and `.agent/rules/unity-asset-rules.md`.
     - Evaluate method/class lengths and tech debt markers (TODO/FIXME) as per skill targets.
 3.  **Risk & Performance Audit**:

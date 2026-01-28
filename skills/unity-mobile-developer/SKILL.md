@@ -1,5 +1,5 @@
 ---
-name: unity-mobile-developer
+name: unity:mobile-deploy
 description: "Specialist in iOS and Android platform-specific development. Use when: (1) Implementing touch controls and gestures, (2) Optimizing performance for mobile constraints (battery, heat, memory), (3) Integrating native platform features (IAP, notifications, social), or (4) Configuring mobile build pipelines and store deployments."
 ---
 

@@ -38,11 +38,11 @@ This project follows a structured engineering pipeline to move from high-level i
 
 ```mermaid
 graph TD
-    Input([Feature Input]) --> Plan[unity-plan]
-    Plan -->|Initial Roadmap| Review[unity-plan-review]
-    Review -->|Finalized Task List| Detail[unity-plan-detail]
-    Detail -->|Task Skeletons in Documents/Tasks/| Brainstorm[unity-plan-detail-brainstorm]
-    Brainstorm -->|Execution-Ready Instructions| Executor[unity-plan-executor]
+    Input([Feature Input]) --> Plan[unity:plan]
+    Plan -->|Initial Roadmap| Review[unity:plan-review]
+    Review -->|Finalized Task List| Detail[unity:plan-detail]
+    Detail -->|Task Skeletons in Documents/Tasks/| Brainstorm[unity:plan-brainstorm]
+    Brainstorm -->|Execution-Ready Instructions| Executor[unity:plan-executor]
     Executor -->|Specialized Experts| Done([Feature Complete])
 
     subgraph "Planning & Review Phase"
@@ -59,11 +59,11 @@ graph TD
 
 #### Pipeline Stages:
 
-1.  **`unity-plan`**: Analyzes the input specification to produce a high-level roadmap, epics, and costing estimates.
-2.  **`unity-plan-review`**: The strategic audit. High-level decomposition is critiqued and refined through user brainstorming to ensure a complete task list.
-3.  **`unity-plan-detail`**: Decomposes epics into individual task skeletons. It generates `.md` files in `Documents/Tasks/` defining the requirements and success criteria for each step.
-4.  **`unity-plan-detail-brainstorm`**: The technical deep-dive. It uses `unity-code-investigator` to find exact code locations, brainstorms architectural decisions with the user, and provides specific code changes and test cases.
-5.  **`unity-plan-executor`**: The final implementation stage. It reads the refined task instructions and coordinates specialized experts (like `unity-coder` or `flatbuffers`) to apply the changes and verify the "Definition of Done".
+1.  **`unity:plan`**: Analyzes the input specification to produce a high-level roadmap, epics, and costing estimates.
+2.  **`unity:plan-review`**: The strategic audit. High-level decomposition is critiqued and refined through user brainstorming to ensure a complete task list.
+3.  **`unity:plan-detail`**: Decomposes epics into individual task skeletons. It generates `.md` files in `Documents/Tasks/` defining the requirements and success criteria for each step.
+4.  **`unity:plan-brainstorm`**: The technical deep-dive. It uses `unity:investigate-code` to find exact code locations, brainstorms architectural decisions with the user, and provides specific code changes and test cases.
+5.  **`unity:plan-executor`**: The final implementation stage. It reads the refined task instructions and coordinates specialized experts (like `unity:implement-logic` or `flatbuffers:coder`) to apply the changes and verify the "Definition of Done".
 
 ---
 
@@ -106,28 +106,28 @@ Skills are **specialized capabilities** that extend the agent's expertise. Each 
 
 | Skill                            | Description                                                        |
 | -------------------------------- | ------------------------------------------------------------------ |
-| `unity/`                       | The master Unity technical lead and orchestrator.                  |
-| `flatbuffers/`                 | Specialist in FlatBuffers schema and data management.              |
-| `mermaid/`                     | Specialist in visual diagrams and architectural mapping (Mermaid). |
-| `unity-mcp-basics/`            | Mastery of the `unityMCP` toolset for Unity Editor automation.   |
-| `unity-editor-developer/`      | Specialist in custom Editor tools, windows, and automation.       |
-| `unity-coder/`                 | Specialist in implementing C# logic and architectural patterns.    |
-| `unity-tech-artist/`           | Bridge between art and code (Shaders, Pipeline Automation).        |
-| `unity-mobile-developer/`      | Specialist in iOS/Android deployment, interop, and optimization.   |
-| `unity-debugger/`              | Systematic diagnosis and resolution of Unity technical errors.     |
-| `unity-performance-optimizer/` | Identification and resolution of performance bottlenecks.          |
-| `unity-pr-reviewer/`           | Automated GitHub PR reviews with commit-ready suggestions.         |
-| `unity-documentation/`         | Expert in crafting technical documentation for projects and APIs.  |
-| `unity-plan/`                  | Requirement decomposition into structured implementation plans.    |
-| `unity-plan-review/`           | Facilitates high-level review, brainstorming, and task finalization. |
-| `unity-plan-detail/`           | Decomposes plans into detailed tasks with code and test cases.    |
-| `unity-plan-detail-brainstorm/`| Deep-dive investigation and refined coding instructions for tasks. |
-| `unity-plan-executor/`         | Executes detailed technical tasks based on .md files in Documents/Tasks/. |
-| `unity-code-investigator/`     | Deep-dive analysis of C# logic and execution flow tracing.         |
-| `unity-tdd-writer/`            | Formal Technical Design Document (TDD) generation.      |
-| `unity-test/`                  | Automated testing using the Unity Test Framework (Edit/Play Mode). |
-| `unity-web-developer/`         | Specialist in WebGL deployment, interop, and browser optimization.  |
-| `skill-creator/`               | Meta-skill for creating and improving other project skills.        |
+| `unity:orchestrator`          | The master Unity technical lead and orchestrator.                  |
+| `flatbuffers:coder`           | Specialist in FlatBuffers schema and data management.              |
+| `mermaid:diagram`             | Specialist in visual diagrams and architectural mapping (Mermaid). |
+| `unity:mcp-basics`            | Mastery of the `unityMCP` toolset for Unity Editor automation.   |
+| `unity:editor-tools`          | Specialist in custom Editor tools, windows, and automation.       |
+| `unity:implement-logic`       | Specialist in implementing C# logic and architectural patterns.    |
+| `unity:tech-art`              | Bridge between art and code (Shaders, Pipeline Automation).        |
+| `unity:mobile-deploy`         | Specialist in iOS/Android deployment, interop, and optimization.   |
+| `unity:fix-errors`            | Systematic diagnosis and resolution of Unity technical errors.     |
+| `unity:optimize-performance`  | Identification and resolution of performance bottlenecks.          |
+| `unity:review-pr`             | Automated GitHub PR reviews with commit-ready suggestions.         |
+| `unity:write-docs`            | Expert in crafting technical documentation for projects and APIs.  |
+| `unity:plan`                  | Requirement decomposition into structured implementation plans.    |
+| `unity:plan-review`           | Facilitates high-level review, brainstorming, and task finalization. |
+| `unity:plan-detail`           | Decomposes plans into detailed tasks with code and test cases.    |
+| `unity:plan-brainstorm`       | Deep-dive investigation and refined coding instructions for tasks. |
+| `unity:plan-executor`         | Executes detailed technical tasks based on .md files in Documents/Tasks/. |
+| `unity:investigate-code`      | Deep-dive analysis of C# logic and execution flow tracing.         |
+| `unity:write-tdd`             | Formal Technical Design Document (TDD) generation.      |
+| `unity:test`                  | Automated testing using the Unity Test Framework (Edit/Play Mode). |
+| `unity:web-deploy`            | Specialist in WebGL deployment, interop, and browser optimization.  |
+| `skill:creator`               | Meta-skill for creating and improving other project skills.        |
 
 ### Skill Folder Structure
 
