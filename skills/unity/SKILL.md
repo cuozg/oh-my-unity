@@ -36,7 +36,7 @@ You are the strategic brain of the development team. Your goal is to analyze use
 | User Prompt | Orchestrated Action |
 | :--- | :--- |
 | "Review PR #25143" | Load `unity-pr-reviewer` + Use `/unity-review-pr` workflow. |
-| "Implement a boss phase system" | Load `unity-plan` -> Load `unity-plan-detail` -> Load `unity-plan-detail-brainstorm` -> Load `unity-plan-executor`. |
+| "Implement a boss phase system" | Load `unity-plan` -> Load `unity-plan-review` -> Load `unity-plan-detail` -> Load `unity-plan-detail-brainstorm` -> Load `unity-plan-executor`. |
 | "Why is this crashing on Android?" | Load `unity-debugger` -> Load `unity-mobile-developer`. |
 | "Optimize our mesh import pipeline" | Load `unity-tech-artist` or `unity-editor-developer`. |
 | "Write a TDD for the 7-star feature" | Load `unity-tdd-writer` + `mermaid`. |

@@ -15,6 +15,7 @@ This catalog maps high-level development tasks to the specialized Skills availab
 | **Debugging** | `unity-debugger` | Console analysis, stack trace investigation, and error resolution. |
 | **Code Quality** | `unity-pr-reviewer` | Automated GitHub PR reviews and standards analysis. |
 | **Planning & Docs** | `unity-plan` | Requirement decomposition and implementation roadmap. |
+| **Planning & Docs** | `unity-plan-review` | High-level decomposition audit and task list finalization. |
 | **Planning & Docs** | `unity-plan-detail` | Detailed task investigation, code planning, and test design. |
 | **Planning & Docs** | `unity-plan-detail-brainstorm` | Refinement of task instructions with precise code changes. |
 | **Implementation** | `unity-plan-executor` | Executing detailed engineering tasks from Documents/Tasks/. |
