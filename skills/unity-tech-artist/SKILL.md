@@ -1,5 +1,5 @@
 ---
-name: unity:tech-art
+name: unity-tech-art
 description: "Bridge between art and programming. Use when: (1) Authoring or optimizing shaders (HLSL/Shader Graph), (2) Creating editor tools and custom inspectors for artists, (3) Automating asset import pipelines (Postprocessors), (4) Implementing procedural content generation systems, or (5) Profiling and optimizing rendering performance and overdraw."
 ---
 

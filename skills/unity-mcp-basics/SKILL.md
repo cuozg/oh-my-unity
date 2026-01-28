@@ -1,5 +1,5 @@
 ---
-name: unity:mcp-basics
+name: unity-mcp-basics
 description: "Core Mastery of the unityMCP toolset for Unity Editor automation. Use when you need to: (1) Find, create, or modify GameObjects and Components, (2) Manage scenes and prefabs, (3) Update materials and shaders, or (4) Execute batch operations in the Editor."
 ---
 

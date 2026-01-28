@@ -1,5 +1,5 @@
 ---
-name: unity:test
+name: unity-test
 description: "Automated testing using the Unity Test Framework (UTF). Use when you need to: (1) Create Edit Mode or Play Mode tests, (2) Configure test assembly definitions (.asmdef), (3) Mock dependencies for isolation, or (4) Analyze test results and coverage."
 ---
 

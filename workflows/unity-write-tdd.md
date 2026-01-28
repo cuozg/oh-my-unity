@@ -16,7 +16,7 @@ Generate professional Technical Design Documents (TDD) based on implementation p
     - Define UI lifecycles, asset loading schemes, and client-server interactions.
     - Specify API references and data blueprint changes.
 4.  **Generate Document**:
-    - Use the `UNITY_TDD_TEMPLATE.md` from `.agent/skills/unity-tdd-writer/assets/templates/`.
+    - Use the `UNITY_TDD_TEMPLATE.md` from `.claude/skills/unity-tdd-writer/assets/templates/`.
     - Save the TDD in `Documents/TDDs/TDD_[Feature].md`.
 5.  **Validation**:
     - Ensure all mandatory sections (Architecture, Components, API, Analytics) are addressed.

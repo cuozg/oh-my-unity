@@ -23,4 +23,4 @@ Use this workflow whenever the Unity Editor console reports errors or the game b
     - Run `read_console` again. If errors persist, repeat from Step 1.
     - If it was a runtime error, use `manage_editor` (action="play") to verify the fix in action.
 6.  **Prevention**:
-    - (Optional) Run `/unity:test` to ensure no regressions were introduced.
+    - (Optional) Run `/unity-test` to ensure no regressions were introduced.

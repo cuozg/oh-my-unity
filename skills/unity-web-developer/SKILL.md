@@ -1,5 +1,5 @@
 ---
-name: unity:web-deploy
+name: unity-web-deploy
 description: "Specialist in Unity WebGL deployment, browser compatibility, and JavaScript interop. Use when: (1) Configuring or optimizing WebGL builds, (2) Implementing communication between C# and JavaScript, (3) Debugging browser-specific issues (memory, audio, input), or (4) Developing PWA features for web games."
 ---
 

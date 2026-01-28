@@ -14,7 +14,7 @@ Implement and execute automated tests to ensure code quality and stability.
     - Choose **Play Mode** for physics/components/UI.
 3.  **Setup Environment**:
     - Create the `Tests` folder and matched `.asmdef` file if missing.
-    - Create the test class using patterns from `.agent/skills/unity-test/references/TEST_EXAMPLES.md`.
+    - Create the test class using patterns from `.claude/skills/unity-test/references/TEST_EXAMPLES.md`.
 4.  **Implement**:
     - Write tests using the **Arrange-Act-Assert** pattern.
     - Include `[SetUp]` and `[TearDown]` for state management.
@@ -25,4 +25,4 @@ Implement and execute automated tests to ensure code quality and stability.
     - If tests fail, use `/unity-fix-errors` or `/unity-investigate-code` to identify the cause.
     - Re-run until all tests pass.
 7.  **Document**:
-    - (Optional) Use the `TEST_PLAN_TEMPLATE.md` from `.agent/skills/unity-test/assets/templates/` to document the suite.
+    - (Optional) Use the `TEST_PLAN_TEMPLATE.md` from `.claude/skills/unity-test/assets/templates/` to document the suite.

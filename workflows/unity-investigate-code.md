@@ -11,7 +11,7 @@ Use this workflow to explain how a feature works or to trace a complex execution
     - Ask the user for specific entry points if the feature is large.
 2.  **Discovery**:
     // turbo
-    - Run `.agent/skills/unity-code-investigator/scripts/trace_logic.sh [Target]` to map definitions and usages.
+    - Run `.claude/skills/unity-code-investigator/scripts/trace_logic.sh [Target]` to map definitions and usages.
     - Use `find_gameobjects` to see how the code is bound to assets in the scene.
 3.  **Trace Flow**:
     - Use `view_file` to follow the logic from the entry point (e.g., `Update`, `OnClick`) through its dependencies.
@@ -20,7 +20,7 @@ Use this workflow to explain how a feature works or to trace a complex execution
     - Identify modifications to Singletons, global managers, or static data.
     - Check for events dispatched or network packets sent.
 5.  **Generate Report**:
-    - Use the `INVESTIGATION_REPORT.md` template from `.agent/skills/unity-code-investigator/assets/templates/`.
+    - Use the `INVESTIGATION_REPORT.md` template from `.claude/skills/unity-code-investigator/assets/templates/`.
     - Save the final document in `Documents/Investigations/INVESTIGATION_[Feature].md`.
     - Include **Mermaid sequence diagrams** for complex system interactions.
 6.  **Summary**:

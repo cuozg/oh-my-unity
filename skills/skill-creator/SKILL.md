@@ -1,5 +1,5 @@
 ---
-name: skill:creator
+name: skill-creator
 description: "Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations."
 license: Complete terms in LICENSE.txt
 ---
@@ -264,7 +264,7 @@ When creating a new skill from scratch, always run the `init_skill.py` script. T
 Usage:
 
 ```bash
-.agent/skills/skill-creator/scripts/init_skill.py <skill-name> --path <output-directory>
+.claude/skills/skill-creator/scripts/init_skill.py <skill-name> --path <output-directory>
 ```
 
 The script:
@@ -322,13 +322,13 @@ Write instructions for using the skill and its bundled resources.
 Once development of the skill is complete, it must be packaged into a distributable .skill file that gets shared with the user. The packaging process automatically validates the skill first to ensure it meets all requirements:
 
 ```bash
-.agent/skills/skill-creator/scripts/package_skill.py <path/to/skill-folder>
+.claude/skills/skill-creator/scripts/package_skill.py <path/to/skill-folder>
 ```
 
 Optional output directory specification:
 
 ```bash
-.agent/skills/skill-creator/scripts/package_skill.py <path/to/skill-folder> ./dist
+.claude/skills/skill-creator/scripts/package_skill.py <path/to/skill-folder> ./dist
 ```
 
 The packaging script will:

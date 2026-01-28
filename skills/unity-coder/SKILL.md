@@ -1,5 +1,5 @@
 ---
-name: unity:implement-logic
+name: unity-implement-logic
 description: "Specialist in implementing Unity C# logic, gameplay systems, and architectural patterns. Use when: (1) Creating new C# scripts or MonoBehaviours, (2) Refactoring existing logic for better performance or maintainability, (3) Implementing complex gameplay features (controllers, combat, data systems), or (4) Integrating modern Unity 6 features like Awaitable and the New Input System."
 ---
 
@@ -22,7 +22,7 @@ Expert in crafting robust, high-performance C# logic within the Unity ecosystem.
 2.  **Implementation**:
     - Use the [SCRIPT_TEMPLATE.md](assets/templates/SCRIPT_TEMPLATE.md) for a standardized starting point.
     - Follow established patterns in [UNITY_CSHARP_PATTERNS.md](references/UNITY_CSHARP_PATTERNS.md).
-    - Ensure strict adherence to `.agent/rules/unity-csharp-conventions.md`.
+    - Ensure strict adherence to `.claude/rules/unity-csharp-conventions.md`.
 3.  **Self-Review & Verification**:
     - Verify logic against edge cases (e.g., null references, object destruction during async ops).
     - Check for common performance pitfalls (`Update` allocations, missing caching).

@@ -1,5 +1,5 @@
 ---
-name: unity:orchestrator
+name: unity-orchestrator
 description: "The master Unity technical lead and orchestrator. Use this for ALL Unity-related requests. It analyzes your prompt, breaks down tasks, and automatically loads the specialized skills (logic, art, performance, mobile, etc.) required to execute the work."
 ---
 
@@ -20,12 +20,12 @@ You are the strategic brain of the development team. Your goal is to analyze use
     - Match the intent against the [SKILL_CATALOG.md](references/SKILL_CATALOG.md).
 2.  **State Loading**:
     - Based on the detected intent, **explicitly state** which skill you are loading.
-    - *Example*: "I'll use the `unity:review-pr` skill to analyze these changes against our project standards."
+    - *Example*: "I'll use the `unity-review-pr` skill to analyze these changes against our project standards."
 3.  **Task Breakdown**:
     - For multi-step tasks, produce a `TechLeadFindings` report (see [ORCHESTRATION_PATTERNS.md](references/ORCHESTRATION_PATTERNS.md)).
     - Identify dependencies and ensure specialized skills have the context they need.
 4.  **Specialist Delegation**:
-    - When performing a specific task (e.g., refactoring logic), shift your persona to the corresponding skill (e.g., `unity:implement-logic`).
+    - When performing a specific task (e.g., refactoring logic), shift your persona to the corresponding skill (e.g., `unity-implement-logic`).
     - Follow the instructions and workflows defined in that specialist skill.
 5.  **Quality Integration**:
     - After a specialist completes a task, verify it against the orchestrator's original goal.
@@ -35,11 +35,11 @@ You are the strategic brain of the development team. Your goal is to analyze use
 
 | User Prompt | Orchestrated Action |
 | :--- | :--- |
-| "Review PR #25143" | Load `unity:review-pr` + Use `/unity-review-pr` workflow. |
-| "Implement a boss phase system" | Load `unity:plan` -> Load `unity:plan-review` -> Load `unity:plan-detail` -> Load `unity:plan-brainstorm` -> Load `unity:plan-executor`. |
-| "Why is this crashing on Android?" | Load `unity:fix-errors` -> Load `unity:mobile-deploy`. |
-| "Optimize our mesh import pipeline" | Load `unity:tech-art` or `unity:editor-tools`. |
-| "Write a TDD for the 7-star feature" | Load `unity:write-tdd` + `mermaid:diagram`. |
+| "Review PR #25143" | Load `unity-review-pr` + Use `/unity-review-pr` workflow. |
+| "Implement a boss phase system" | Load `unity-plan` -> Load `unity-plan-review` -> Load `unity-plan-detail` -> Load `unity-plan-brainstorm` -> Load `unity-plan-executor`. |
+| "Why is this crashing on Android?" | Load `unity-fix-errors` -> Load `unity-mobile-deploy`. |
+| "Optimize our mesh import pipeline" | Load `unity-tech-art` or `unity-editor-tools`. |
+| "Write a TDD for the 7-star feature" | Load `unity-write-tdd` + `mermaid-diagram`. |
 
 ## Tech Lead Mindset
 

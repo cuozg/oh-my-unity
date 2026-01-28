@@ -1,5 +1,5 @@
 ---
-name: unity:plan
+name: unity-plan
 description: "Project planning and requirement decomposition for Unity features. Use when you need to: (1) Analyze feature requirements against the current project base, (2) Break down work into Epics and Tasks, (3) Estimate effort/cost, or (4) Define a technical implementation roadmap."
 ---
 
@@ -28,7 +28,7 @@ All plans must use the `IMPLEMENTATION_PLAN.md` template from `assets/templates/
 1.  **Analyze Requirements**: 
     - Review the user request or feature specification for functional goals and technical constraints.
 2.  **Project Discovery**:
-    - Run the helper script: `.agent/skills/unity-plan/scripts/investigate_feature.sh [Keywords]` to identify relevant systems, scripts, and prefabs.
+    - Run the helper script: `.claude/skills/unity-plan/scripts/investigate_feature.sh [Keywords]` to identify relevant systems, scripts, and prefabs.
     - Map dependencies and integration points using `grep_search` and `find_gameobjects`.
 3.  **Technical Feasibility**:
     - Assess if the current architecture supports the feature without incurring significant technical debt.
@@ -44,7 +44,7 @@ All plans must use the `IMPLEMENTATION_PLAN.md` template from `assets/templates/
     - Use the `IMPLEMENTATION_PLAN.md` template from `assets/templates/`.
     - Save the plan in `Documents/Plans/IMPLEMENTATION_PLAN_[FeatureName].md`.
 7.  **Final Review**:
-    - Verify the plan aligns with `.agent/rules/unity-csharp-conventions.md` and `.agent/rules/unity-asset-rules.md`.
+    - Verify the plan aligns with `.claude/rules/unity-csharp-conventions.md` and `.claude/rules/unity-asset-rules.md`.
     - Present the plan to the user for approval.
 
 ## Best Practices

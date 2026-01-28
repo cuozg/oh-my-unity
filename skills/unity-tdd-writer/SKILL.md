@@ -1,5 +1,5 @@
 ---
-name: unity:write-tdd
+name: unity-write-tdd
 description: "Generation of Technical Design Documents (TDD) for Unity features. Use when you need to: (1) Formalize an implementation plan into a technical spec, (2) Document architectural decisions and performance risks, (3) Define client/server component logic, or (4) Specify API references and data architectures."
 ---
 
