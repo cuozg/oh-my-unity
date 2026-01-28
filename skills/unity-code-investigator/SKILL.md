@@ -20,7 +20,7 @@ Analyze and explain C# logic, execution flows, and feature implementations in Un
     - Identify the target class, method, or feature.
     - Ask for specific entry points if the feature is large or complex.
 2.  **Discovery**:
-    - Run the helper script: `scripts/trace_logic.sh [Target]` to map definitions and usages.
+    - Run the helper script: `.agent/skills/unity-code-investigator/scripts/trace_logic.sh [Target]` to map definitions and usages.
     - Use `find_gameobjects` to identify how the code is bound to assets and prefabs in the scene.
 3.  **Trace Flow**:
     - Use `view_file` to follow the logic from the entry point (e.g., `Update`, `OnClick`, `OnTriggerEnter`) through its call stack and dependencies.

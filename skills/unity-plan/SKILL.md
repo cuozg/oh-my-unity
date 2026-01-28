@@ -28,7 +28,7 @@ All plans must use the `IMPLEMENTATION_PLAN.md` template from `assets/templates/
 1.  **Analyze Requirements**: 
     - Review the user request or feature specification for functional goals and technical constraints.
 2.  **Project Discovery**:
-    - Run the helper script: `scripts/investigate_feature.sh [Keywords]` to identify relevant systems, scripts, and prefabs.
+    - Run the helper script: `.agent/skills/unity-plan/scripts/investigate_feature.sh [Keywords]` to identify relevant systems, scripts, and prefabs.
     - Map dependencies and integration points using `grep_search` and `find_gameobjects`.
 3.  **Technical Feasibility**:
     - Assess if the current architecture supports the feature without incurring significant technical debt.

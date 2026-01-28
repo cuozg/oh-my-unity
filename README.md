@@ -2,6 +2,22 @@
 
 This directory contains configuration files for AI agents (like Google Antigravity) to work effectively with this Unity project.
 
+## ⚙️ Installation
+
+To set up the agent configuration in your Unity project, run the following command from your project root:
+
+```bash
+git clone https://github.com/cuozg/oh-my-unity.git ./.agent
+```
+
+## 🚀 Quick Start
+
+1. **Conduct a Code Review**: *"Review PR #25141 for performance issues."* (Agent uses `/unity-review-pr`)
+2. **Fix Compiler/Runtime Errors**: Execute the `/unity-fix-errors` workflow.
+3. **Plan & Implement Features**: Execute the `/unity-plan` workflow (e.g., *"Add a player health bar to the UI"*).
+
+---
+
 ## 📁 Directory Structure
 
 ```
@@ -15,20 +31,6 @@ This directory contains configuration files for AI agents (like Google Antigravi
 ```
 
 ---
-
-## ⚙️ Installation
-
-To set up the agent configuration in your Unity project, run the following command from your project root:
-
-```bash
-git clone https://github.com/cuozg/oh-my-unity.git ./.agent
-```
-
-## 🚀 Quick Start
-
-1. **Ask for a review**: *"Review PR #25141 for performance issues."* (Agent will use `/unity-review-pr`).
-2. **Fix errors**: *"/unity-fix-errors"*
-3. **Plan a feature**: *"/unity-plan Add a player health bar to the UI"* (Agent will use rules and skills automatically).
 
 ### 🚀 Implementation Pipeline
 

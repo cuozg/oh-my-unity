@@ -264,7 +264,7 @@ When creating a new skill from scratch, always run the `init_skill.py` script. T
 Usage:
 
 ```bash
-scripts/init_skill.py <skill-name> --path <output-directory>
+.agent/skills/skill-creator/scripts/init_skill.py <skill-name> --path <output-directory>
 ```
 
 The script:
@@ -322,13 +322,13 @@ Write instructions for using the skill and its bundled resources.
 Once development of the skill is complete, it must be packaged into a distributable .skill file that gets shared with the user. The packaging process automatically validates the skill first to ensure it meets all requirements:
 
 ```bash
-scripts/package_skill.py <path/to/skill-folder>
+.agent/skills/skill-creator/scripts/package_skill.py <path/to/skill-folder>
 ```
 
 Optional output directory specification:
 
 ```bash
-scripts/package_skill.py <path/to/skill-folder> ./dist
+.agent/skills/skill-creator/scripts/package_skill.py <path/to/skill-folder> ./dist
 ```
 
 The packaging script will:

@@ -23,6 +23,6 @@ Follow these steps to conduct a professional code review using the **unity-pr-re
     - Generate `review.json` following the [REVIEW_JSON_SPEC.md](../skills/unity-pr-reviewer/references/REVIEW_JSON_SPEC.md).
 5.  **Submit & Cleanup**:
     // turbo
-    - Run `.agent/skills/unity-pr-reviewer/scripts/post_review.sh <number> review.json`.
+    - Run `bash .agent/skills/unity-pr-reviewer/scripts/post_review.sh <number> review.json`.
     - Delete `pr_diff.patch` and `review.json`.
 6.  **Confirmation**: Provide the PR URL and a high-level summary of the findings to the user.

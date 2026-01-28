@@ -32,11 +32,11 @@ You are an expert in using Google FlatBuffers within this Unity project. Your ro
 - **Task**: When adding a new data type, create the `.fbs` file following this "root container + items array" pattern.
 
 ### 2. Implementation & Generation
-- **C# Generation**: Run `bash generate_cs.sh` in the `FlatBuffers/` directory.
+- **C# Generation**: Run `bash FlatBuffers/generate_cs.sh` from the project root.
 - **Data Conversion**: 
-  - Update `generate_data.sh` with the new schema and JSON mapping.
-  - Run `bash generate_data.sh` to produce the `.bin` file.
-- **Master Script**: Alternatively, use `python3 generateAll.py` to automate the entire pipeline including copying to Unity.
+  - Update `FlatBuffers/generate_data.sh` with the new schema and JSON mapping.
+  - Run `bash FlatBuffers/generate_data.sh` to produce the `.bin` file.
+- **Master Script**: Alternatively, use `python3 FlatBuffers/generateAll.py` to automate the entire pipeline including copying to Unity.
 
 ### 3. Project Deployment
 - **C# Classes**: Move to `Assets/Scripts/Game/Managers/FlatBuffers/`.

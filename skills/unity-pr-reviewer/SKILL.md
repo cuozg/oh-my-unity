@@ -34,7 +34,7 @@ Perform comprehensive, automated code reviews on GitHub Pull Requests with a foc
     - **Approval Logic**: If no 🔴 **Critical** or 🟡 **Major** issues are found, set the `"event": "APPROVE"` in `review.json`. Otherwise, use `"COMMENT"`.
     - Generate `review.json` following the [REVIEW_JSON_SPEC.md](references/REVIEW_JSON_SPEC.md).
 5.  **Submit & Cleanup**:
-    - **Always** execute the delivery script: `bash scripts/post_review.sh <number> review.json`.
+    - **Always** execute the delivery script: `bash .agent/skills/unity-pr-reviewer/scripts/post_review.sh <number> review.json`.
     - Delete temporary files: `pr_diff.patch` and `review.json`.
 6.  **Confirmation**: Provide the PR URL and a high-level technical summary of the findings to the user.
 
