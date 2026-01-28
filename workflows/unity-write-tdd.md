@@ -1,5 +1,5 @@
 ---
-description: Workflow for generating a Technical Design Document (TDD) based on the WWE 2025 template, using the output from the unity-plan skill.
+description: Workflow for generating a Technical Design Document (TDD) based on the project template, using the output from the unity-plan skill.
 ---
 
 # Workflow: Write TDD
@@ -16,8 +16,8 @@ Generate professional Technical Design Documents (TDD) based on implementation p
     - Define UI lifecycles, asset loading schemes, and client-server interactions.
     - Specify API references and data blueprint changes.
 4.  **Generate Document**:
-    - Use the `WWE_TDD_2025_TEMPLATE.md` from `.agent/skills/unity-tdd-writer/assets/templates/`.
-    - Save the TDD in `Documents/TDDs/TDD_[Feature]_2025.md`.
+    - Use the `UNITY_TDD_TEMPLATE.md` from `.agent/skills/unity-tdd-writer/assets/templates/`.
+    - Save the TDD in `Documents/TDDs/TDD_[Feature].md`.
 5.  **Validation**:
     - Ensure all mandatory sections (Architecture, Components, API, Analytics) are addressed.
     - Present the final TDD to the user for technical review.

@@ -19,7 +19,7 @@ This catalog maps high-level development tasks to the specialized Skills availab
 | **Planning & Docs** | `unity-plan-detail` | Detailed task investigation, code planning, and test design. |
 | **Planning & Docs** | `unity-plan-detail-brainstorm` | Refinement of task instructions with precise code changes. |
 | **Implementation** | `unity-plan-executor` | Executing detailed engineering tasks from Documents/Tasks/. |
-| **Planning & Docs** | `unity-tdd-writer` | Technical Design Document (TDD) generation (WWE 2025). |
+| **Planning & Docs** | `unity-tdd-writer` | Technical Design Document (TDD) generation. |
 | **Planning & Docs** | `unity-documentation` | Architecture and API documentation. |
 | **Code Investigation** | `unity-code-investigator` | Tracing complex execution flows and static analysis. |
 | **Testing** | `unity-test` | Edit Mode and Play Mode automated test implementation. |

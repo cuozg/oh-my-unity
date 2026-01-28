@@ -124,7 +124,7 @@ Skills are **specialized capabilities** that extend the agent's expertise. Each 
 | `unity-plan-detail-brainstorm/`| Deep-dive investigation and refined coding instructions for tasks. |
 | `unity-plan-executor/`         | Executes detailed technical tasks based on .md files in Documents/Tasks/. |
 | `unity-code-investigator/`     | Deep-dive analysis of C# logic and execution flow tracing.         |
-| `unity-tdd-writer/`            | Formal Technical Design Document (TDD) generation (WWE 2025).      |
+| `unity-tdd-writer/`            | Formal Technical Design Document (TDD) generation.      |
 | `unity-test/`                  | Automated testing using the Unity Test Framework (Edit/Play Mode). |
 | `unity-web-developer/`         | Specialist in WebGL deployment, interop, and browser optimization.  |
 | `skill-creator/`               | Meta-skill for creating and improving other project skills.        |

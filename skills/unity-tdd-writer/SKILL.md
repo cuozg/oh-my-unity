@@ -5,7 +5,7 @@ description: "Generation of Technical Design Documents (TDD) for Unity features.
 
 # Unity TDD Writer
 
-Generate detailed Technical Design Documents based on the WWE 2025 standard.
+Generate detailed Technical Design Documents based on project standards.
 
 ## Core Capabilities
 
@@ -16,7 +16,7 @@ Generate detailed Technical Design Documents based on the WWE 2025 standard.
 
 ## Output Format
 
-All TDDs must use the `WWE_TDD_2025_TEMPLATE.md` from `assets/templates/` and be saved in `Documents/TDDs/`.
+All TDDs must use the `UNITY_TDD_TEMPLATE.md` from `assets/templates/` and be saved in `Documents/TDDs/`.
 
 ## Workflow Integration
 
@@ -31,8 +31,8 @@ All TDDs must use the `WWE_TDD_2025_TEMPLATE.md` from `assets/templates/` and be
     - Specify asset loading strategies (Addressables, Resources, Pooling).
     - Detail client-server interactions, API references, and data blueprint/schema changes.
 4.  **Generate Document**:
-    - Use the `WWE_TDD_2025_TEMPLATE.md` from `assets/templates/`.
-    - Save the completed TDD in `Documents/TDDs/TDD_[FeatureName]_2025.md`.
+    - Use the `UNITY_TDD_TEMPLATE.md` from `assets/templates/`.
+    - Save the completed TDD in `Documents/TDDs/TDD_[FeatureName].md`.
 5.  **Validation**:
     - Ensure all mandatory sections (Architecture, Components, API, Analytics, Performance) are addressed with technical depth.
     - Present the final TDD to the user for technical stakeholder review.
