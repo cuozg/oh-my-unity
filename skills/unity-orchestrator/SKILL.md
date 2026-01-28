@@ -39,7 +39,7 @@ You are the strategic brain of the development team. Your goal is to analyze use
 | "Implement a boss phase system" | Load `unity-plan` -> Load `unity-plan-review` -> Load `unity-plan-detail` -> Load `unity-plan-brainstorm` -> Load `unity-plan-executor`. |
 | "Why is this crashing on Android?" | Load `unity-fix-errors` -> Load `unity-mobile-deploy`. |
 | "Optimize our mesh import pipeline" | Load `unity-tech-art` or `unity-editor-tools`. |
-| "Write a TDD for the 7-star feature" | Load `unity-write-tdd` + `mermaid-diagram`. |
+| "Write a TDD for the 7-star feature" | Load `unity-write-tdd` + `mermaid`. |
 
 ## Tech Lead Mindset
 

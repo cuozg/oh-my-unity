@@ -10,7 +10,7 @@ Create and update high-quality technical documentation for scripts, systems, and
     - Use `grep_search` and Unity MCP to identify public APIs, `ScriptableObject` types, and serialized fields.
     - Identify key dependencies and system interactions.
 2.  **Select Template**:
-    - Choose a template from `.claude/skills/unity-documentation/assets/templates/` (e.g., `README_TEMPLATE.md`, `API_TEMPLATE.md`).
+    - Choose a template from `.claude/skills/unity-write-docs/assets/templates/` (e.g., `README_TEMPLATE.md`, `API_TEMPLATE.md`).
 3.  **Draft Content**:
     - Write clear, technical descriptions of the logic and intent.
     - Use code snippets and Mermaid diagrams to visualize hierarchies or execution flows.

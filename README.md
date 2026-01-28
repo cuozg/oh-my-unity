@@ -112,7 +112,7 @@ Skills are **specialized capabilities** that extend the agent's expertise. Each 
 | -------------------------------- | ------------------------------------------------------------------ |
 | `unity-orchestrator`          | The master Unity technical lead and orchestrator.                  |
 | `flatbuffers-coder`           | Specialist in FlatBuffers schema and data management.              |
-| `mermaid-diagram`             | Specialist in visual diagrams and architectural mapping (Mermaid). |
+| `mermaid`             | Specialist in visual diagrams and architectural mapping (Mermaid). |
 | `unity-mcp-basics`            | Mastery of the `unityMCP` toolset for Unity Editor automation.   |
 | `unity-editor-tools`          | Specialist in custom Editor tools, windows, and automation.       |
 | `unity-implement-logic`       | Specialist in implementing C# logic and architectural patterns.    |

@@ -6,7 +6,7 @@ This catalog maps high-level development tasks to the specialized Skills availab
 | :--- | :--- | :--- |
 | **Project Setup & Logic** | `unity-implement-logic` | Implementation of C# systems, MonoBehaviours, and design patterns. |
 | **Data & Serialization** | `flatbuffers-coder` | Specialist in FlatBuffers schema, C# generation, and binary data. |
-| **Visualization** | `mermaid-diagram` | Specialist in visual diagrams, charts, and architectural mapping. |
+| **Visualization** | `mermaid` | Specialist in visual diagrams, charts, and architectural mapping. |
 | **Mobile Specifics** | `unity-mobile-deploy` | iOS/Android optimizations, touch input, and native interop. |
 | **Web Specifics** | `unity-web-deploy` | WebGL deployment, browser interop, and JS communication. |
 | **Pipeline & Tools** | `unity-tech-art` | Shaders, `AssetPostprocessor`, and art pipeline automation. |

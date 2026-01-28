@@ -20,9 +20,9 @@ Follow these steps to conduct a professional code review using the **unity-revie
 4.  **Draft findings**:
     - Categorize issues using skill severity levels: 🔴 **Critical**, 🟡 **Major**, 🔵 **Minor**, 💚 **Suggestion**.
     - Provide commit-ready code fixes using `suggestion` blocks.
-    - Generate `review.json` following the [REVIEW_JSON_SPEC.md](../skills/unity-pr-reviewer/references/REVIEW_JSON_SPEC.md).
+    - Generate `review.json` following the [REVIEW_JSON_SPEC.md](../skills/unity-review-pr/references/REVIEW_JSON_SPEC.md).
 5.  **Submit & Cleanup**:
     // turbo
-    - Run `bash .claude/skills/unity-pr-reviewer/scripts/post_review.sh <number> review.json`.
+    - Run `bash .claude/skills/unity-review-pr/scripts/post_review.sh <number> review.json`.
     - Delete `pr_diff.patch` and `review.json`.
 6.  **Confirmation**: Provide the PR URL and a high-level summary of the findings to the user.
