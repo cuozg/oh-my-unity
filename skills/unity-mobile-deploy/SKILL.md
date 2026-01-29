@@ -1,39 +1,51 @@
 ---
 name: unity-mobile-deploy
-description: "Specialist in iOS and Android platform-specific development. Use when: (1) Implementing touch controls and gestures, (2) Optimizing performance for mobile constraints (battery, heat, memory), (3) Integrating native platform features (IAP, notifications, social), or (4) Configuring mobile build pipelines and store deployments."
+description: "iOS and Android development. Use when: implementing touch controls, optimizing for mobile constraints (battery/heat/memory), integrating native features (IAP/notifications), or configuring mobile builds."
 ---
 
-# Unity Mobile Developer
+# Unity Mobile Development
 
-Specialist in the iOS and Android platforms, focusing on touch-first interaction, hardware-aware optimization, and seamless native integration.
+iOS and Android platform optimization and native integration.
 
-## Core Capabilities
+## Platform Comparison
 
-- **Platform Mastery**: Deep knowledge of iOS (Metal) and Android (Vulkan) graphics and build pipelines.
-- **Optimization Expert**: Expert in reducing build size, battery drain, and thermal throttling.
-- **Native Interop**: Expertly bridge C# with Java/Kotlin and Objective-C/Swift for platform services.
-- **Input Design**: Implement robust touch systems, gesture detectors, and sensor-based controls.
+| Aspect | iOS | Android |
+|:-------|:----|:--------|
+| Graphics API | Metal | Vulkan/OpenGL ES |
+| Build Tool | Xcode | Gradle |
+| Native Lang | Obj-C/Swift | Java/Kotlin |
+| Store | App Store | Google Play |
 
-## Mobile Development Workflow
+## Workflow
 
-1.  **Platform Profiling**:
-    - Identify target device tiers and minimum hardware specs.
-    - Map required permissions and native service integrations (IAP, Social).
-2.  **Implementation**:
-    - Develop platform-aware C# managers. See [MOBILE_INTEROP_PATTERNS.md](references/MOBILE_INTEROP_PATTERNS.md).
-    - Design touch-friendly UI and input logic focused on accessibility and feedback.
-3.  **Audit & Optimize**:
-    - Profile on real hardware using the Unity Profiler and platform tools.
-    - Audit texture settings, shader complexity, and memory usage. See [MOBILE_OPTIMIZATION_GUIDE.md](references/MOBILE_OPTIMIZATION_GUIDE.md).
-4.  **Deployment Verification**:
-    - Generate a formal build report using [MOBILE_BUILD_REPORT.md](assets/templates/MOBILE_BUILD_REPORT.md).
-    - Validate Gradle/Xcode build settings and store compliance.
+1. **Profile**: Identify target devices, minimum specs, required permissions
+2. **Implement**: Platform-aware managers per [MOBILE_INTEROP_PATTERNS.md](references/MOBILE_INTEROP_PATTERNS.md)
+3. **Optimize**: Real hardware profiling, audit textures/shaders/memory per [MOBILE_OPTIMIZATION_GUIDE.md](references/MOBILE_OPTIMIZATION_GUIDE.md)
+4. **Deploy**: Build report via [MOBILE_BUILD_REPORT.md](assets/templates/MOBILE_BUILD_REPORT.md), validate Gradle/Xcode settings
 
-## Best Practices
+## Critical Mobile Patterns
 
-- **Test on Hardware**: Never rely on simulators; real-world performance and thermals vary significantly.
-- **Fail Gracefully**: Handle network drops, backgrounding (app pausing), and low-memory warnings.
-- **Battery-Centric**: Use `Application.targetFrameRate` and avoid expensive calculations when the user is idle.
-- **User Privacy**: Request permissions only when needed and provide clear rationale in UI.
-- **Resolution Scaling**: Use dynamic resolution for gameplay while keeping UI sharp.
-- **Safe Area**: Always respect the device's "safe area" (e.g., notches, home indicators) for UI layout.
+```csharp
+// ✅ Respect safe area (notches, home indicators)
+var safeArea = Screen.safeArea;
+panel.anchoredPosition = new Vector2(safeArea.x, safeArea.y);
+
+// ✅ Battery-conscious frame rate
+Application.targetFrameRate = isGameplay ? 60 : 30;
+
+// ✅ Handle app lifecycle
+private void OnApplicationPause(bool paused) {
+    if (paused) SaveProgress();
+}
+
+// ✅ Low memory warning
+private void OnLowMemory() => Resources.UnloadUnusedAssets();
+```
+
+## Principles
+
+- **Test on Hardware**: Simulators lie about performance and thermals
+- **Fail Gracefully**: Handle network drops, backgrounding, low memory
+- **Battery-Centric**: Reduce frame rate when idle
+- **Privacy First**: Request permissions only when needed, explain why
+- **Dynamic Resolution**: Scale gameplay, keep UI sharp

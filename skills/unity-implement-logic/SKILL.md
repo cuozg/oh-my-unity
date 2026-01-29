@@ -1,39 +1,63 @@
 ---
 name: unity-implement-logic
-description: "Specialist in implementing Unity C# logic, gameplay systems, and architectural patterns. Use when: (1) Creating new C# scripts or MonoBehaviours, (2) Refactoring existing logic for better performance or maintainability, (3) Implementing complex gameplay features (controllers, combat, data systems), or (4) Integrating modern Unity 6 features like Awaitable and the New Input System."
+description: "Implement Unity C# logic, gameplay systems, and architecture. Use when: creating scripts/MonoBehaviours, refactoring logic, implementing gameplay features, or integrating Unity 6 features (Awaitable, New Input System)."
 ---
 
-# Unity Coder Skill
+# Unity Logic Implementation
 
-Expert in crafting robust, high-performance C# logic within the Unity ecosystem. This skill focuses on the implementation phase of development, transforming plans into living code.
+Implement robust, performant C# logic following project conventions.
 
-## Core Capabilities
+## Critical: Async Safety Pattern
 
-- **System Implementation**: Build modular gameplay systems (Inventory, Quests, Combat) from scratch.
-- **Architectural Design**: Apply SOLID principles, ScriptableObject-driven design, and decoupled event-driven patterns.
-- **Modern Tooling**: Leverage Unity 6 features (`Awaitable`, `UI Toolkit`, `New Input System`) for state-of-the-art implementations.
-- **Refactoring & Optimization**: Identify code smells and technical debt, refactoring them into performant patterns.
+```csharp
+// ✅ ALWAYS check for destruction after await in MonoBehaviours
+private async Awaitable LoadPlayerData()
+{
+    var data = await DataService.FetchAsync();
+    
+    // Object may be destroyed during await - CHECK REQUIRED
+    if (this == null) return;
+    
+    _playerData = data;
+    OnDataLoaded?.Invoke();
+}
 
-## Logic Implementation Workflow
+// ✅ With CancellationToken
+private CancellationTokenSource _cts;
 
-1.  **Requirement Clarification**:
-    - Identify the target functionality and external dependencies (Models, UI, Data).
-    - Determine if the script belongs in a specific assembly definition (`.asmdef`).
-2.  **Implementation**:
-    - Use the [SCRIPT_TEMPLATE.md](assets/templates/SCRIPT_TEMPLATE.md) for a standardized starting point.
-    - Follow established patterns in [UNITY_CSHARP_PATTERNS.md](references/UNITY_CSHARP_PATTERNS.md).
-    - Ensure strict adherence to `.claude/rules/unity-csharp-conventions.md`.
-3.  **Self-Review & Verification**:
-    - Verify logic against edge cases (e.g., null references, object destruction during async ops).
-    - Check for common performance pitfalls (`Update` allocations, missing caching).
-4.  **Sync & Compile**:
-    - Use `refresh_unity(compile="request")` to validate the build.
-    - Fix any compiler errors immediately using the `unity-debugger` skill if necessary.
+private void OnEnable() => _cts = new CancellationTokenSource();
+private void OnDisable() => _cts?.Cancel();
 
-## Best Practices
+private async Awaitable LoadWithToken()
+{
+    try {
+        await SomeOperation(_cts.Token);
+        if (this == null) return;
+        // Safe to proceed
+    } catch (OperationCanceledException) { }
+}
+```
 
-- **Composition Over Inheritance**: Prefer small, focused components over deep inheritance hierarchies.
-- **Data-Driven**: Move configuration data and static definitions to `ScriptableObjects`.
-- **Async Safety**: Always provide `CancellationToken` or check `this == null` after `await` in MonoBehaviours.
-- **Clean Prefabs**: Ensure scripts expose meaningful properties to the Inspector to empower Designers.
-- **Namespace Hygiene**: Always wrap code in project-specific namespaces (e.g., `_Project.Scripts.Feature`).
+## Performance Reference
+
+| Pattern | Issue | Fix |
+|:--------|:------|:----|
+| `GetComponent<T>()` in Update | Allocation every frame | Cache in Awake/Start |
+| `Find*()` methods | O(n) scene search | Cache references, use DI |
+| String concat in loop | GC allocation | StringBuilder or interpolation |
+| `new` in Update | GC pressure | Object pooling |
+| `Camera.main` | Calls FindGameObjectWithTag | Cache reference |
+
+## Workflow
+
+1. **Plan**: Identify dependencies, determine assembly (.asmdef)
+2. **Implement**: Use [SCRIPT_TEMPLATE.md](assets/templates/SCRIPT_TEMPLATE.md), follow [UNITY_CSHARP_PATTERNS.md](references/UNITY_CSHARP_PATTERNS.md)
+3. **Review**: Check async safety, performance pitfalls, null guards
+4. **Compile**: `refresh_unity(compile="request")`, fix errors immediately
+
+## Principles
+
+- **Composition > Inheritance**: Small, focused components
+- **Data-Driven**: Configuration in ScriptableObjects
+- **Namespace Everything**: `_Project.Scripts.Feature`
+- **Designer-Friendly**: Expose meaningful Inspector properties

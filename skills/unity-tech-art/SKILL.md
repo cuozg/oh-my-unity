@@ -1,40 +1,49 @@
 ---
 name: unity-tech-art
-description: "Bridge between art and programming. Use when: (1) Authoring or optimizing shaders (HLSL/Shader Graph), (2) Creating editor tools and custom inspectors for artists, (3) Automating asset import pipelines (Postprocessors), (4) Implementing procedural content generation systems, or (5) Profiling and optimizing rendering performance and overdraw."
+description: "Technical art for Unity. Use when: authoring/optimizing shaders, creating artist tools, automating asset pipelines, implementing procedural generation, or profiling rendering performance."
 ---
 
-# Unity Technical Artist
+# Unity Technical Art
 
-Bridging the gap between artistic vision and technical implementation. This skill focuses on tools, shaders, and pipeline efficiency.
+Bridge between artistic vision and technical implementation.
 
-## Core Capabilities
+## Key Areas
 
-- **Shader Authoring**: Create performant, visually stunning shaders using HLSL or Shader Graph.
-- **Pipeline Automation**: Build `AssetPostprocessor` scripts to enforce project standards.
-- **Editor Tooling**: Develop custom windows and property drawers to streamline artistic workflows.
-- **Rendering Optimization**: Analyze and resolve complex rendering bottlenecks, overdraw, and batching issues.
-- **Procedural Systems**: Implement deterministic PCG systems for environments, meshes, and textures.
+| Area | Tools/APIs | References |
+|:-----|:-----------|:-----------|
+| Shaders | HLSL, Shader Graph | [SHADER_OPTIMIZATION_GUIDE.md](references/SHADER_OPTIMIZATION_GUIDE.md) |
+| Pipeline | AssetPostprocessor | [ASSET_POSTPROCESSOR_TEMPLATE.md](assets/templates/ASSET_POSTPROCESSOR_TEMPLATE.md) |
+| Tools | EditorWindow, PropertyDrawer | [PIPELINE_AUTOMATION_GUIDE.md](references/PIPELINE_AUTOMATION_GUIDE.md) |
+| Rendering | Frame Debugger, Profiler | - |
+| PCG | Procedural systems | Deterministic seeds |
 
-## Tech Art Workflow
+## Workflow
 
-1.  **Requirement Assessment**:
-    - Identify the bottleneck: is it artistic (workflow speed) or technical (performance/rendering)?
-    - Determine the scope: Single asset fix vs. Project-wide automation.
-2.  **Implementation**:
-    - Use [ASSET_POSTPROCESSOR_TEMPLATE.md](assets/templates/ASSET_POSTPROCESSOR_TEMPLATE.md) for automation tasks.
-    - Follow optimization standards in [SHADER_OPTIMIZATION_GUIDE.md](references/SHADER_OPTIMIZATION_GUIDE.md).
-    - Design artist-facing tools using the principles in [PIPELINE_AUTOMATION_GUIDE.md](references/PIPELINE_AUTOMATION_GUIDE.md).
-3.  **Validation**:
-    - Use the Frame Debugger and Profiler to verify rendering impact.
-    - Perform "Artist Acceptance" checks: is the tool intuitive and does it provide adequate feedback?
-4.  **Polish**:
-    - Add XML documentation and help boxes to Editor code.
-    - Ensure all generated assets are properly cleaned up or saved to the `Assets/` database.
+1. **Assess**: Is it workflow speed (artistic) or performance (technical)?
+2. **Scope**: Single asset fix vs project-wide automation
+3. **Implement**: Use templates, follow optimization guides
+4. **Validate**: Frame Debugger + Profiler for rendering, "Artist Acceptance" for tools
+5. **Polish**: XML docs, help boxes, proper asset cleanup
 
-## Best Practices
+## Shader Optimization Checklist
 
-- **Artist First**: Tools should be visual and intuitive. Use Sliders, Color Fields, and Previews.
-- **Non-Destructive**: Prefer non-destructive workflows (e.g., Prefab overrides or generating new assets instead of overwriting source files).
-- **Batching Awareness**: Always keep draw call batching (SRP/Static/Dynamic) in mind when designing material systems.
-- **Deterministic PCG**: Ensure procedural systems use controllable seeds for reproducible results.
-- **Safety**: Wrap all editor operations in `Undo` groups.
+```hlsl
+// ✅ Use half precision when possible
+half4 color = tex2D(_MainTex, uv);
+
+// ✅ Avoid expensive operations in fragment
+// Move to vertex shader when possible
+
+// ✅ Use texture atlases to reduce draw calls
+
+// ✅ LOD variants for mobile
+#pragma shader_feature_local _DETAIL_ON
+```
+
+## Principles
+
+- **Artist First**: Visual tools with sliders, color fields, previews
+- **Non-Destructive**: Generate new assets, don't overwrite sources
+- **Batching Aware**: Consider SRP/Static/Dynamic batching in material design
+- **Deterministic PCG**: Controllable seeds for reproducible results
+- **Undo Always**: Wrap editor operations in Undo groups

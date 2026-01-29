@@ -1,45 +1,47 @@
 ---
 name: unity-write-tdd
-description: "Generation of Technical Design Documents (TDD) for Unity features. Use when you need to: (1) Formalize an implementation plan into a technical spec, (2) Document architectural decisions and performance risks, (3) Define client/server component logic, or (4) Specify API references and data architectures."
+description: "Generate Technical Design Documents for Unity features. Use when: formalizing implementation plans into specs, documenting architecture decisions, defining client/server logic, or specifying API/data architectures."
 ---
 
 # Unity TDD Writer
 
-Generate detailed Technical Design Documents based on project standards.
+Generate formal Technical Design Documents from implementation plans.
 
-## Core Capabilities
+## Required Sections
 
-- **Architectural Mapping**: Document foundational assumptions and performance constraints (FPS/Memory/CPU).
-- **Plan Conversion**: Transform `unity-plan` outputs (Epics/Tasks) into "Feature Components".
-- **Technical Spec**: Detail UI lifecycles, asset management, and client-server interactions.
-- **API & Data**: Consolidate network endpoints and blueprint changes into formal references.
+1. **Overview**: Feature summary, goals, constraints
+2. **Architecture**: System diagram, foundational assumptions
+3. **Components**: Feature modules mapped from Epics/Tasks
+4. **Performance**: Target FPS, memory budget, CPU constraints
+5. **API Reference**: Endpoints, request/response formats
+6. **Data Schema**: Blueprint/database changes
+7. **Analytics**: Events to track, KPIs
+8. **Error Handling**: Failure cases, offline behavior
 
-## Output Format
+## Workflow
 
-All TDDs must use the `UNITY_TDD_TEMPLATE.md` from `assets/templates/` and be saved in `Documents/TDDs/`.
+1. **Source**: Load `Documents/Plans/IMPLEMENTATION_PLAN_[Feature].md` (run `/unity-plan` if missing)
+2. **Architecture**: Document constraints (target FPS, memory, CPU budget)
+3. **Components**: Map Epics → logical TDD components
+4. **Detail**: UI lifecycle, asset loading (Addressables/Resources/Pooling), client-server
+5. **Generate**: Use [UNITY_TDD_TEMPLATE.md](assets/templates/UNITY_TDD_TEMPLATE.md)
+6. **Save**: `Documents/TDDs/TDD_[FeatureName].md`
 
-## Workflow Integration
+## Output Example
 
-1.  **Locate Source**:
-    - Find the latest implementation plan in `Documents/Plans/IMPLEMENTATION_PLAN_[FeatureName].md`.
-    - If no plan exists, run the `/unity-plan` workflow first as a prerequisite.
-2.  **Define Architecture**:
-    - Document foundational assumptions and performance constraints (e.g., target FPS, Memory limits, CPU budget).
-    - Map feature epics and tasks into high-level, logical TDD Components.
-3.  **Detail Logic**:
-    - Define UI lifecycles (Loading, Refreshing, Data Refresh triggers).
-    - Specify asset loading strategies (Addressables, Resources, Pooling).
-    - Detail client-server interactions, API references, and data blueprint/schema changes.
-4.  **Generate Document**:
-    - Use the `UNITY_TDD_TEMPLATE.md` from `assets/templates/`.
-    - Save the completed TDD in `Documents/TDDs/TDD_[FeatureName].md`.
-5.  **Validation**:
-    - Ensure all mandatory sections (Architecture, Components, API, Analytics, Performance) are addressed with technical depth.
-    - Present the final TDD to the user for technical stakeholder review.
+```markdown
+## 3. Performance Constraints
 
-## Best Practices
+| Metric | Target | Risk |
+|:-------|:-------|:-----|
+| Frame Rate | 60 FPS | Particle system may spike |
+| Memory | < 50MB | Large texture atlases |
+| Load Time | < 2s | Addressables async load |
+```
 
-- **Explicit Assumptions**: Never leave architectural constraints undocumented.
-- **Performance First**: Address specific risks for mobile and low-end hardware.
-- **Detail UI Lifecycle**: Define exactly when data is populated and refreshed.
-- **Error Handling**: Document API failure cases and offline behaviors.
+## Principles
+
+- **Explicit Assumptions**: Never leave constraints undocumented
+- **Mobile First**: Address low-end hardware risks
+- **UI Lifecycle**: When is data populated? When refreshed?
+- **Error Paths**: Document API failures and offline cases

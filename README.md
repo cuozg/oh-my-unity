@@ -1,214 +1,155 @@
-# Unity Agent Configuration
+# oh-my-unity
 
-This directory contains configuration files for AI agents (like Google Antigravity) to work effectively with this Unity project.
+AI agent configuration toolkit for Unity game development. Provides specialized skills, rules, and workflows for Claude and other AI assistants.
 
 ## ⚙️ Installation
 
-To set up the agent configuration in your Unity project, run the following command from your project root:
-
 ```bash
-# For Google Antigravity
-git clone https://github.com/cuozg/oh-my-unity.git ./.agent
-
-# For other agents (Claude, etc.)
+# Clone into your Unity project root
 git clone https://github.com/cuozg/oh-my-unity.git ./.claude
 ```
 
 ## 🚀 Quick Start
 
-1. **Conduct a Code Review**: *"Review PR #25141 for performance issues."* (Agent uses `/unity-review-pr`)
-2. **Fix Compiler/Runtime Errors**: Execute the `/unity-fix-errors` workflow.
-3. **Plan & Implement Features**: Execute the `/unity-plan` workflow (e.g., *"Add a player health bar to the UI"*).
+| Task | Command/Prompt |
+|:-----|:---------------|
+| Review a PR | "Review PR #25141 for performance issues" |
+| Fix errors | `/unity-fix-errors` |
+| Plan a feature | `/unity-plan` "Add player health bar to UI" |
+| Investigate code | "How does the combat system work?" |
 
 ---
 
-## 📁 Directory Structure
+## 📁 Structure
 
 ```
-.agent/ or .claude/
-├── README.md           # This file
-├── agents/             # Agent definitions (orchestrators, core, specialized)
-├── docs/               # Documentation on creating agents and best practices
-├── rules/              # Project-wide rules agents must follow
-├── skills/             # Specialized capabilities for agents
-└── workflows/          # Step-by-step procedures for common tasks
+.claude/
+├── rules/          # Always-on constraints (conventions, standards)
+├── skills/         # Specialized capabilities (22 skills)
+└── workflows/      # Step-by-step procedures (11 workflows)
 ```
-
----
-
-### 🚀 Implementation Pipeline
-
-This project follows a structured engineering pipeline to move from high-level ideas to verified, code-complete features.
-
-```mermaid
-graph TD
-    Input([Feature Input]) --> Plan[unity-plan]
-    Plan -->|Initial Roadmap| Review[unity-plan-review]
-    Review -->|Finalized Task List| Detail[unity-plan-detail]
-    Detail -->|Task Skeletons in Documents/Tasks/| Brainstorm[unity-plan-brainstorm]
-    Brainstorm -->|Execution-Ready Instructions| Executor[unity-plan-executor]
-    Executor -->|Specialized Experts| Done([Feature Complete])
-
-    subgraph "Planning & Review Phase"
-    Plan
-    Review
-    end
-
-    subgraph "Engineering Phase"
-    Detail
-    Brainstorm
-    Executor
-    end
-```
-
-#### Pipeline Stages:
-
-1.  **`unity-plan`**: Analyzes the input specification to produce a high-level roadmap, epics, and costing estimates.
-2.  **`unity-plan-review`**: The strategic audit. High-level decomposition is critiqued and refined through user brainstorming to ensure a complete task list.
-3.  **`unity-plan-detail`**: Decomposes epics into individual task skeletons. It generates `.md` files in `Documents/Tasks/` defining the requirements and success criteria for each step.
-4.  **`unity-plan-brainstorm`**: The technical deep-dive. It uses `unity-investigate-code` to find exact code locations, brainstorms architectural decisions with the user, and provides specific code changes and test cases.
-5.  **`unity-plan-executor`**: The final implementation stage. It reads the refined task instructions and coordinates specialized experts (like `unity-implement-logic` or `flatbuffers-coder`) to apply the changes and verify the "Definition of Done".
 
 ---
 
 ## 📜 Rules
 
-**Location**: `.claude/rules/`
+Always-active constraints the agent must follow.
 
-Rules are **always-on** constraints that the agent must follow during every interaction. They define coding standards, asset conventions, and behavioral expectations.
-
-### Current Rules
-
-| File                            | Description                                                           |
-| ------------------------------- | --------------------------------------------------------------------- |
-| `agent-behavior.md`           | How the agent should interact: safety, proactivity, tool mastery.     |
-| `unity-csharp-conventions.md` | C# naming, architecture (SOLID, ScriptableObjects), and performance.  |
-| `unity-asset-rules.md`        | Folder structure, asset naming, and optimization for textures/models. |
-
-### How to Add a Rule
-
-1. Create a new `.md` file in `.claude/rules/`.
-2. Add YAML frontmatter:
-   ```yaml
-   ---
-   trigger: always_on
-   glob: Human Readable Title
-   description: What this rule enforces.
-   ---
-   ```
-3. Write the rule content in Markdown.
+| Rule | Purpose |
+|:-----|:--------|
+| `agent-behavior.md` | Safety, proactivity, tool usage |
+| `unity-csharp-conventions.md` | C# naming, architecture, Unity 6 patterns |
+| `unity-asset-rules.md` | Folder structure, asset naming, optimization |
 
 ---
 
 ## 🛠️ Skills
 
-**Location**: `.claude/skills/`
+Specialized capabilities organized by domain.
 
-Skills are **specialized capabilities** that extend the agent's expertise. Each skill lives in its own folder and contains a `SKILL.md` file with instructions, plus optional helper scripts.
+### Orchestration
+| Skill | Use For |
+|:------|:--------|
+| `unity-orchestrator` | Routes all Unity requests to specialists |
 
-### Current Skills
+### Implementation
+| Skill | Use For |
+|:------|:--------|
+| `unity-implement-logic` | C# logic, gameplay systems, Unity 6 Awaitable |
+| `unity-fix-errors` | Debug console errors, crashes, build failures |
+| `unity-investigate-code` | Trace execution, understand features |
+| `unity-optimize-performance` | FPS drops, memory leaks, profiling |
+| `unity-test` | Edit/Play Mode tests with UTF |
 
-| Skill                            | Description                                                        |
-| -------------------------------- | ------------------------------------------------------------------ |
-| `unity-orchestrator`          | The master Unity technical lead and orchestrator.                  |
-| `flatbuffers-coder`           | Specialist in FlatBuffers schema and data management.              |
-| `mermaid`             | Specialist in visual diagrams and architectural mapping (Mermaid). |
-| `unity-mcp-basics`            | Mastery of the `unityMCP` toolset for Unity Editor automation.   |
-| `unity-editor-tools`          | Specialist in custom Editor tools, windows, and automation.       |
-| `unity-implement-logic`       | Specialist in implementing C# logic and architectural patterns.    |
-| `unity-tech-art`              | Bridge between art and code (Shaders, Pipeline Automation).        |
-| `unity-mobile-deploy`         | Specialist in iOS/Android deployment, interop, and optimization.   |
-| `unity-fix-errors`            | Systematic diagnosis and resolution of Unity technical errors.     |
-| `unity-optimize-performance`  | Identification and resolution of performance bottlenecks.          |
-| `unity-review-pr`             | Automated GitHub PR reviews with commit-ready suggestions.         |
-| `unity-write-docs`            | Expert in crafting technical documentation for projects and APIs.  |
-| `unity-plan`                  | Requirement decomposition into structured implementation plans.    |
-| `unity-plan-review`           | Facilitates high-level review, brainstorming, and task finalization. |
-| `unity-plan-detail`           | Decomposes plans into detailed tasks with code and test cases.    |
-| `unity-plan-brainstorm`       | Deep-dive investigation and refined coding instructions for tasks. |
-| `unity-plan-executor`         | Executes detailed technical tasks based on .md files in Documents/Tasks/. |
-| `unity-investigate-code`      | Deep-dive analysis of C# logic and execution flow tracing.         |
-| `unity-write-tdd`             | Formal Technical Design Document (TDD) generation.      |
-| `unity-test`                  | Automated testing using the Unity Test Framework (Edit/Play Mode). |
-| `unity-web-deploy`            | Specialist in WebGL deployment, interop, and browser optimization.  |
-| `skill-creator`               | Meta-skill for creating and improving other project skills.        |
+### Planning Pipeline
+| Skill | Use For |
+|:------|:--------|
+| `unity-plan` | Break features into Epics/Tasks |
+| `unity-plan-review` | Audit and refine plans |
+| `unity-plan-detail` | Create task skeletons |
+| `unity-plan-brainstorm` | Technical deep-dive, code changes |
+| `unity-plan-executor` | Execute task instructions |
 
-### Skill Folder Structure
+### Documentation
+| Skill | Use For |
+|:------|:--------|
+| `unity-write-docs` | READMEs, architecture docs, API refs |
+| `unity-write-tdd` | Technical Design Documents |
+| `mermaid` | Diagrams (flowcharts, sequence, state) |
+
+### Platform & Deployment
+| Skill | Use For |
+|:------|:--------|
+| `unity-mobile-deploy` | iOS/Android builds, native interop |
+| `unity-web-deploy` | WebGL builds, JS interop |
+| `unity-review-pr` | GitHub PR code reviews |
+
+### Specialized
+| Skill | Use For |
+|:------|:--------|
+| `unity-editor-tools` | Custom Editor windows, inspectors |
+| `unity-tech-art` | Shaders, asset pipelines, PCG |
+| `unity-mcp-basics` | Editor automation via unityMCP |
+| `flatbuffers-coder` | FlatBuffers schemas, data tables |
+
+---
+
+## 🔄 Implementation Pipeline
+
+```mermaid
+graph LR
+    A[Feature Request] --> B[unity-plan]
+    B --> C[unity-plan-review]
+    C --> D[unity-plan-detail]
+    D --> E[unity-plan-brainstorm]
+    E --> F[unity-plan-executor]
+    F --> G[Feature Complete]
+```
+
+| Stage | Output |
+|:------|:-------|
+| `unity-plan` | Epics, tasks, cost estimates |
+| `unity-plan-review` | Refined task list |
+| `unity-plan-detail` | Task skeletons in `Documents/Tasks/` |
+| `unity-plan-brainstorm` | Execution-ready code changes |
+| `unity-plan-executor` | Implemented feature |
+
+---
+
+## 📝 Creating Skills
 
 ```
 skills/<skill-name>/
-├── SKILL.md           # Main instructions with trigger metadata
-├── scripts/           # (Optional) Automated execution logic
-├── references/        # (Optional) Domain knowledge and patterns
-└── assets/            # (Optional) Templates and static resources
+├── SKILL.md           # Required: Instructions + frontmatter
+├── scripts/           # Optional: Automation
+├── references/        # Optional: Domain knowledge
+└── assets/            # Optional: Templates
 ```
 
-### How to Create a Skill
-
-1. Create a folder: `.claude/skills/<your-skill-name>/`.
-2. Add a `SKILL.md` file with:
-   ```yaml
-   ---
-   name: your-skill-name
-   description: Detailed triggers of when to use this skill.
-   ---
-   # Your Skill Name
-
-   Procedural instructions for the agent...
-   ```
-3. Add supporting resources in `scripts/`, `references/`, or `assets/`.
+**SKILL.md frontmatter:**
+```yaml
+---
+name: skill-name
+description: "When to use this skill. Include ALL trigger conditions here."
+---
+```
 
 ---
 
-## 🔄 Workflows
+## 🔧 Creating Rules
 
-**Location**: `.claude/workflows/`
+```yaml
+---
+trigger: always_on
+glob: Human Readable Title
+description: What this rule enforces.
+---
 
-Workflows are **step-by-step procedures** for complex, repetitive tasks. They can be invoked with a slash command (e.g., `/fix-errors`).
-
-### Current Workflows
-
-| Command                         | Description                                                                       |
-| ------------------------------- | --------------------------------------------------------------------------------- |
-| `/unity-fix-errors`           | Diagnose and fix Unity compiler or runtime errors.                                |
-| `/unity-documentation`        | Create and maintain technical project documentation.                              |
-| `/unity-optimize-performance` | Identify and resolve performance bottlenecks.                                     |
-| `/unity-implement-logic`      | Implement or refactor Unity C# logic and gameplay systems.                        |
-| `/unity-mobile-deploy`        | Optimize, build, and deploy the project to iOS and Android.                       |
-| `/unity-review-pr`            | Conduct a full code review on a GitHub Pull Request.                              |
-| `/unity-plan`                 | Investigate requirements and produce a detailed implementation plan with costing. |
-| `/unity-investigate-code`     | Deep-dive into complex logic, execution flows, and feature implementations.       |
-| `/unity-write-tdd`            | Generate a Technical Design Document (TDD) based on the WWE 2025 template.        |
-| `/unity-test`                 | Create and run automated tests using the Unity Test Framework.                    |
-| `/unity-web-deploy`           | Optimize, build, and deploy the project to the WebGL platform.                    |
-
-### How to Create a Workflow
-
-1. Create a new `.md` file: `.claude/workflows/<your-workflow>.md`.
-2. Add YAML frontmatter with a description:
-   ```yaml
-   ---
-   description: What this workflow does.
-   ---
-   ```
-3. Write numbered steps. Use `// turbo` above a step to auto-run it, or `// turbo-all` anywhere to auto-run all steps.
+## Rule content in Markdown...
+```
 
 ---
 
-## 🤖 Agents
+## 📚 More Info
 
-**Location**: `.claude/agents/`
-
-Agents are specialized AI personas designed for specific roles in game development. They are organized into categories:
-
-- **`orchestrators/`**: High-level coordinators (e.g., `unity-tech-lead`).
-- **`core/`**: Cross-cutting concerns (Performance, Build, QA, Code Review).
-- **`specialized/`**: Domain experts (Graphics, Networking, Animation).
-- **`platforms/`**: Platform-specific agents (Mobile, VR).
-- **`universal/`**: Non-Unity roles (Game Design, Audio).
-
-See `.claude/docs/creating-agents.md` for how to create a new agent.
-
----
-
-For more details, see the files in `.claude/docs/`.
+See `docs/` for detailed guides on creating agents, skills, and workflows.

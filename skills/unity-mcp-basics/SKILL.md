@@ -1,28 +1,36 @@
 ---
 name: unity-mcp-basics
-description: "Core Mastery of the unityMCP toolset for Unity Editor automation. Use when you need to: (1) Find, create, or modify GameObjects and Components, (2) Manage scenes and prefabs, (3) Update materials and shaders, or (4) Execute batch operations in the Editor."
+description: "Unity Editor automation via unityMCP tools. Use when: finding/creating/modifying GameObjects and Components, managing scenes/prefabs, updating materials, or executing batch Editor operations."
 ---
 
 # Unity MCP Basics
 
-Mastery of the `unityMCP` toolset to automate tasks directly within the Unity Editor.
+Automate Unity Editor tasks with `unityMCP` tools.
 
-## Core Capabilities
+## Core Tools
 
-- **Hierarchy Control**: Find objects (`find_gameobjects`), modify them (`manage_gameobject`), and inspect hierarchies (`manage_scene`).
-- **Component Management**: Add/remove components and update properties via `manage_components`.
-- **Scripting & Assets**: Automated script creation and precise text edits (`apply_text_edits`).
-- **Specialized Tools**: Deep control over materials, VFX, and prefab stages.
+| Tool | Purpose | Example |
+|:-----|:--------|:--------|
+| `find_gameobjects` | Locate objects | `find_gameobjects(name="Player")` |
+| `manage_gameobject` | Create/modify objects | `manage_gameobject(action="create", name="Enemy")` |
+| `manage_components` | Add/remove/update components | `manage_components(add="Rigidbody")` |
+| `manage_scene` | Scene operations, screenshots | `manage_scene(action="get_hierarchy")` |
+| `manage_material` | Material properties | `manage_material(color=Color.red)` |
+| `refresh_unity` | Recompile | `refresh_unity(compile="request")` |
+| `read_console` | Check logs/errors | `read_console()` |
+| `batch_execute` | Multiple operations | Combine operations efficiently |
 
-## Best Practices
+## Standard Sequence
 
-- **Instance ID Preference**: Use Instance IDs for reliable targeting of GameObjects.
-- **Batching**: Always use `batch_execute` for multiple similar operations to save tokens and time.
-- **Verification**: Check the hierarchy before creating objects to avoid duplicates.
-- **Monitor logs**: Use `read_console` to verify success after critical Editor actions.
+```
+1. Locate   → find_gameobjects(name="Target")
+2. Modify   → manage_components(id=123, add="BoxCollider")
+3. Verify   → read_console() or manage_scene(action="screenshot")
+```
 
-## Standard Action Sequence
+## Principles
 
-1. **Locate**: Find target with `find_gameobjects`.
-2. **Modify**: Apply changes with `manage_components` or `manage_gameobject`.
-3. **Verify**: Use `manage_scene` (screenshot) or `read_console` to confirm.
+- **Use Instance IDs**: Reliable targeting, not names (which may duplicate)
+- **Batch Operations**: Use `batch_execute` for multiple similar operations
+- **Verify First**: Check hierarchy before creating to avoid duplicates
+- **Monitor Logs**: `read_console` after critical operations

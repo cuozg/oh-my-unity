@@ -1,37 +1,60 @@
 ---
 name: unity-web-deploy
-description: "Specialist in Unity WebGL deployment, browser compatibility, and JavaScript interop. Use when: (1) Configuring or optimizing WebGL builds, (2) Implementing communication between C# and JavaScript, (3) Debugging browser-specific issues (memory, audio, input), or (4) Developing PWA features for web games."
+description: "Unity WebGL deployment and JS interop. Use when: configuring WebGL builds, implementing C#/JS communication, debugging browser issues (memory/audio/input), or developing PWA features."
 ---
 
-# Unity Web Developer Skill
+# Unity WebGL Development
 
-Core expertise in the WebGL platform, focusing on deployment efficiency, browser interop, and web-specific runtime performance.
+WebGL platform optimization and browser integration.
 
-## Core Capabilities
+## Build Settings
 
-- **Pipeline Mastery**: Configure build settings for Brotli/Gzip, decompression fallbacks, and memory management.
-- **JavaScript Interop**: Expertly bridge C# and JS using `.jslib` plugins and `SendMessage`.
-- **Performance Audit**: Identify WebGL-specific bottlenecks in loading, memory fragmentation, and GPU usage.
-- **PWA Development**: Implement Service Workers, Manifests, and offline caching for Unity web apps.
+| Setting | Recommended | Notes |
+|:--------|:------------|:------|
+| Compression | Brotli | Best size, needs server config |
+| Memory Size | 256-512MB | Browser dependent |
+| Exception Handling | Explicit Throw | Smaller builds |
+| Strip Engine Code | Yes | Reduces size significantly |
 
-## WebGL Development Workflow
+## Workflow
 
-1.  **Platform Discovery**:
-    - Identify required Web APIs (LocalStorage, Fullscreen, WebXR).
-    - Map the browser compatibility targets (Desktop only vs. Mobile Web).
-2.  **Implementation**:
-    - Develop C# managers for interop. See [WEBGL_INTEROP_PATTERNS.md](references/WEBGL_INTEROP_PATTERNS.md).
-    - Set up `Assets/Plugins/WebGL/` for custom JS plugins.
-3.  **Audit & Optimize**:
-    - Analyze the build report for size hotspots.
-    - Check memory limits and texture compression. See [WEBGL_OPTIMIZATION_GUIDE.md](references/WEBGL_OPTIMIZATION_GUIDE.md).
-4.  **Deployment Verification**:
-    - Generate a formal build report using [WEBGL_BUILD_REPORT.md](assets/templates/WEBGL_BUILD_REPORT.md).
-    - Validate server headers (COOP/COEP) and HTTPS requirements.
+1. **Discover**: Identify Web APIs needed (LocalStorage, Fullscreen, WebXR), browser targets
+2. **Implement**: C# interop managers per [WEBGL_INTEROP_PATTERNS.md](references/WEBGL_INTEROP_PATTERNS.md), plugins in `Assets/Plugins/WebGL/`
+3. **Optimize**: Build report analysis, memory limits, texture compression per [WEBGL_OPTIMIZATION_GUIDE.md](references/WEBGL_OPTIMIZATION_GUIDE.md)
+4. **Deploy**: Build report via [WEBGL_BUILD_REPORT.md](assets/templates/WEBGL_BUILD_REPORT.md), validate COOP/COEP headers, HTTPS
 
-## Best Practices
+## JS Interop Pattern
 
-- **Mobile First**: Always assume limited memory and thermal constraints when targeting mobile browsers.
-- **Lazy Initialization**: Keep the initial WASM/Data download small; use Addressables for the rest.
-- **Sanitize Input**: Treat data coming from JS via `SendMessage` as untrusted and validate it.
-- **User Interaction**: Trigger media (audio/video) only after the first user click to satisfy browser security policies.
+```csharp
+// C# side
+public class WebBridge : MonoBehaviour
+{
+    [DllImport("__Internal")]
+    private static extern void JS_SaveToLocalStorage(string key, string value);
+    
+    // Called from JavaScript
+    public void OnJSMessage(string data) {
+        // ⚠️ ALWAYS validate data from JS
+        if (string.IsNullOrEmpty(data)) return;
+        ProcessData(JsonUtility.FromJson<Data>(data));
+    }
+}
+```
+
+```javascript
+// Assets/Plugins/WebGL/bridge.jslib
+mergeInto(LibraryManager.library, {
+    JS_SaveToLocalStorage: function(keyPtr, valuePtr) {
+        var key = UTF8ToString(keyPtr);
+        var value = UTF8ToString(valuePtr);
+        localStorage.setItem(key, value);
+    }
+});
+```
+
+## Principles
+
+- **Mobile First**: Assume limited memory and thermal constraints on mobile browsers
+- **Lazy Load**: Keep initial WASM/Data small, use Addressables for rest
+- **Sanitize JS Input**: Treat `SendMessage` data as untrusted
+- **User Interaction First**: Audio/video only after first click (browser policy)

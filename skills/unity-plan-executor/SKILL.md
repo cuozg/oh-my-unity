@@ -1,47 +1,52 @@
 ---
 name: unity-plan-executor
-description: "Executes detailed technical tasks based on .md files in Documents/Tasks/. Use when: (1) A detailed task guide has been created by `unity-plan-detail`, (2) You are ready to implement specific C# logic, assets, or data, or (3) You need to coordinate multiple specialists to complete a planned task."
+description: "Execute detailed task guides. Input: .md files from Documents/Tasks/. Coordinates specialists (unity-implement-logic, unity-tech-art, flatbuffers-coder) to implement code changes."
 ---
 
 # Unity Plan Executor
 
-You are the Senior Implementation Engineer. Your role is to take the precise engineering instructions from a Task Detail file and execute them to completion using the project's specialized expert skills.
+Execute task guides by coordinating specialist skills.
 
-## Core Capabilities
+## Execution Checklist
 
-- **Task Synthesis**: Read and understand complex implementation guides from `Documents/Tasks/`.
-- **Specialist Coordination**: Dynamically load the correct specialized skills (e.g., `unity-implement-logic`, `unity-tech-art`, `flatbuffers-coder`) based on the task type.
-- **Precision Implementation**: Apply code changes, create assets, or update data schemas exactly as defined in the task guide.
-- **Verification**: Ensure the task meets the "Definition of Done" specified in the guide.
+```markdown
+## Task Execution: [Task Name]
 
-## Workflow: Execution
+### Pre-Flight
+- [ ] Task file loaded from `Documents/Tasks/`
+- [ ] Code changes extracted
+- [ ] Required skills identified
 
-1.  **Read Task Guide**:
-    - Load the target `.md` file from `Documents/Tasks/[Number][Epic][Task].md`.
-    - Extract the Implementation Strategy, Code Snippets, and Test Cases.
-2.  **Specialist Selection**:
-    - Identify the required domain expertise.
-    - **Load Skill**: `unity-implement-logic` (for logic), `unity-tech-art` (for shaders/tools), `flatbuffers-coder` (for data), etc.
-3.  **Step-by-Step Implementation**:
-    - Follow the "Detailed Steps" in the guide.
-    - If code snippets are provided, adapt them to the latest codebase state.
-    - Use `unity-mcp-basics` or `unityMCP` directly for Editor operations.
-4.  **Self-Correction & Refinement**:
-    - After each step, verify that the project still compiles.
-    - If an implementation detail from the guide fails (e.g., due to codebase changes), use `unity-investigate-code` to find a fix.
-5.  **Completion & Cleanup**:
-    - Finalize all changes.
-    - Update the Task `.md` file with a "Completed" status if required by the user.
+### Implementation
+- [ ] Change 1: [Description] → Applied
+- [ ] Change 2: [Description] → Applied
+- [ ] Compile check passed
 
-## Best Practices
+### Verification
+- [ ] Definition of Done met
+- [ ] No regressions introduced
+- [ ] Task file updated to "Completed"
 
-- **Atomic Execution**: Complete one task file fully before moving to the next.
-- **Validation**: Always run a quick compile check after applying code changes.
-- **Specialist Persona**: When using a specialized skill (like `unity-implement-logic`), fully adopt its best practices and patterns.
-- **Transparency**: Report exactly which files were modified and what assets were created.
+### Files Modified
+- `path/to/file1.cs` - Added Heal method
+- `path/to/file2.cs` - Updated event subscription
+```
 
-## Routing Guidance
+## Workflow
 
-- **If the user says "Execute Task [ID]"** -> Find the file in `Documents/Tasks/` and begin implementation.
-- **If the user says "Start implementing the 7-star feature"** (assuming detailing is done) -> Begin sequential execution of the task files.
-- **If a task requires cross-disciplinary work** -> Load both `unity-implement-logic` and `unity-tech-art` in sequence to finish the task.
+1. **Load**: Read `Documents/Tasks/[Number][Epic][Task].md`, extract strategy & code snippets
+2. **Select Specialist**:
+   - Logic/C# → `unity-implement-logic`
+   - Shaders/Art → `unity-tech-art`
+   - Data tables → `flatbuffers-coder`
+   - Editor operations → `unity-mcp-basics`
+3. **Implement**: Follow task's "Detailed Steps", adapt code to current codebase state
+4. **Verify**: Compile after each change, investigate failures with `unity-investigate-code`
+5. **Complete**: Update task status, report modified files
+
+## Principles
+
+- **Atomic Execution**: Finish one task completely before next
+- **Validate Always**: Compile check after every change
+- **Adopt Specialist**: Use loaded skill's best practices fully
+- **Transparent Reporting**: List all modified files and created assets

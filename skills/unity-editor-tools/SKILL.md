@@ -1,39 +1,58 @@
 ---
 name: unity-editor-tools
-description: "Specialist in creating Unity Editor tools, custom windows, and workflow automations to support engineering teams. Use when: (1) Creating custom Editor Windows or Inspectors, (2) Automating asset management or scene validation, (3) Building technical utilities for engineers (e.g., search tools, batch processors), or (4) Integrating modern Editor UI Toolkit (UXML/USS) interfaces."
+description: "Create Unity Editor tools and workflow automations. Use when: building custom Editor Windows/Inspectors, automating asset management, creating batch processors, or using UI Toolkit (UXML/USS)."
 ---
 
-# Unity Editor Developer
+# Unity Editor Tools
 
-Empowering engineering teams by extending the Unity Editor with high-quality, performant tools and automated workflows.
+Extend Unity Editor with custom tools and automated workflows.
 
-## Core Capabilities
+## Tool Types
 
-- **UI Development**: Author modern Editor interfaces using UI Toolkit (UXML/USS) and legacy IMGUI where needed.
-- **Workflow Automation**: Implement `AssetPostprocessor`, `MenuItem`, and `Shortcut` systems to drive efficiency.
-- **Data Engineering**: Build custom SerializedProperty drawers and inspectors that handle complex project data safely.
-- **Project Governance**: Automate scene validation, asset auditing, and technical debt detection.
+| Type | Use Case | Base Class |
+|:-----|:---------|:-----------|
+| Editor Window | Global tools (search, batch ops) | `EditorWindow` |
+| Custom Inspector | Component-specific UI | `Editor` |
+| Property Drawer | Field visualization | `PropertyDrawer` |
+| Asset Postprocessor | Import automation | `AssetPostprocessor` |
 
-## Editor Development Workflow
+## Templates
 
-1.  **Requirement Assessment**:
-    - Identify the specific pain point (e.g., "Finding missing scripts takes too long").
-    - Decide between an `EditorWindow` (global tool) or a `CustomEditor` (component-specific tool).
-2.  **Architecture**:
-    - Choose between modern [UI Toolkit](references/EDITOR_UI_TOOLKIT_GUIDE.md) or legacy IMGUI.
-    - Plan data persistence (e.g., `EditorPrefs` for UI state or `ScriptableObject` for tool configuration).
-3.  **Implementation**:
-    - Use [EDITOR_WINDOW_TEMPLATE.md](assets/templates/EDITOR_WINDOW_TEMPLATE.md) or [CUSTOM_INSPECTOR_TEMPLATE.md](assets/templates/CUSTOM_INSPECTOR_TEMPLATE.md).
-    - Leverage common scripting patterns from [EDITOR_SCRIPTING_PATTERNS.md](references/EDITOR_SCRIPTING_PATTERNS.md).
-    - Ensure all modifications support **Undo** and **Dirty Marking** for scene/assets.
-4.  **Verification**:
-    - Test the tool's resilience against domain reloads and scene changes.
-    - Profile memory and CPU usage if the tool handles large asset databases.
+- [EDITOR_WINDOW_TEMPLATE.md](assets/templates/EDITOR_WINDOW_TEMPLATE.md)
+- [CUSTOM_INSPECTOR_TEMPLATE.md](assets/templates/CUSTOM_INSPECTOR_TEMPLATE.md)
+- Patterns: [EDITOR_SCRIPTING_PATTERNS.md](references/EDITOR_SCRIPTING_PATTERNS.md)
+- UI Toolkit: [EDITOR_UI_TOOLKIT_GUIDE.md](references/EDITOR_UI_TOOLKIT_GUIDE.md)
 
-## Best Practices
+## Critical Requirements
 
-- **Undo is Mandatory**: Always use `SerializedObject` or `Undo.RecordObject`. Never modify data directly without an undo entry.
-- **Match the Engine**: Use Unity's built-in UI variables (USS themes) so tools look native in both Dark and Light modes.
-- **Feedback & Feedback**: Use `EditorUtility.DisplayProgressBar` for long-running batch tasks.
-- **Safety First**: Wrap `AssetDatabase` batch operations in `StartAssetEditing`/`StopAssetEditing` blocks.
-- **Avoid Polling**: Use `TrackPropertyValue` or events instead of checking for changes in `OnGUI` or `Update`.
+```csharp
+// ✅ ALWAYS support Undo
+Undo.RecordObject(target, "Change Health");
+target.maxHealth = newValue;
+
+// ✅ Batch asset operations
+AssetDatabase.StartAssetEditing();
+try {
+    // Multiple asset operations
+} finally {
+    AssetDatabase.StopAssetEditing();
+}
+
+// ✅ Progress bar for long operations
+EditorUtility.DisplayProgressBar("Processing", "Item " + i, progress);
+EditorUtility.ClearProgressBar();
+```
+
+## Workflow
+
+1. **Assess**: Identify pain point, choose Window vs Inspector
+2. **Architecture**: UI Toolkit (preferred) or IMGUI, plan data persistence
+3. **Implement**: Use templates, support Undo, mark dirty
+4. **Verify**: Test domain reloads, scene changes, profile large datasets
+
+## Principles
+
+- **Undo is Mandatory**: Always `SerializedObject` or `Undo.RecordObject`
+- **Theme Aware**: Use USS variables for Dark/Light mode
+- **No Polling**: Use `TrackPropertyValue` or events, not OnGUI checks
+- **Batch Safely**: Wrap in `Start/StopAssetEditing`

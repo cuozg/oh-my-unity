@@ -1,46 +1,50 @@
 ---
 name: unity-fix-errors
-description: "Systematic diagnosis and resolution of Unity technical errors. Use when: (1) The console reports compiler errors or exceptions, (2) Play Mode behavior is unexpected or broken, (3) A build fails, or (4) You need to generate a structured debug report in Documents/Debugs/."
+description: "Diagnose and fix Unity errors. Use when: console shows compiler errors/exceptions, Play Mode is broken, build fails, or you need to generate debug reports in Documents/Debugs/."
 ---
 
-# Unity Debugger
+# Unity Error Debugger
 
-A systematic approach to identifying and resolving technical issues in Unity using Editor automation tools.
+Systematic diagnosis and resolution of Unity technical issues.
 
-## Core Capabilities
+## Common Fixes
 
-- **Intel Gathering**: Targeted reading of the Unity console to extract stack traces and frequency.
-- **Root Cause Analysis**: Mapping errors to specific script lines, variable states, and scene configurations.
-- **Hypothesis Testing**: Proposing and validating fixes in a controlled loop.
-- **Structured Reporting**: Generating detailed `.md` reports for audit and collaboration.
+| Error | Likely Cause | Quick Fix |
+|:------|:-------------|:----------|
+| `NullReferenceException` | Unassigned reference | Add null guard: `if (obj == null) return;` |
+| `MissingReferenceException` | Destroyed object access | Check `this == null` after await |
+| `IndexOutOfRangeException` | Array bounds | Validate index before access |
+| `CS0246 type not found` | Missing using/assembly | Add `using` or reference .asmdef |
+| `CS0103 name not found` | Typo or scope issue | Check spelling and variable scope |
 
 ## Debugging Workflow
 
-1.  **Gather Intel**: 
-    - Execute `read_console` to capture the exact error message, frequency, and full stack trace.
-    - Identify the failing script, line number, and error type (e.g., `NullReferenceException`, `IndexOutOfRangeException`).
-    - Use `manage_scene` (screenshot) if the issue involves visual artifacts or UI failures.
-2.  **Contextual Investigation**:
-    - Use `view_file` to read the code around the reported line.
-    - Use `grep_search` to find all references to failing objects or variables to find the root cause.
-    - Inspect component properties via `mcpforunity://scene/gameobject/{id}/components`.
-3.  **Propose & Apply Fix**:
-    - Draft a resolution (e.g., adding null guards, fixing race conditions, correcting logic).
-    - Apply using `script_apply_edits` for structural changes or `apply_text_edits` for minor fixes.
-4.  **Verify & Sync**:
-    - Run `refresh_unity` with `compile="request"` and `wait_for_ready=true`.
-    - Observe the console via `read_console` again. If errors persist, repeat from Step 1.
-5.  **Runtime Validation**:
-    - Use `manage_editor` (action="play") to verify the fix in action.
-    - Ensure no regressions exist and the original issue is fully resolved.
-6.  **Reporting & Prevention**:
-    - Populate the `DEBUG_REPORT_TEMPLATE.md` from `assets/templates/`.
-    - Save the report in `Documents/Debugs/DEBUG_[ErrorName]_[Timestamp].md`.
-    - (Optional) Run `/unity-test` to ensure system-wide stability.
+1. **Gather Intel**
+   ```
+   read_console → Get exact error, stack trace, frequency
+   ```
+   Identify: script, line number, error type
 
-## Best Practices
+2. **Investigate**
+   - `view_file` around reported line
+   - `grep_search` for all references to failing object
+   - `mcpforunity://scene/gameobject/{id}/components` for runtime state
 
-- **Stack Trace Priority**: Always examine the top of the stack trace first to find the immediate trigger.
-- **Clean Slate**: Verify the error persists after a `refresh_unity` to rule out transient state issues.
-- **Isolate**: Try to reproduce the error in an empty test scene if it's systemic.
-- **Evidence-Based**: Only declare a fix successful if the console remains clear after reproduction steps.
+3. **Fix & Verify**
+   - Apply fix via `script_apply_edits`
+   - `refresh_unity(compile="request", wait_for_ready=true)`
+   - `read_console` to confirm clear
+
+4. **Runtime Test**
+   - `manage_editor(action="play")` to verify in action
+   - Ensure no regressions
+
+5. **Document** (for complex issues)
+   - Use `assets/templates/DEBUG_REPORT_TEMPLATE.md`
+   - Save to `Documents/Debugs/DEBUG_[ErrorName]_[Timestamp].md`
+
+## Tips
+
+- **Stack Trace Priority**: Top of stack = immediate trigger
+- **Clean Slate**: `refresh_unity` first to rule out stale state
+- **Isolate**: Reproduce in empty test scene if systemic

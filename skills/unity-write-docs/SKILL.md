@@ -1,29 +1,53 @@
 ---
 name: unity-write-docs
-description: "Specialist in creating and maintaining technical documentation for Unity projects. Use when you need to: (1) Create or update a project README, (2) Document system architectures, (3) Generate API references, (4) Write onboarding or troubleshooting guides, or (5) Explain technical Unity-specific setups (Prefabs/Scenes)."
+description: "Create and maintain Unity project documentation. Use when: creating READMEs, documenting architectures, generating API refs, writing onboarding guides, or explaining Unity setups."
 ---
 
 # Unity Documentation
 
-Create clear, maintainable documentation for Unity projects, from high-level architecture to detailed API references.
+Create clear, maintainable technical documentation.
 
-## Core Capabilities
+## Document Types
 
-- **Project Docs**: Maintain `README.md`, `ARCHITECTURE.md`, and `CONTRIBUTING.md`.
-- **API Reference**: Generate IntelliSense-friendly XML comments and external `API.md` files.
-- **Unity Specs**: Document Inspector constraints, prefab hierarchies, and scene requirements.
-- **Onboarding**: Create setup guides and living FAQs for common issues.
+| Type | Location | Template |
+|:-----|:---------|:---------|
+| Project Overview | `README.md` | - |
+| Architecture | `Documents/ARCHITECTURE.md` | [ARCHITECTURE_TEMPLATE.md](assets/templates/ARCHITECTURE_TEMPLATE.md) |
+| API Reference | `Documents/API/` | [API_TEMPLATE.md](assets/templates/API_TEMPLATE.md) |
+| Onboarding | `Documents/ONBOARDING.md` | - |
+| System Docs | `Documents/Systems/` | - |
 
 ## Workflow
 
-1. **Analysis**: Use `grep` and Unity MCP to identify public APIs, `ScriptableObject` types, and serialized fields.
-2. **Generation**: Use templates in `assets/templates/` to ensure consistency.
-3. **Visualization**: Use ASCII or Mermaid diagrams for hierarchies and flows.
-4. **Validation**: Cross-reference docs with code signatures and prerequisites.
+1. **Analyze**: Use `grep` + Unity MCP to find public APIs, ScriptableObjects, serialized fields
+2. **Generate**: Use templates from `assets/templates/`
+3. **Visualize**: Mermaid diagrams for hierarchies and flows (load `mermaid` skill)
+4. **Validate**: Cross-reference docs with actual code signatures
 
-## Best Practices
+## Content Guidelines
 
-- **Show, Don't Just Tell**: Include code snippets and diagrams for all complex logic.
-- **Unity Alignment**: Use precise Unity terminology (Prefabs, MonoBehaviours, URP).
-- **Discoverability**: Maintain tables of contents in all major documents.
-- **Currentness**: Ensure documentation reflects the latest code changes.
+```markdown
+## HealthManager
+
+Manages player health, damage, and death state.
+
+### Usage
+```csharp
+var health = GetComponent<HealthManager>();
+health.TakeDamage(10);
+health.OnDeath += HandleDeath;
+```
+
+### Inspector Properties
+| Field | Type | Description |
+|:------|:-----|:------------|
+| Max Health | int | Starting/max health value |
+| Invulnerability Time | float | Seconds of immunity after hit |
+```
+
+## Principles
+
+- **Show, Don't Tell**: Code snippets + diagrams for complex logic
+- **Unity Terminology**: Prefabs, MonoBehaviours, URP, not generic terms
+- **TOC**: Maintain tables of contents in major documents
+- **Stay Current**: Update docs when code changes
