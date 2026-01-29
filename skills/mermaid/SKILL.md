@@ -1,6 +1,6 @@
 ---
 name: mermaid
-description: "Create Mermaid diagrams. Use when: (1) Documenting logic flows, (2) Creating architecture diagrams, (3) Visualizing state machines, (4) Mapping data structures."
+description: "Create Mermaid diagrams. Use when: (1) Documenting logic flows, (2) Creating architecture diagrams, (3) Visualizing state machines, (4) Mapping data structures. Triggers: 'diagram', 'visualize', 'flowchart', 'sequence diagram', 'draw the flow'."
 ---
 
 # Mermaid Diagram Specialist

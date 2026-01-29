@@ -1,6 +1,6 @@
 ---
 name: unity-investigate-code
-description: "Analyze C# logic and trace execution flows. Use when: (1) Understanding how a feature works, (2) Tracing execution from trigger to outcome, (3) Extracting business rules, (4) Identifying dependencies and side effects."
+description: "Analyze C# logic and trace execution flows. Use when: (1) Understanding how a feature works, (2) Tracing execution from trigger to outcome, (3) Extracting business rules, (4) Identifying dependencies and side effects. Triggers: 'how does X work', 'trace the flow', 'explain this code', 'what calls this'."
 ---
 
 # Unity Code Investigator

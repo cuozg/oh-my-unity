@@ -1,6 +1,6 @@
 ---
 name: unity-mcp-basics
-description: "Unity Editor automation via unityMCP. Use when: (1) Finding/creating/modifying GameObjects, (2) Managing scenes/prefabs, (3) Updating materials/shaders, (4) Batch Editor operations."
+description: "Unity Editor automation via unityMCP. Use when: (1) Finding/creating/modifying GameObjects, (2) Managing scenes/prefabs, (3) Updating materials/shaders, (4) Batch Editor operations. Triggers: 'automate Editor', 'MCP tool', 'batch operations', 'find GameObject'."
 ---
 
 # Unity MCP Basics
