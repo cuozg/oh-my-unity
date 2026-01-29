@@ -1,47 +1,37 @@
 ---
 name: unity-plan-executor
-description: "Executes detailed technical tasks based on .md files in Documents/Tasks/. Use when: (1) A detailed task guide has been created by `unity-plan-detail`, (2) You are ready to implement specific C# logic, assets, or data, or (3) You need to coordinate multiple specialists to complete a planned task."
+description: "Execute detailed tasks. Use when: (1) Task guide ready from unity-plan-brainstorm, (2) Implementing C#/assets/data, (3) Coordinating specialists for planned task."
 ---
 
 # Unity Plan Executor
 
-You are the Senior Implementation Engineer. Your role is to take the precise engineering instructions from a Task Detail file and execute them to completion using the project's specialized expert skills.
+Execute task instructions using specialized skills.
 
-## Core Capabilities
+## Workflow
 
-- **Task Synthesis**: Read and understand complex implementation guides from `Documents/Tasks/`.
-- **Specialist Coordination**: Dynamically load the correct specialized skills (e.g., `unity-implement-logic`, `unity-tech-art`, `flatbuffers-coder`) based on the task type.
-- **Precision Implementation**: Apply code changes, create assets, or update data schemas exactly as defined in the task guide.
-- **Verification**: Ensure the task meets the "Definition of Done" specified in the guide.
+1. **Read**: Load `Documents/Tasks/[Number][Epic][Task].md`
+2. **Select Specialist**:
+   - Logic → `unity-implement-logic`
+   - Shaders/Tools → `unity-tech-art`
+   - Data → `flatbuffers-coder`
+   - Editor → `unity-editor-tools`
+3. **Implement**: Follow task guide step-by-step, adapt to current codebase
+4. **Verify**: Compile check after each step
+5. **Self-Correct**: If guide fails, use `unity-investigate-code` to fix
+6. **Complete**: Update task file with "Completed" status
 
-## Workflow: Execution
+## Execution Checklist
 
-1.  **Read Task Guide**:
-    - Load the target `.md` file from `Documents/Tasks/[Number][Epic][Task].md`.
-    - Extract the Implementation Strategy, Code Snippets, and Test Cases.
-2.  **Specialist Selection**:
-    - Identify the required domain expertise.
-    - **Load Skill**: `unity-implement-logic` (for logic), `unity-tech-art` (for shaders/tools), `flatbuffers-coder` (for data), etc.
-3.  **Step-by-Step Implementation**:
-    - Follow the "Detailed Steps" in the guide.
-    - If code snippets are provided, adapt them to the latest codebase state.
-    - Use `unity-mcp-basics` or `unityMCP` directly for Editor operations.
-4.  **Self-Correction & Refinement**:
-    - After each step, verify that the project still compiles.
-    - If an implementation detail from the guide fails (e.g., due to codebase changes), use `unity-investigate-code` to find a fix.
-5.  **Completion & Cleanup**:
-    - Finalize all changes.
-    - Update the Task `.md` file with a "Completed" status if required by the user.
+- [ ] Read full task guide
+- [ ] Identify specialist skill(s) needed
+- [ ] Apply code changes as specified
+- [ ] Compile succeeds
+- [ ] Tests pass (if defined)
+- [ ] Report modified files
 
 ## Best Practices
 
-- **Atomic Execution**: Complete one task file fully before moving to the next.
-- **Validation**: Always run a quick compile check after applying code changes.
-- **Specialist Persona**: When using a specialized skill (like `unity-implement-logic`), fully adopt its best practices and patterns.
-- **Transparency**: Report exactly which files were modified and what assets were created.
-
-## Routing Guidance
-
-- **If the user says "Execute Task [ID]"** -> Find the file in `Documents/Tasks/` and begin implementation.
-- **If the user says "Start implementing the 7-star feature"** (assuming detailing is done) -> Begin sequential execution of the task files.
-- **If a task requires cross-disciplinary work** -> Load both `unity-implement-logic` and `unity-tech-art` in sequence to finish the task.
+- **Atomic**: Complete one task fully before next
+- **Validate**: Compile after every change
+- **Specialist Persona**: Adopt loaded skill's best practices
+- **Transparency**: Report exactly what was modified/created

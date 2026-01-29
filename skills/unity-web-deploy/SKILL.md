@@ -1,37 +1,31 @@
 ---
 name: unity-web-deploy
-description: "Specialist in Unity WebGL deployment, browser compatibility, and JavaScript interop. Use when: (1) Configuring or optimizing WebGL builds, (2) Implementing communication between C# and JavaScript, (3) Debugging browser-specific issues (memory, audio, input), or (4) Developing PWA features for web games."
+description: "WebGL deployment. Use when: (1) Configuring/optimizing WebGL builds, (2) C#/JavaScript interop, (3) Browser-specific issues (memory, audio, input), (4) PWA features."
 ---
 
-# Unity Web Developer Skill
+# Unity Web Developer
 
-Core expertise in the WebGL platform, focusing on deployment efficiency, browser interop, and web-specific runtime performance.
+WebGL platform specialist.
 
-## Core Capabilities
+## Workflow
 
-- **Pipeline Mastery**: Configure build settings for Brotli/Gzip, decompression fallbacks, and memory management.
-- **JavaScript Interop**: Expertly bridge C# and JS using `.jslib` plugins and `SendMessage`.
-- **Performance Audit**: Identify WebGL-specific bottlenecks in loading, memory fragmentation, and GPU usage.
-- **PWA Development**: Implement Service Workers, Manifests, and offline caching for Unity web apps.
+1. **Discover**: Required Web APIs (LocalStorage, Fullscreen, WebXR), browser targets
+2. **Implement**: C# managers for interop (see [WEBGL_INTEROP_PATTERNS.md](references/WEBGL_INTEROP_PATTERNS.md)), JS plugins in `Assets/Plugins/WebGL/`
+3. **Optimize**: Build size, memory limits, compression (see [WEBGL_OPTIMIZATION_GUIDE.md](references/WEBGL_OPTIMIZATION_GUIDE.md))
+4. **Deploy**: Build report via [WEBGL_BUILD_REPORT.md](assets/templates/WEBGL_BUILD_REPORT.md), validate COOP/COEP headers, HTTPS
 
-## WebGL Development Workflow
+## Build Settings
 
-1.  **Platform Discovery**:
-    - Identify required Web APIs (LocalStorage, Fullscreen, WebXR).
-    - Map the browser compatibility targets (Desktop only vs. Mobile Web).
-2.  **Implementation**:
-    - Develop C# managers for interop. See [WEBGL_INTEROP_PATTERNS.md](references/WEBGL_INTEROP_PATTERNS.md).
-    - Set up `Assets/Plugins/WebGL/` for custom JS plugins.
-3.  **Audit & Optimize**:
-    - Analyze the build report for size hotspots.
-    - Check memory limits and texture compression. See [WEBGL_OPTIMIZATION_GUIDE.md](references/WEBGL_OPTIMIZATION_GUIDE.md).
-4.  **Deployment Verification**:
-    - Generate a formal build report using [WEBGL_BUILD_REPORT.md](assets/templates/WEBGL_BUILD_REPORT.md).
-    - Validate server headers (COOP/COEP) and HTTPS requirements.
+| Setting | Recommendation |
+|---------|----------------|
+| Compression | Brotli (best), Gzip (fallback) |
+| Memory | Limit based on target browsers |
+| Textures | ASTC/ETC2 for mobile browsers |
 
 ## Best Practices
 
-- **Mobile First**: Always assume limited memory and thermal constraints when targeting mobile browsers.
-- **Lazy Initialization**: Keep the initial WASM/Data download small; use Addressables for the rest.
-- **Sanitize Input**: Treat data coming from JS via `SendMessage` as untrusted and validate it.
-- **User Interaction**: Trigger media (audio/video) only after the first user click to satisfy browser security policies.
+- **Mobile First**: Assume limited memory/thermals on mobile browsers
+- **Lazy Init**: Small initial WASM/Data, use Addressables for rest
+- **Sanitize Input**: Treat `SendMessage` data from JS as untrusted
+- **User Interaction**: Audio/video only after first click (browser policy)
+- **Decompression Fallback**: Handle browsers without native Brotli/Gzip

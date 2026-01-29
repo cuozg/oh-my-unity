@@ -1,42 +1,51 @@
 ---
 name: unity-optimize-performance
-description: "Identification and resolution of performance bottlenecks in Unity projects. Use when: (1) Frame rate (FPS) is low or inconsistent, (2) Memory usage is high or leaking, (3) Load times are excessive, or (4) You need to audit scripts and assets for performance risks."
+description: "Fix Unity performance issues. Use when: (1) Low/inconsistent FPS, (2) High memory usage or leaks, (3) Slow load times, (4) Need to audit scripts/assets for performance risks."
 ---
 
 # Unity Performance Optimizer
 
-Expert in diagnosing and resolving performance issues across logic, graphics, and memory.
-
-## Core Capabilities
-
-- **Logic Audit**: Detect expensive calls (`GetComponent`, `Find`, `Instantiate`) in hot loops or `Update()`.
-- **Memory Management**: Identify excessive allocations, boxing, and potential memory leaks.
-- **Graphic Optimization**: Audit draw calls, shaders, and asset compression settings.
-- **Async Transformation**: Convert blocking logic to `Awaitable` or Coroutines with load-balancing.
+Diagnose and resolve performance bottlenecks across logic, graphics, and memory.
 
 ## Optimization Workflow
 
-1.  **Baseline Check**:
-    - Use `manage_scene` (action="get_hierarchy") to analyze object counts and hierarchy depth.
-    - Monitor the console for high-frequency logs using `read_console`.
-2.  **Bottleneck Detection**:
-    - Use `grep_search` to find expensive methods in logic scripts.
-    - Identify excessive string concatenations or frequently called `Component` lookups.
-3.  **Graphic Audit**:
-    - List large assets using `manage_asset` with specific search filters.
-    - Check for complex shaders or unoptimized materials using `manage_material`.
-4.  **Implementation**:
-    - **Logic**: Implement object pooling, cache references in `Awake`, and optimize algorithms.
-    - **Assets**: Combine materials, simplify meshes, and adjust texture compression (e.g., ASTC 6x6).
-5.  **Validation**:
-    - Enter Play Mode and observe the console or frame timing logs for improvements.
-    - Ensure optimization didn't introduce visual or logical regressions.
-6.  **Documentation**:
-    - Update the project documentation via `/unity-documentation` if core architectures were modified for performance.
+1. **Baseline**: `manage_scene(get_hierarchy)` for object counts, `read_console` for high-freq logs
+2. **Detect**: `grep_search` for expensive patterns in scripts
+3. **Audit Graphics**: `manage_asset` for large assets, `manage_material` for complex shaders
+4. **Implement**: Object pooling, cache refs, optimize algorithms, combine materials
+5. **Validate**: Play Mode, check frame timing, ensure no visual regressions
+6. **Document**: Update docs via `/unity-write-docs` if architecture changed
+
+## Red Flags to Find
+
+```bash
+# GetComponent in Update
+grep -r "GetComponent" --include="*.cs" | grep "Update"
+
+# Camera.main usage
+grep -r "Camera\.main" --include="*.cs"
+
+# String concat in loops
+grep -r '\" \+ ' --include="*.cs"
+
+# new allocations in Update  
+grep -r "new " --include="*.cs" | grep "Update"
+```
+
+## Common Fixes
+
+| Problem | Solution |
+|---------|----------|
+| GetComponent in Update | Cache in Awake/Start |
+| Camera.main in loops | Cache reference |
+| String concatenation | StringBuilder |
+| Frequent Instantiate | Object pooling |
+| Too many draw calls | Combine materials, use GPU instancing |
+| Large textures | Reduce size, ASTC compression |
 
 ## Best Practices
 
-- **Avoid Update**: Move logic to event-based or reactive patterns wherever possible.
-- **Cache Everything**: Never call `GetComponent` or `Camera.main` inside a loop or `Update`.
-- **Pool Frequent Objects**: Use object pooling for projectiles, VFX, and UI elements.
-- **Mobile Target**: Always optimize with mobile-first constraints (memory/thermals).
+- **Avoid Update**: Event-based or reactive patterns
+- **Cache Everything**: Never lookup in loops
+- **Pool Objects**: Projectiles, VFX, UI elements
+- **Mobile First**: Optimize for lowest-spec target device

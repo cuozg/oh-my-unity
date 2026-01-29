@@ -1,54 +1,36 @@
 ---
 name: unity-plan
-description: "Project planning and requirement decomposition for Unity features. Use when you need to: (1) Analyze feature requirements against the current project base, (2) Break down work into Epics and Tasks, (3) Estimate effort/cost, or (4) Define a technical implementation roadmap."
+description: "Plan Unity features. Use when: (1) Analyzing requirements, (2) Breaking work into Epics/Tasks, (3) Estimating effort, (4) Creating implementation roadmaps."
 ---
 
 # Unity Planning
 
-Transform high-level requirements into structured, actionable implementation plans for Unity.
-
-## Core Capabilities
-
-- **Project Investigation**: Analyze existing code and assets to identify dependencies and gaps.
-- **Decomposition**: Break work into Epics and granular Tasks (Logic, UI, Data, API, Asset, Test).
-- **Costing**: Provide T-shirt size estimates (S, M, L, XL) and identify technical risks.
-- **Roadmap**: Define a "Build, Test, Integrate" lifecycle for the feature.
+Transform requirements into structured implementation plans.
 
 ## Output Format
 
-All plans must use the `IMPLEMENTATION_PLAN.md` template from `assets/templates/` and be saved in `Documents/Plans/`.
+Save to `Documents/Plans/IMPLEMENTATION_PLAN_[FeatureName].md` using template from `assets/templates/`.
 
-### Mandatory Task Table
-| Number | Epic | Task | Description | Type | Cost | Note |
-|:---:|:---|:---|:---|:---:|:---:|:---|
-| X.Y | [Epic Name] | [Task Name] | [What to do] | [Type] | [Size] | [Risk/Context] |
+### Task Table (Required)
+| # | Epic | Task | Description | Type | Cost | Note |
+|:-:|:-----|:-----|:------------|:----:|:----:|:-----|
+| 1.1 | Player | Health System | Add health component | Logic | M | Core feature |
 
-## Planning Workflow
+**Types**: Logic, UI, Data, API, Asset, Test  
+**Costs**: S, M, L, XL (T-shirt sizing)
 
-1.  **Analyze Requirements**: 
-    - Review the user request or feature specification for functional goals and technical constraints.
-2.  **Project Discovery**:
-    - Run the helper script: `.claude/skills/unity-plan/scripts/investigate_feature.sh [Keywords]` to identify relevant systems, scripts, and prefabs.
-    - Map dependencies and integration points using `grep_search` and `find_gameobjects`.
-3.  **Technical Feasibility**:
-    - Assess if the current architecture supports the feature without incurring significant technical debt.
-    - Propose safe migration paths or integration strategies for breaking changes.
-4.  **Decomposition**:
-    - Break the feature into logical **Epics**.
-    - For each Epic, define specific **Tasks** using the mandatory 7-column table format.
-    - Ensure tasks are atomic and categorized by type (Logic, UI, Data, API, Asset, Test).
-5.  **Costing & Risk Assessment**:
-    - Assign T-shirt sizes (S, M, L, XL) to all tasks based on estimated complexity and effort.
-    - Highlight high-risk areas or areas requiring legacy code refactoring.
-6.  **Finalize Documentation**:
-    - Use the `IMPLEMENTATION_PLAN.md` template from `assets/templates/`.
-    - Save the plan in `Documents/Plans/IMPLEMENTATION_PLAN_[FeatureName].md`.
-7.  **Final Review**:
-    - Verify the plan aligns with `.claude/rules/unity-csharp-conventions.md` and `.claude/rules/unity-asset-rules.md`.
-    - Present the plan to the user for approval.
+## Workflow
+
+1. **Analyze**: Review spec for goals and constraints
+2. **Discover**: Run `.claude/skills/unity-plan/scripts/investigate_feature.sh [Keywords]`
+3. **Assess**: Check if architecture supports feature without major debt
+4. **Decompose**: Break into Epics → Tasks (7-column table)
+5. **Cost**: Assign T-shirt sizes, highlight risks
+6. **Document**: Use template, save to `Documents/Plans/`
+7. **Review**: Verify alignment with `.claude/rules/`
 
 ## Best Practices
 
-- **Atomic Tasks**: Keep tasks small and specific.
-- **Costing Honesty**: Be realistic about complexity in legacy systems.
-- **Safety**: Plan migration paths for any breaking changes.
+- **Atomic Tasks**: Small, specific, one responsibility
+- **Honest Costing**: Be realistic about legacy complexity
+- **Safe Migration**: Plan paths for breaking changes

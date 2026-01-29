@@ -1,57 +1,45 @@
 ---
 name: flatbuffers-coder
-description: "Specialist in FlatBuffers for Unity. Use when: (1) Creating or updating .fbs schema files, (2) Generating C# classes from schemas, (3) Converting JSON data to binary (.bin), or (4) Managing the pipeline between FlatBuffers/ and Unity Assets/."
+description: "FlatBuffers for Unity. Use when: (1) Creating/updating .fbs schemas, (2) Generating C# classes, (3) Converting JSON to binary, (4) Managing FlatBuffers pipeline."
 ---
 
 # FlatBuffers Specialist
 
-You are an expert in using Google FlatBuffers within this Unity project. Your role is to maintain the data highway by managing schemas, code generation, and binary data conversion.
+Manage schemas, code generation, and binary data conversion.
 
-## Core Capabilities
+## File Locations
 
-- **Schema Design**: Author and update `.fbs` files in `FlatBuffers/New_Fbs/`.
-- **Code Generation**: Trigger the generation of C# data classes to `FlatBuffers/Gen_Cs/`.
-- **Data Conversion**: Convert JSON datasets from `FlatBuffers/Input_Json/` into optimized binary formats in `FlatBuffers/Output_Bin/`.
-- **Project Sync**: Ensure generated `.cs` and `.bin` files are correctly deployed to their Unity project locations.
+| Type | Location |
+|------|----------|
+| Schemas (.fbs) | `FlatBuffers/New_Fbs/` |
+| Generated C# | `FlatBuffers/Gen_Cs/` → `Assets/Scripts/Game/Managers/FlatBuffers/` |
+| Input JSON | `FlatBuffers/Input_Json/` |
+| Output Binary | `FlatBuffers/Output_Bin/` → `Assets/StreamingAssets/Blueprints/` |
 
-## FlatBuffer Workflow
+## Schema Pattern
 
-### 1. Schema Management (`.fbs`)
-- **Location**: `FlatBuffers/New_Fbs/`
-- **Pattern**:
-  ```flatbuffers
-  table [Name]FlatBuffer {
-    items:[[Name]FlatBufferDataRaw];
-  }
-  table [Name]FlatBufferDataRaw {
-    ID:string (key);
-    // ... fields
-  }
-  root_type [Name]FlatBuffer;
-  ```
-- **Task**: When adding a new data type, create the `.fbs` file following this "root container + items array" pattern.
+```flatbuffers
+table [Name]FlatBuffer {
+  items:[[Name]FlatBufferDataRaw];
+}
+table [Name]FlatBufferDataRaw {
+  ID:string (key);
+  // ... fields
+}
+root_type [Name]FlatBuffer;
+```
 
-### 2. Implementation & Generation
-- **C# Generation**: Run `bash FlatBuffers/generate_cs.sh` from the project root.
-- **Data Conversion**: 
-  - Update `FlatBuffers/generate_data.sh` with the new schema and JSON mapping.
-  - Run `bash FlatBuffers/generate_data.sh` to produce the `.bin` file.
-- **Master Script**: Alternatively, use `python3 FlatBuffers/generateAll.py` to automate the entire pipeline including copying to Unity.
+## Workflow
 
-### 3. Project Deployment
-- **C# Classes**: Move to `Assets/Scripts/Game/Managers/FlatBuffers/`.
-- **Binary Data**: Move to `Assets/StreamingAssets/Blueprints/`.
+1. **Schema**: Create/update `.fbs` in `FlatBuffers/New_Fbs/`
+2. **Generate C#**: `bash FlatBuffers/generate_cs.sh`
+3. **Convert Data**: Update `generate_data.sh`, run `bash FlatBuffers/generate_data.sh`
+4. **Deploy**: Move files to Unity locations (or use `python3 FlatBuffers/generateAll.py`)
 
 ## Best Practices
 
-- **Unique Keys**: Always use `ID:string (key);` for tables intended to be looked up by ID.
-- **Defaults**: Provide sensible default values (e.g., `int = 0;`, `bool = false;`) to save binary space.
-- **Documentation**: Add comments to fields in the `.fbs` file to explain their purpose or valid ranges.
-- **Safety**: Before running generation scripts, ensure no files are currently locked by the Unity Editor by requesting the user to pause or save.
-- **Validation**: After generating C#, verify that the classes compile without errors in Unity.
-
-## Routing Guidance
-
-- **If the user says "Add a new data table for [feature]"** -> Create `.fbs`, create JSON, run generation.
-- **If the user says "Updating [feature] fields"** -> Update `.fbs`, update JSON, run generation.
-- **If the user says "Data is not showing up in game"** -> Verify JSON schema, run conversion, check deployment path.
+- **Unique Keys**: Always `ID:string (key);` for lookup tables
+- **Defaults**: Provide sensible defaults to save binary space
+- **Document**: Comment fields in `.fbs` for purpose/valid ranges
+- **Safety**: Ensure Unity Editor paused before running generation
+- **Validate**: Verify generated C# compiles in Unity

@@ -1,48 +1,56 @@
 ---
 name: unity-test
-description: "Automated testing using the Unity Test Framework (UTF). Use when you need to: (1) Create Edit Mode or Play Mode tests, (2) Configure test assembly definitions (.asmdef), (3) Mock dependencies for isolation, or (4) Analyze test results and coverage."
+description: "Unity Test Framework automation. Use when: (1) Creating Edit/Play Mode tests, (2) Configuring test assemblies (.asmdef), (3) Mocking dependencies, (4) Analyzing test results."
 ---
 
 # Unity Testing
 
-Create, execute, and manage automated tests within Unity to ensure code quality and prevent regressions.
+Create and manage automated tests using Unity Test Framework.
 
-## Core Capabilities
+## Test Types
 
-- **Suite Creation**: Set up fast Edit Mode tests or interactive Play Mode tests.
-- **Infrastructure**: Configure `.asmdef` files to include the Unity Test Runner.
-- **Mocking**: Create stubs and mock objects to isolate gameplay logic.
-- **Reporting**: Execute tests via `unityMCP` and analyze results for failures or coverage gaps.
+| Type | Use For | Location |
+|------|---------|----------|
+| **Edit Mode** | Pure logic, algorithms, non-Unity code | `Tests/EditMode/` |
+| **Play Mode** | Physics, lifecycles, coroutines, UI | `Tests/PlayMode/` |
 
-## Development Workflow
+## Workflow
 
-1.  **Analyze Target**: 
-    - Identify the specific method, class, or feature requiring validation.
-    - Check for existing assembly definitions (`.asmdef`) and folder structures.
-2.  **Define Strategy**:
-    - Choose **Edit Mode** for pure logic, algorithms, and non-Unity integrations.
-    - Choose **Play Mode** for physics, component lifecycles, coroutines, and UI interactions.
-3.  **Setup Environment**:
-    - Create a `Tests` folder and a matching `.asmdef` file referencing `UnityEngine.TestRunner` if missing.
-    - Implement a test class using patterns from [TEST_EXAMPLES.md](references/TEST_EXAMPLES.md).
-4.  **Implementation**:
-    - Write test methods using the **Arrange-Act-Assert** pattern.
-    - Utilize `[SetUp]` and `[TearDown]` for robust state and object management.
-5.  **Execution**:
-    - Use `unityMCP.run_tests` to execute the suite and capture results.
-6.  **Verify & Refactor**:
-    - If tests fail, leverage `/unity-fix-errors` or `/unity-investigate-code` for root cause analysis.
-    - Refactor code and re-run until all tests in the suite pass successfully.
-7.  **Document**:
-    - (Optional) Use `TEST_PLAN_TEMPLATE.md` from `assets/templates/` to formalize the testing strategy and results.
+1. **Analyze**: Target method/class, check for existing `.asmdef`
+2. **Setup**: Create `Tests/` folder + `.asmdef` referencing `UnityEngine.TestRunner`
+3. **Implement**: Arrange-Act-Assert pattern, use `[SetUp]`/`[TearDown]`
+4. **Execute**: `unityMCP.run_tests`
+5. **Fix Failures**: Use `/unity-fix-errors` or `/unity-investigate-code`
 
-## Patterns & Examples
+## Test Naming Convention
 
-Refer to [TEST_EXAMPLES.md](references/TEST_EXAMPLES.md) for code snippets and assembly configurations. Use the `TEST_PLAN_TEMPLATE.md` in `assets/templates/` for structured planning.
+```
+[Subject]_[Scenario]_[ExpectedResult]
+```
+Example: `Player_TakesDamage_HealthDecreases`
+
+## Example Test
+
+```csharp
+[Test]
+public void Player_TakesDamage_HealthDecreases()
+{
+    // Arrange
+    var player = new PlayerHealth(100);
+    
+    // Act
+    player.TakeDamage(30);
+    
+    // Assert
+    Assert.AreEqual(70, player.CurrentHealth);
+}
+```
 
 ## Best Practices
 
-- **Atomic Assertions**: Each test should ideally validate one specific behavior.
-- **Cleanup**: Always destroy test GameObjects in `TearDown`.
-- **Naming**: Use `[Subject]_[Scenario]_[ExpectedResult]` (e.g., `Player_TakesDamage_HealthDecreases`).
-- **Isolation**: Ensure tests do not depend on external data or local machine configurations.
+- **Atomic**: One behavior per test
+- **Cleanup**: Destroy test GameObjects in `TearDown`
+- **Isolation**: No external data dependencies
+- **Naming**: Descriptive `Subject_Scenario_Expected`
+
+See [TEST_EXAMPLES.md](references/TEST_EXAMPLES.md) for more patterns.

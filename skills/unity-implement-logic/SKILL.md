@@ -1,39 +1,63 @@
 ---
 name: unity-implement-logic
-description: "Specialist in implementing Unity C# logic, gameplay systems, and architectural patterns. Use when: (1) Creating new C# scripts or MonoBehaviours, (2) Refactoring existing logic for better performance or maintainability, (3) Implementing complex gameplay features (controllers, combat, data systems), or (4) Integrating modern Unity 6 features like Awaitable and the New Input System."
+description: "Implement Unity C# logic, gameplay systems, and architectural patterns. Use when: (1) Creating new scripts/MonoBehaviours, (2) Refactoring for performance, (3) Implementing gameplay features (controllers, combat, data), (4) Using Unity 6 features (Awaitable, New Input System)."
 ---
 
-# Unity Coder Skill
+# Unity Logic Implementer
 
-Expert in crafting robust, high-performance C# logic within the Unity ecosystem. This skill focuses on the implementation phase of development, transforming plans into living code.
+Implement robust, performant C# code following Unity best practices.
 
-## Core Capabilities
+## Implementation Workflow
 
-- **System Implementation**: Build modular gameplay systems (Inventory, Quests, Combat) from scratch.
-- **Architectural Design**: Apply SOLID principles, ScriptableObject-driven design, and decoupled event-driven patterns.
-- **Modern Tooling**: Leverage Unity 6 features (`Awaitable`, `UI Toolkit`, `New Input System`) for state-of-the-art implementations.
-- **Refactoring & Optimization**: Identify code smells and technical debt, refactoring them into performant patterns.
+1. **Clarify**: Identify dependencies, target assembly (`.asmdef`)
+2. **Implement**: Follow [UNITY_CSHARP_PATTERNS.md](references/UNITY_CSHARP_PATTERNS.md) and `.claude/rules/`
+3. **Verify**: Check edge cases (null refs, async destruction)
+4. **Compile**: `refresh_unity(compile="request")` - fix errors with `unity-fix-errors`
 
-## Logic Implementation Workflow
+## Key Patterns
 
-1.  **Requirement Clarification**:
-    - Identify the target functionality and external dependencies (Models, UI, Data).
-    - Determine if the script belongs in a specific assembly definition (`.asmdef`).
-2.  **Implementation**:
-    - Use the [SCRIPT_TEMPLATE.md](assets/templates/SCRIPT_TEMPLATE.md) for a standardized starting point.
-    - Follow established patterns in [UNITY_CSHARP_PATTERNS.md](references/UNITY_CSHARP_PATTERNS.md).
-    - Ensure strict adherence to `.claude/rules/unity-csharp-conventions.md`.
-3.  **Self-Review & Verification**:
-    - Verify logic against edge cases (e.g., null references, object destruction during async ops).
-    - Check for common performance pitfalls (`Update` allocations, missing caching).
-4.  **Sync & Compile**:
-    - Use `refresh_unity(compile="request")` to validate the build.
-    - Fix any compiler errors immediately using the `unity-debugger` skill if necessary.
+### Awaitable (Unity 6) - Prefer over Coroutines
+```csharp
+private async Awaitable DoAsync()
+{
+    await Awaitable.WaitForSecondsAsync(1f);
+    if (this == null) return; // Safety check!
+    Debug.Log("Done");
+}
+```
+
+### Event-Driven - Decouple systems
+```csharp
+public event Action<int> OnHealthChanged;
+public void TakeDamage(int dmg) => OnHealthChanged?.Invoke(_health -= dmg);
+```
+
+### Singleton - Global managers
+```csharp
+public static GameManager Instance { get; private set; }
+void Awake() {
+    if (Instance != null) { Destroy(gameObject); return; }
+    Instance = this;
+    DontDestroyOnLoad(gameObject);
+}
+```
+
+## Performance Rules
+
+| Avoid | Do Instead |
+|-------|------------|
+| `GetComponent` in Update | Cache in `Awake` |
+| `Camera.main` in loops | Cache reference |
+| String concat in Update | Use `StringBuilder` |
+| `new` in hot paths | Object pooling |
+| Deep inheritance | Composition |
 
 ## Best Practices
 
-- **Composition Over Inheritance**: Prefer small, focused components over deep inheritance hierarchies.
-- **Data-Driven**: Move configuration data and static definitions to `ScriptableObjects`.
-- **Async Safety**: Always provide `CancellationToken` or check `this == null` after `await` in MonoBehaviours.
-- **Clean Prefabs**: Ensure scripts expose meaningful properties to the Inspector to empower Designers.
-- **Namespace Hygiene**: Always wrap code in project-specific namespaces (e.g., `_Project.Scripts.Feature`).
+- **Composition over Inheritance**: Small, focused components
+- **ScriptableObjects**: Configuration data, not hardcoded
+- **Async Safety**: Check `this == null` after every `await`
+- **Namespace Hygiene**: `_Project.Scripts.Feature`
+- **Inspector Friendly**: Expose meaningful properties for Designers
+
+See [SCRIPT_TEMPLATE.md](assets/templates/SCRIPT_TEMPLATE.md) for starting point.

@@ -1,29 +1,42 @@
 ---
 name: unity-write-docs
-description: "Specialist in creating and maintaining technical documentation for Unity projects. Use when you need to: (1) Create or update a project README, (2) Document system architectures, (3) Generate API references, (4) Write onboarding or troubleshooting guides, or (5) Explain technical Unity-specific setups (Prefabs/Scenes)."
+description: "Create Unity project documentation. Use when: (1) Creating/updating README, (2) Documenting architectures, (3) Generating API references, (4) Writing onboarding guides, (5) Documenting Prefab/Scene setups."
 ---
 
 # Unity Documentation
 
-Create clear, maintainable documentation for Unity projects, from high-level architecture to detailed API references.
+Create clear, maintainable documentation for Unity projects.
 
-## Core Capabilities
+## Document Types
 
-- **Project Docs**: Maintain `README.md`, `ARCHITECTURE.md`, and `CONTRIBUTING.md`.
-- **API Reference**: Generate IntelliSense-friendly XML comments and external `API.md` files.
-- **Unity Specs**: Document Inspector constraints, prefab hierarchies, and scene requirements.
-- **Onboarding**: Create setup guides and living FAQs for common issues.
+| Type | Purpose | Location |
+|------|---------|----------|
+| README.md | Project overview, setup | Root |
+| ARCHITECTURE.md | System design | Docs/ |
+| API.md | Public interfaces | Docs/ |
+| CONTRIBUTING.md | Dev guidelines | Root |
 
 ## Workflow
 
-1. **Analysis**: Use `grep` and Unity MCP to identify public APIs, `ScriptableObject` types, and serialized fields.
-2. **Generation**: Use templates in `assets/templates/` to ensure consistency.
-3. **Visualization**: Use ASCII or Mermaid diagrams for hierarchies and flows.
-4. **Validation**: Cross-reference docs with code signatures and prerequisites.
+1. **Analyze**: `grep` for public APIs, ScriptableObjects, serialized fields
+2. **Generate**: Use templates from `assets/templates/`
+3. **Visualize**: Mermaid diagrams for hierarchies/flows
+4. **Validate**: Cross-reference with code signatures
 
 ## Best Practices
 
-- **Show, Don't Just Tell**: Include code snippets and diagrams for all complex logic.
-- **Unity Alignment**: Use precise Unity terminology (Prefabs, MonoBehaviours, URP).
-- **Discoverability**: Maintain tables of contents in all major documents.
-- **Currentness**: Ensure documentation reflects the latest code changes.
+- **Show, Don't Tell**: Include code snippets and diagrams
+- **Unity Terms**: Prefabs, MonoBehaviours, URP, Addressables
+- **TOC**: Tables of contents for major docs
+- **Current**: Reflect latest code changes
+
+## XML Documentation
+
+```csharp
+/// <summary>
+/// Applies damage and triggers death at zero health.
+/// </summary>
+/// <param name="amount">Damage to apply.</param>
+/// <returns>True if died from this damage.</returns>
+public bool TakeDamage(int amount)
+```

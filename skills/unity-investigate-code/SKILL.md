@@ -1,44 +1,31 @@
 ---
 name: unity-investigate-code
-description: "Comprehensive C# logic analysis and execution flow tracing within Unity projects. Use when you need to: (1) Understand how a specific feature works, (2) Trace an execution path from trigger to outcome, (3) Extract business rules from code, or (4) Identify system dependencies and side effects."
+description: "Analyze C# logic and trace execution flows. Use when: (1) Understanding how a feature works, (2) Tracing execution from trigger to outcome, (3) Extracting business rules, (4) Identifying dependencies and side effects."
 ---
 
 # Unity Code Investigator
 
-Analyze and explain C# logic, execution flows, and feature implementations in Unity.
-
-## Core Capabilities
-
-- **Logic Extraction**: Distill complex methods into human-readable steps and identify hidden business rules.
-- **Execution Tracing**: Map logic from triggers (UI, Network, Events) to final results, covering Awake to Update lifecycles.
-- **Feature Mapping**: Identify all classes, interfaces, and prefabs constituting a specific feature.
-- **Dependency Analysis**: Locate system boundaries and hooks into core engine or third-party plugins.
+Analyze and explain C# logic, execution flows, and feature implementations.
 
 ## Investigation Workflow
 
-1.  **Define Scope**: 
-    - Identify the target class, method, or feature.
-    - Ask for specific entry points if the feature is large or complex.
-2.  **Discovery**:
-    - Run the helper script: `.claude/skills/unity-investigate-code/scripts/trace_logic.sh [Target]` to map definitions and usages.
-    - Use `find_gameobjects` to identify how the code is bound to assets and prefabs in the scene.
-3.  **Trace Flow**:
-    - Use `view_file` to follow the logic from the entry point (e.g., `Update`, `OnClick`, `OnTriggerEnter`) through its call stack and dependencies.
-    - Document internal state changes, conditional branches, and asynchronous sequences (`Awaitable`, Coroutines).
-4.  **Analyze Side Effects**:
-    - Identify modifications to Singletons, static Managers, or global persistent data.
-    - Check for events being dispatched, network packets sent, or external system calls.
-5.  **Generate Report**:
-    - Use the `INVESTIGATION_REPORT.md` template from `assets/templates/`.
-    - Save the final document in `Documents/Investigations/INVESTIGATION_[FeatureName].md`.
-    - Utilize **Mermaid sequence diagrams** to visualize complex multi-system interactions or event chains.
-6.  **Summary**:
-    - Provide a high-level summary to the user.
-    - Explicitly highlight technical debt, threading risks, or optimization opportunities discovered.
+1. **Define Scope**: Target class/method/feature, ask for entry points if complex
+2. **Discover**: Run `.claude/skills/unity-investigate-code/scripts/trace_logic.sh [Target]`
+3. **Trace Flow**: Follow from entry (Update, OnClick, OnTrigger) through call stack
+4. **Analyze Side Effects**: Singletons, static managers, events, network calls
+5. **Generate Report**: Use `INVESTIGATION_REPORT.md` template, save to `Documents/Investigations/`
+6. **Visualize**: Use `mermaid` skill for sequence diagrams of complex flows
+
+## Key Analysis Points
+
+- **Entry Points**: `Update`, `Start`, `OnEnable`, event handlers, UI callbacks
+- **State Changes**: Conditionals, async sequences, data mutations
+- **Side Effects**: Singleton access, static state, event dispatch
+- **Dependencies**: External systems, third-party plugins, engine APIs
 
 ## Best Practices
 
-- **Breadth-First**: Get a high-level view of involved files before deep-diving.
-- **Unity Context**: Factor in how Unity systems (Physics, Input, UI) interact with C# logic.
-- **Side Effects**: Always check for changes to global states or singletons.
-- **Explain "Why"**: Aim to recover the original engineering intent.
+- **Breadth-First**: High-level file overview before deep-dive
+- **Unity Context**: Factor in Physics, Input, UI system interactions
+- **Explain "Why"**: Recover original engineering intent
+- **Highlight Risks**: Technical debt, threading issues, optimization opportunities

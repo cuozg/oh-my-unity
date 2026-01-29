@@ -1,28 +1,34 @@
 ---
 name: unity-mcp-basics
-description: "Core Mastery of the unityMCP toolset for Unity Editor automation. Use when you need to: (1) Find, create, or modify GameObjects and Components, (2) Manage scenes and prefabs, (3) Update materials and shaders, or (4) Execute batch operations in the Editor."
+description: "Unity Editor automation via unityMCP. Use when: (1) Finding/creating/modifying GameObjects, (2) Managing scenes/prefabs, (3) Updating materials/shaders, (4) Batch Editor operations."
 ---
 
 # Unity MCP Basics
 
-Mastery of the `unityMCP` toolset to automate tasks directly within the Unity Editor.
+Automate Unity Editor tasks with `unityMCP`.
 
-## Core Capabilities
+## Core Tools
 
-- **Hierarchy Control**: Find objects (`find_gameobjects`), modify them (`manage_gameobject`), and inspect hierarchies (`manage_scene`).
-- **Component Management**: Add/remove components and update properties via `manage_components`.
-- **Scripting & Assets**: Automated script creation and precise text edits (`apply_text_edits`).
-- **Specialized Tools**: Deep control over materials, VFX, and prefab stages.
+| Tool | Purpose |
+|------|---------|
+| `find_gameobjects` | Locate objects by name/type |
+| `manage_gameobject` | Create/modify objects |
+| `manage_components` | Add/remove/update components |
+| `manage_scene` | Hierarchy, screenshots |
+| `manage_material` | Material properties |
+| `batch_execute` | Multiple operations |
+| `read_console` | Get logs/errors |
+| `refresh_unity` | Compile/refresh |
+
+## Standard Workflow
+
+1. **Locate**: `find_gameobjects` → Get Instance ID
+2. **Modify**: `manage_components` or `manage_gameobject`
+3. **Verify**: `manage_scene(screenshot)` or `read_console`
 
 ## Best Practices
 
-- **Instance ID Preference**: Use Instance IDs for reliable targeting of GameObjects.
-- **Batching**: Always use `batch_execute` for multiple similar operations to save tokens and time.
-- **Verification**: Check the hierarchy before creating objects to avoid duplicates.
-- **Monitor logs**: Use `read_console` to verify success after critical Editor actions.
-
-## Standard Action Sequence
-
-1. **Locate**: Find target with `find_gameobjects`.
-2. **Modify**: Apply changes with `manage_components` or `manage_gameobject`.
-3. **Verify**: Use `manage_scene` (screenshot) or `read_console` to confirm.
+- **Instance IDs**: Use for reliable GameObject targeting
+- **Batching**: `batch_execute` for multiple similar operations
+- **Verify First**: Check hierarchy before creating to avoid duplicates
+- **Monitor Logs**: `read_console` after critical operations
