@@ -119,6 +119,7 @@ Skills are **specialized capabilities** that extend the agent's expertise. Each 
 | `unity-tech-art`              | Bridge between art and code (Shaders, Pipeline Automation).        |
 | `unity-mobile-deploy`         | Specialist in iOS/Android deployment, interop, and optimization.   |
 | `unity-fix-errors`            | Systematic diagnosis and resolution of Unity technical errors.     |
+| `unity-debug`                 | Deep investigation of errors with strategic Debug.Log and reports. |
 | `unity-optimize-performance`  | Identification and resolution of performance bottlenecks.          |
 | `unity-review-pr`             | Automated GitHub PR reviews with commit-ready suggestions.         |
 | `unity-write-docs`            | Expert in crafting technical documentation for projects and APIs.  |
