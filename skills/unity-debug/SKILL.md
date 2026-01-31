@@ -7,6 +7,29 @@ description: "Deep investigation and debugging of Unity errors. Use when: (1) Us
 
 Investigate Unity errors deeply, add strategic Debug.Log statements, identify root causes, and produce detailed debug reports.
 
+## ⚠️ CRITICAL CONSTRAINT: READ-ONLY DEBUGGING
+
+**This skill is STRICTLY for investigation and diagnosis, NOT for fixing code.**
+
+### What You CAN Do:
+- ✅ Add `Debug.Log` statements to capture runtime state
+- ✅ Read and analyze code to understand execution flow
+- ✅ Investigate root causes and document findings
+- ✅ Provide fix recommendations **in the report file ONLY**
+
+### What You CANNOT Do:
+- ❌ **NEVER** modify logic code, fix bugs, or refactor
+- ❌ **NEVER** apply quick fixes or proper fixes directly to code
+- ❌ **NEVER** change any code except adding `Debug.Log` statements
+- ❌ **NEVER** delete, rename, or restructure existing code
+
+### Why This Matters:
+The user must decide whether to apply fixes. Your role is to:
+1. Diagnose the problem thoroughly
+2. Add debug logging to capture evidence
+3. Document all findings and proposed solutions in `Documents/Debugs/DEBUG_*.md`
+4. **Let the user review and apply fixes themselves**
+
 ## Workflow
 
 ```
@@ -32,6 +55,8 @@ Input (Stack trace / Error description)
 │    Strategic logging at │
 │    entry/exit points,   │
 │    state transitions    │
+│    ✅ ONLY code change  │
+│       allowed!          │
 └───────────┬─────────────┘
             ▼
 ┌─────────────────────────┐
@@ -42,15 +67,18 @@ Input (Stack trace / Error description)
 └───────────┬─────────────┘
             ▼
 ┌─────────────────────────┐
-│ 5. SOLUTIONS            │
-│    Provide fixes with   │
-│    code examples        │
+│ 5. DOCUMENT SOLUTIONS   │
+│    Write fixes to       │
+│    report file ONLY     │
+│    ❌ NO code changes!  │
 └───────────┬─────────────┘
             ▼
 ┌─────────────────────────┐
 │ 6. GENERATE REPORT      │
 │    Save to Documents/   │
 │    Debugs/DEBUG_*.md    │
+│    User decides to      │
+│    apply fixes          │
 └─────────────────────────┘
 ```
 
@@ -97,7 +125,9 @@ Load `unity-investigate-code` skill for deep analysis:
 - When is this state supposed to be initialized?
 - What other code modifies this state?
 
-## Step 3: Add Debug.Log Statements
+## Step 3: Add Debug.Log Statements (ONLY ALLOWED CODE CHANGE)
+
+⚠️ **This is the ONLY step where you modify code files.**
 
 Add strategic logging to capture runtime state. Follow these patterns:
 
@@ -173,22 +203,35 @@ Identify the underlying cause, not just the symptom:
 3. **Root cause** - What design/logic flaw allowed this state?
 4. **Contributing factors** - Timing, concurrency, external dependencies?
 
-## Step 5: Provide Solutions
+## Step 5: Document Solutions (IN REPORT ONLY)
 
-For each identified cause, provide:
+⚠️ **CRITICAL: Do NOT modify any code in this step. All solutions go in the report file.**
+
+For each identified cause, **document** in the report:
 
 1. **Quick Fix** - Minimal change to prevent crash (guard clause, null check)
 2. **Proper Fix** - Address root cause with proper architecture
 3. **Preventive Measures** - How to avoid similar issues in future
 
-**Example:**
+**Example documentation in report:**
 ```markdown
 ### Problem
 `_playerData` is null when `UpdateUI()` is called because `Start()` runs before 
 `GameManager.Initialize()` completes the async data load.
 
 ### Quick Fix (Prevent crash)
+**File:** `Assets/Scripts/UI/PlayerUI.cs`
+**Line:** 42
+
 ```csharp
+// BEFORE:
+public void UpdateUI()
+{
+    _healthBar.SetValue(_playerData.Health);
+    // ... rest of method
+}
+
+// AFTER:
 public void UpdateUI()
 {
     if (_playerData == null)
@@ -196,16 +239,26 @@ public void UpdateUI()
         Debug.LogWarning("[UpdateUI] _playerData not yet loaded, skipping update");
         return;
     }
+    _healthBar.SetValue(_playerData.Health);
     // ... rest of method
 }
 ```
 
+**Trade-offs:** Silently skips update if data not ready; UI may show stale values.
+
 ### Proper Fix (Address root cause)
+**File:** `Assets/Scripts/UI/PlayerUI.cs`
+
 ```csharp
 // Subscribe to initialization event instead of polling
 private void OnEnable()
 {
     GameManager.OnDataLoaded += HandleDataLoaded;
+}
+
+private void OnDisable()
+{
+    GameManager.OnDataLoaded -= HandleDataLoaded;
 }
 
 private void HandleDataLoaded(PlayerData data)
@@ -215,11 +268,15 @@ private void HandleDataLoaded(PlayerData data)
 }
 ```
 
+**Why this is better:** Event-driven approach ensures UI updates only when data is actually available.
+
 ### Preventive Measures
-- Use dependency injection or event-driven initialization
-- Document initialization order requirements
-- Add runtime assertions in debug builds
+- [ ] Use dependency injection or event-driven initialization
+- [ ] Document initialization order requirements
+- [ ] Add runtime assertions in debug builds
 ```
+
+**Remember:** The user will review these recommendations and decide which fixes to apply. Your job is to provide clear, actionable documentation.
 
 ## Step 6: Generate Debug Report
 
@@ -256,3 +313,5 @@ See [references/common_errors.md](references/common_errors.md) for detailed patt
 - **Preserve context** - Include variable values, not just "here"
 - **Clean up** - Remove debug logs after issue resolved (or use `[Conditional]`)
 - **Document** - Debug reports help with future similar issues
+- **READ-ONLY** - Never modify code except for Debug.Log statements
+- **User decides** - All fixes documented in report; user applies them

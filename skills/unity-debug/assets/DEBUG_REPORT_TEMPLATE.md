@@ -3,7 +3,16 @@
 **Date:** {YYYY-MM-DD}  
 **Reported By:** {User/Automated}  
 **Severity:** {Critical/High/Medium/Low}  
-**Status:** {Investigating/Root Cause Found/Fixed/Verified}
+**Status:** {Investigating/Root Cause Found/Fixes Documented/User Applied Fix/Verified}
+
+---
+
+## ⚠️ Important: Read-Only Investigation
+
+This report documents the investigation findings and **proposed fixes**.
+- ✅ Debug.Log statements have been added to capture runtime state
+- ❌ No logic code has been modified
+- 📋 **You must review and apply the fixes below manually**
 
 ---
 
@@ -117,12 +126,17 @@ Debug.Log($"[DEBUG] {Description of what this captures}");
 
 ---
 
-## 6. Solutions
+## 6. Proposed Solutions (FOR USER TO APPLY)
+
+⚠️ **The fixes below have NOT been applied to the codebase.**
+Review each solution and apply the changes you approve.
 
 ### 6.1 Quick Fix (Prevent Crash)
 
+**File:** `{File path}`
+**Line:** `{Line number}`
+
 ```csharp
-// {File}:{Line}
 // BEFORE:
 {Original code}
 
@@ -132,10 +146,18 @@ Debug.Log($"[DEBUG] {Description of what this captures}");
 
 **Trade-offs:** {What this doesn't fix, potential side effects}
 
+**To apply this fix:**
+1. Open `{File path}`
+2. Navigate to line {Line number}
+3. Replace the code as shown above
+4. Save and test
+
 ### 6.2 Proper Fix (Address Root Cause)
 
+**File:** `{File path}`
+**Line(s):** `{Line numbers or range}`
+
 ```csharp
-// {File}:{Line}
 // BEFORE:
 {Original code}
 
@@ -144,6 +166,12 @@ Debug.Log($"[DEBUG] {Description of what this captures}");
 ```
 
 **Why this is better:** {Explanation}
+
+**To apply this fix:**
+1. Open `{File path}`
+2. Navigate to line(s) {Line numbers}
+3. Replace/add the code as shown above
+4. Save and test
 
 ### 6.3 Preventive Measures
 
@@ -188,7 +216,23 @@ Debug.Log($"[DEBUG] {Description of what this captures}");
 
 ## 9. Follow-up Actions
 
-- [ ] Remove debug logs after verification
+- [ ] Review proposed fixes in Section 6
+- [ ] Apply chosen fix (Quick Fix or Proper Fix)
+- [ ] Test the fix using reproduction steps from Section 1
+- [ ] Remove debug logs after verification (search for `[DEBUG]` prefix)
 - [ ] Update related documentation
-- [ ] Create ticket for proper fix (if quick fix applied)
+- [ ] Create ticket for proper fix (if quick fix applied temporarily)
 - [ ] Review similar code for same pattern
+
+---
+
+## 10. Fix Application Checklist
+
+After applying your chosen fix:
+
+- [ ] Code compiles without errors
+- [ ] Original reproduction steps no longer cause the error
+- [ ] Edge cases from Section 7.1 handled gracefully
+- [ ] No new console errors introduced
+- [ ] Performance not degraded
+- [ ] Debug.Log statements removed (or kept with `[Conditional]` attribute)
