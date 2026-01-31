@@ -1,27 +1,125 @@
 # Orchestration Patterns
 
-Senior patterns for coordinating complex Unity development tasks.
+Coordination patterns for complex Unity development tasks.
 
-## 1. Feature Handoff Pattern
+## 1. Feature Implementation Pipeline
 
-When moving from planning to implementation:
-1.  **Orchestrator**: Completes `/unity-plan`.
-2.  **Orchestrator**: Identifies logic components for `unity-implement-logic` and UI for `unity-ui-developer` (if applicable).
-3.  **Specialist**: Implements code following `unity-implement-logic` best practices.
-4.  **Orchestrator**: Validates against the plan and runs `/unity-test`.
+Full pipeline for large features:
 
-## 2. The "Debug-Fix-Verify" Loop
+```
+unity-plan          → High-level roadmap, epics, costing
+       ↓
+unity-plan-review   → Critique, refine with user, finalize tasks
+       ↓
+unity-plan-detail   → Create task skeletons in Documents/Tasks/
+       ↓
+unity-plan-brainstorm → Code-level investigation, specific changes
+       ↓
+unity-plan-executor → Implement using specialists
+```
 
-1.  **Debugger**: Uses `unity-fix-errors` to gather stack traces.
-2.  **Investigator**: Uses `unity-investigate-code` to find the root cause in logic.
-3.  **Coder**: Applies the fix using `unity-implement-logic`.
-4.  **Orchestrator**: Refreshes Unity and verifies the log is clean.
+**When to use full pipeline:** Complex features with unknown scope, multiple systems involved, or significant architectural decisions.
 
-## 3. Tech Lead Findings Template
+**Shortcut for medium tasks:** Skip directly to `unity-plan-brainstorm` → `unity-plan-executor`.
 
-For high-level project analysis, use this structure:
+## 2. Debug-Fix-Verify Loop
 
-- **Current State**: Summary of the codebase and assets.
-- **Architectural Risks**: Performance, technical debt, or platform limitations.
-- **Task Route**: List of which Specialized Skills will handle each part of the work.
-- **Definition of Done**: Criteria for success.
+```
+unity-fix-errors    → Diagnose from console/stack trace
+       ↓
+[Can't find cause?]
+       ↓
+unity-investigate-code → Trace execution, find root cause
+       ↓
+unity-implement-logic  → Apply targeted fix
+       ↓
+unity-test          → Verify fix, add regression test
+```
+
+**Alternative entry point:** If user describes unexpected behavior without errors, start with `unity-debug` for strategic investigation.
+
+## 3. Documentation Flow
+
+```
+[Feature complete?]
+       ↓
+unity-write-docs    → Architecture docs, README updates
+       +
+mermaid            → Flow diagrams, component maps
+       ↓
+[Need formal spec?]
+       ↓
+unity-write-tdd    → Technical Design Document
+```
+
+## 4. Platform-Specific Implementation
+
+```
+unity-implement-logic → Core feature logic
+       +
+unity-mobile-deploy   → Mobile adaptations (iOS/Android)
+       OR
+unity-web-deploy      → WebGL adaptations
+       ↓
+unity-optimize-performance → Platform-specific optimization
+```
+
+## 5. Editor Tooling Flow
+
+```
+unity-editor-tools → Custom window/inspector design
+       +
+unity-mcp-basics   → unityMCP automation integration
+       ↓
+unity-test         → Editor test coverage
+```
+
+## 6. Tech Lead Findings Template
+
+Use for high-level project analysis:
+
+```markdown
+## Current State
+- Summary of codebase and relevant assets
+- Existing patterns and conventions
+
+## Architectural Risks
+- Performance concerns
+- Technical debt
+- Platform limitations
+
+## Task Route
+| Task | Skill | Notes |
+|:-----|:------|:------|
+| [Task 1] | `skill-name` | Brief context |
+| [Task 2] | `skill-name` | Brief context |
+
+## Definition of Done
+- [ ] Criteria 1
+- [ ] Criteria 2
+- [ ] Tests pass
+```
+
+## 7. Cross-Cutting Verification
+
+After any implementation, verify:
+
+| Concern | Check With |
+|:--------|:-----------|
+| No new errors | `unity-fix-errors` (console scan) |
+| Performance acceptable | `unity-optimize-performance` (quick audit) |
+| Tests pass | `unity-test` (run existing suite) |
+| Code quality | `unity-review-pr` (self-review) |
+
+## 8. Skill Chaining Signals
+
+When a skill recommends chaining:
+
+| Signal | Chain To |
+|:-------|:---------|
+| "Root cause unclear" | `unity-investigate-code` |
+| "Need architectural decision" | `unity-plan` or `unity-write-tdd` |
+| "Performance concern identified" | `unity-optimize-performance` |
+| "Platform-specific behavior" | `unity-mobile-deploy` or `unity-web-deploy` |
+| "Missing test coverage" | `unity-test` |
+| "Documentation needed" | `unity-write-docs` + `mermaid` |

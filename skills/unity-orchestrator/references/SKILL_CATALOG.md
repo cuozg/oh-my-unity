@@ -1,35 +1,96 @@
 # Unity Skill Catalog
 
-This catalog maps high-level development tasks to the specialized Skills available in the `.claude/skills/` directory.
+Complete catalog of specialized skills in `.claude/skills/`.
 
-| Task Domain | Target Skill | Key Capability |
-| :--- | :--- | :--- |
-| **Project Setup & Logic** | `unity-implement-logic` | Implementation of C# systems, MonoBehaviours, and design patterns. |
-| **Data & Serialization** | `flatbuffers-coder` | Specialist in FlatBuffers schema, C# generation, and binary data. |
-| **Visualization** | `mermaid` | Specialist in visual diagrams, charts, and architectural mapping. |
-| **Mobile Specifics** | `unity-mobile-deploy` | iOS/Android optimizations, touch input, and native interop. |
-| **Web Specifics** | `unity-web-deploy` | WebGL deployment, browser interop, and JS communication. |
-| **Pipeline & Tools** | `unity-tech-art` | Shaders, `AssetPostprocessor`, and art pipeline automation. |
-| **Editor Utilities** | `unity-editor-tools` | Custom Handles, Windows, Inspectors, and engineer-centric tools. |
-| **Performance** | `unity-optimize-performance` | Profiling, bottleneck identification, and optimization strategies. |
-| **Debugging** | `unity-fix-errors` | Console analysis, stack trace investigation, and error resolution. |
-| **Code Quality** | `unity-review-pr` | Automated GitHub PR reviews and standards analysis. |
-| **Planning & Docs** | `unity-plan` | Requirement decomposition and implementation roadmap. |
-| **Planning & Docs** | `unity-plan-review` | High-level decomposition audit and task list finalization. |
-| **Planning & Docs** | `unity-plan-detail` | Detailed task investigation, code planning, and test design. |
-| **Planning & Docs** | `unity-plan-brainstorm` | Refinement of task instructions with precise code changes. |
-| **Implementation** | `unity-plan-executor` | Executing detailed engineering tasks from Documents/Tasks/. |
-| **Planning & Docs** | `unity-write-tdd` | Technical Design Document (TDD) generation. |
-| **Planning & Docs** | `unity-write-docs` | Architecture and API documentation. |
-| **Code Investigation** | `unity-investigate-code` | Tracing complex execution flows and static analysis. |
-| **Testing** | `unity-test` | Edit Mode and Play Mode automated test implementation. |
-| **Fundamental Tools** | `unity-mcp-basics` | Mastering `unityMCP` capabilities for editor control. |
-| **Skill Management** | `skill-creator` | Creating or updating specialized agent skills. |
+## Core Skills
 
-## Routing Guidance
+| Skill | When to Use | Triggers |
+|:------|:------------|:---------|
+| `unity-orchestrator` | ALL Unity requests - routes to specialists | Any Unity question |
+| `unity-implement-logic` | C# systems, MonoBehaviours, gameplay features | "implement", "create script", "add feature" |
+| `unity-investigate-code` | Trace execution, understand existing code | "how does X work", "trace the flow", "explain this code" |
 
-- **If the user asks "How do I implement...?"** -> Load `unity-plan` then `unity-implement-logic`.
-- **If the user says "My game is slow."** -> Load `unity-optimize-performance`.
-- **If the user says "Review this code."** -> Load `unity-review-pr`.
-- **If the user has a console error.** -> Load `unity-fix-errors`.
-- **If the user says "Create a tool for artists."** -> Load `unity-tech-art` or `unity-editor-tools`.
+## Error & Debug Skills
+
+| Skill | When to Use | Triggers |
+|:------|:------------|:---------|
+| `unity-fix-errors` | Console errors, compiler errors, build failures | "fix error", "build failed", "NullReference" |
+| `unity-debug` | Unexpected behavior requiring strategic investigation | "debug", "why is this happening", "investigate crash" |
+
+## Performance & Optimization
+
+| Skill | When to Use | Triggers |
+|:------|:------------|:---------|
+| `unity-optimize-performance` | FPS issues, memory leaks, slow loads | "slow", "laggy", "memory leak", "optimize" |
+
+## Platform Skills
+
+| Skill | When to Use | Triggers |
+|:------|:------------|:---------|
+| `unity-mobile-deploy` | iOS/Android: touch, native features, optimization | "mobile", "iOS", "Android", "touch input" |
+| `unity-web-deploy` | WebGL: browser interop, memory limits, PWA | "WebGL", "browser", "JS interop" |
+
+## Art & Tools
+
+| Skill | When to Use | Triggers |
+|:------|:------------|:---------|
+| `unity-tech-art` | Shaders, asset pipelines, procedural generation | "shader", "postprocessor", "rendering" |
+| `unity-editor-tools` | Custom windows, inspectors, editor automation | "editor window", "inspector", "editor tool" |
+| `unity-mcp-basics` | unityMCP automation for Editor tasks | "automate", "batch", "find GameObject" |
+
+## Planning & Documentation
+
+| Skill | When to Use | Triggers |
+|:------|:------------|:---------|
+| `unity-plan` | Requirements → roadmap with epics/tasks | "plan", "implement feature", "how should I build" |
+| `unity-plan-review` | Critique and refine plans | After `unity-plan` |
+| `unity-plan-detail` | Create task skeletons in Documents/Tasks/ | After `unity-plan-review` |
+| `unity-plan-brainstorm` | Technical deep-dive with code-level details | After `unity-plan-detail` |
+| `unity-plan-executor` | Execute detailed task instructions | After `unity-plan-brainstorm` |
+| `unity-write-tdd` | Formal Technical Design Documents | "TDD", "technical spec", "design document" |
+| `unity-write-docs` | README, architecture docs, API references | "document", "README", "onboarding guide" |
+
+## Testing & Quality
+
+| Skill | When to Use | Triggers |
+|:------|:------------|:---------|
+| `unity-test` | Edit/Play Mode tests, test assemblies | "test", "unit test", "test coverage" |
+| `unity-review-pr` | GitHub PR code reviews | "review PR", "code review" |
+
+## Data & Serialization
+
+| Skill | When to Use | Triggers |
+|:------|:------------|:---------|
+| `flatbuffers-coder` | FlatBuffers schemas, C# generation, binary data | "schema", "flatbuffers", "serialize", "data table" |
+
+## Visualization
+
+| Skill | When to Use | Triggers |
+|:------|:------------|:---------|
+| `mermaid` | Flowcharts, sequence diagrams, architecture maps | "diagram", "flowchart", "visualize" |
+
+## Meta
+
+| Skill | When to Use | Triggers |
+|:------|:------------|:---------|
+| `skill-creator` | Create or improve agent skills | "create skill", "update skill" |
+
+## Routing Decision Guide
+
+### Error Handling
+
+1. **Has error message/stack trace?** → `unity-fix-errors`
+2. **No error but wrong behavior?** → `unity-debug`
+3. **Performance degradation?** → `unity-optimize-performance`
+
+### Feature Implementation
+
+1. **Quick fix (1-2 files)?** → `unity-implement-logic`
+2. **Medium scope (known requirements)?** → `unity-plan-brainstorm` → `unity-plan-executor`
+3. **Large scope (needs planning)?** → Full pipeline starting with `unity-plan`
+
+### Documentation
+
+1. **Architecture/flow explanation?** → `unity-write-docs` + `mermaid`
+2. **Formal specification?** → `unity-write-tdd`
+3. **Code understanding?** → `unity-investigate-code`
