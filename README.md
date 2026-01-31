@@ -146,6 +146,25 @@ skills/<skill-name>/
 
 ### How to Create a Skill
 
+The `skill-creator` skill provides a guided workflow for creating new skills. Use it when you want to create or improve a skill.
+
+#### Using the skill-creator Skill
+
+**Trigger the skill** by asking: *"Create a new skill for [your use case]"* or *"Help me build a skill that does [X]"*
+
+The skill guides you through a 6-step process:
+
+1. **Understand** - Gather concrete examples of how the skill will be used
+2. **Plan** - Identify what scripts, references, and assets are needed
+3. **Initialize** - Run `init_skill.py` to scaffold the skill directory
+4. **Edit** - Implement resources and write SKILL.md instructions
+5. **Package** - Run `package_skill.py` to validate and bundle the skill
+6. **Iterate** - Refine based on real usage
+
+#### Quick Manual Creation
+
+For simple skills, you can create them manually:
+
 1. Create a folder: `.claude/skills/<your-skill-name>/`.
 2. Add a `SKILL.md` file with:
    ```yaml
@@ -158,6 +177,20 @@ skills/<skill-name>/
    Procedural instructions for the agent...
    ```
 3. Add supporting resources in `scripts/`, `references/`, or `assets/`.
+
+#### Helper Scripts
+
+| Script | Usage | Description |
+|--------|-------|-------------|
+| `init_skill.py` | `.claude/skills/skill-creator/scripts/init_skill.py <skill-name> --path <output-dir>` | Scaffolds a new skill directory with SKILL.md template and example folders |
+| `package_skill.py` | `.claude/skills/skill-creator/scripts/package_skill.py <path/to/skill-folder>` | Validates and packages skill into a distributable `.skill` file |
+
+#### Key Principles
+
+- **Concise is key** - Only include what Claude doesn't already know
+- **Progressive disclosure** - Keep SKILL.md lean (<500 lines), use `references/` for detailed docs
+- **Appropriate freedom** - High freedom for flexible tasks, low freedom for fragile operations
+- **No clutter** - Don't create README, CHANGELOG, or other auxiliary docs inside skills
 
 ---
 
